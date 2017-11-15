@@ -5,10 +5,11 @@
 ### Aufgabenverteilung
 - Lars: Kameraanbindung
 - Andreas: Servlets & Aktivitätsdiagramme
-- Lena: jsps erstellen (außer 1)
+- Lena: jsps erstellen, Wireframes aktualisieren
 
 ### To do
 - Datenbankanbindung
 
 ### Sonstiges
 nächstes Treffen: 17.11. 09:45 DSV Labor
+-> merge jsps und Java-Code
