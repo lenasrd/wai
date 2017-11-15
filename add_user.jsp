@@ -28,22 +28,6 @@
 									<td><input type="checkbox" name="key" value="val"/></td>
 									<td>Cam 1</td>
 								</tr>
-								<tr>
-									<td><input type="checkbox" name="key" value="val"/></td>
-									<td>Cam 2</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" name="key" value="val"/></td>
-									<td>Cam 3</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" name="key" value="val"/></td>
-									<td>Cam 4</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" name="key" value="val"/></td>
-									<td>Cam 5</td>
-								</tr>
 							</table>
 						</div>
 					</td>
