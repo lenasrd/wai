@@ -101,7 +101,7 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 
 		
-		System.out.println("login post called\n\tusername: " + username + "\n\tpassword: " + password +"\n");
+		System.out.println("login post called\n\tusername: " + username + "\npassword: " + password +"\n");
 		
 		// TODO Suche User in Datenbank, falls vorhanden hole ID
 		// TODO prüfe auf Admin via Datenbak
