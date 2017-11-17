@@ -115,13 +115,12 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session 	= request.getSession();
 		SessionList sessionList = SessionList.getInstance();
 		sessionList.addSession(session.getId(), user);
-		session.setAttribute("user", user);	
-		
-		
+			
 		if(username.equals("admin") && password.equals("admin")) {
 			user.setPermissionLevel(UserBean.PERMISSION_LEVEL_ADMIN);
 		}
-
+		
+		session.setAttribute("user", user);	
 		response.sendRedirect("main_menu");
 	}
 }
