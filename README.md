@@ -24,9 +24,13 @@ nächstes Treffen: 17.11. 09:45 DSV Labor
 Eclipse
 - Quarz zum laufen bringen
 
+Allgemein
+- SQL-Statements definieren
+- DebugLevel konfogurierbar machen
+
 Model
-- Kamera-Model erstellen
-- Image-Model erstellen
+- Kamera-Model/DAO erstellen
+- Image-Model/DAO erstellen
 
 Administration
 - Administrator-Menü add User
@@ -35,9 +39,6 @@ Administration
 - Administrator-Menü add Cam
 - Administrator-Menü delete Cam
 - Administrator-Menü edit Cam
-
-Doku
-- PowerPoint
 
 Login
 - Login mit Datenbank verknüpfen (Andy)
@@ -58,6 +59,8 @@ AppCore
 - Automatisches Speichern der Bilder in Ordner
 - Neue Bilder in Datenbank eintragen
 
+Doku
+- PowerPoint
 
 
 
