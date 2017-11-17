@@ -21,14 +21,18 @@ nächstes Treffen: 17.11. 09:45 DSV Labor
 
 ### todo (Stand 17.11.2017)
 
-Eclipse
+
+Allgemein
+- SQL-Statements definieren
+- DebugLevel konfogurierbar machen
 - Quarz zum laufen bringen
 
-Model
-- Kamera-Model erstellen
-- Image-Model erstellen
+Doku
+- PowerPoint
 
-Administration
+## View
+- Action/Button zum anschauen von Bilder in Vollbild einbauen
+- Admin-Menü im Mainmenü nur sichtbar, wenn User.PermissionLevel = 1 
 - Administrator-Menü add User
 - Administrator-Menü delete User
 - Administrator-Menü edit User
@@ -36,18 +40,22 @@ Administration
 - Administrator-Menü delete Cam
 - Administrator-Menü edit Cam
 
-Doku
-- PowerPoint
+## Model
+- UserDao erstellen
+- KameraBean erstellen
+- KameraDao erstellen
+- ImageBean erstellen
+- ImageDAO erstellen
+- ImageBean funktion Thumbnails generieren
 
+
+
+## Controller
 Login
 - Login mit Datenbank verknüpfen (Andy)
 
-MainMenü
-- Admin-Menü im Mainmenü nur sichtbar, wenn User.PermissionLevel = 1
-
 HistoryServlet
-- history-Seite verlinken (Andy)
-- Thumbnails generieren
+- history-Seite verlinken (Andy, erledigt)
 - Liste von Thumbnails versenden
 
 ImageViewer
@@ -57,6 +65,7 @@ ImageViewer
 AppCore
 - Automatisches Speichern der Bilder in Ordner
 - Neue Bilder in Datenbank eintragen
+
 
 
 
