@@ -62,20 +62,19 @@ public class MainMenuServlet extends HttpServlet {
 		// parse action
 		String key = request.getParameter("key");
 		request.getSession().setAttribute("key", key);
+		System.out.println("key: " + key);
 					
 		switch(key) {
 		case "Browse_history_of_all_cameras":
 		case "browse_history":
-			System.out.println("key: " + key);
 			response.sendRedirect("history");
 			break;
 		case "Administration":
-			if(user.getPermissionLevel() != UserBean.PERMISSION_LEVEL_ADMIN) {
+			if(user.getPermissionLevel() == UserBean.PERMISSION_LEVEL_ADMIN) {
 				response.sendRedirect("admin");
 			}	
 			break;
 		case "Logout":
-			System.out.println("key: " + key);
 			SessionList.getInstance().removeSession(request.getSession().getId());
 			response.sendRedirect("login");
 			break;

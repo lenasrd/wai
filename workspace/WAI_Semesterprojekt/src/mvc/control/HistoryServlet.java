@@ -40,7 +40,6 @@ public class HistoryServlet extends HttpServlet {
 		}		
 
 		String key = (String) request.getSession().getAttribute("key");
-		request.getSession().setAttribute("key", key);
 		System.out.println("key: " + key);
 		RequestDispatcher dispatcher = null;
 		
@@ -51,26 +50,14 @@ public class HistoryServlet extends HttpServlet {
 			dispatcher = getServletContext().getRequestDispatcher("/jsp/browse_all_cams.jsp"); 
 			dispatcher.forward(request, response);
 			break;
-		// history aller cams, view
-		case "Request_images_all_cams":
-			System.out.println("key: " + key);
-			dispatcher = getServletContext().getRequestDispatcher("/jsp/history_all_cams.jsp"); 
-			dispatcher.forward(request, response);	
-			break;
+		
 		// history einzelner cam, formular
 		case "browse_history":
 			System.out.println("key: " + key);
 			dispatcher = getServletContext().getRequestDispatcher("/jsp/browse_one_cam.jsp"); 
 			dispatcher.forward(request, response);	
 			break;
-		// history einzelner cam, view
-		case "Request_images_one_cam":
-			System.out.println("key: " + key);
-			dispatcher = getServletContext().getRequestDispatcher("/jsp/history_one_cam.jsp"); 
-			dispatcher.forward(request, response);	
-			break;
 
-		
 		default:
 			System.out.println("unknown key: " + key);
 		}
@@ -94,11 +81,32 @@ public class HistoryServlet extends HttpServlet {
 			return;
 		}
 		
-		
-		String key = (String) request.getSession().getAttribute("key");
-		request.getSession().setAttribute("key", key);
-		
+		String key = (String) request.getParameter("key");
 		System.out.println("key: " + key);
+		RequestDispatcher dispatcher = null;
+		
+		if(key.equals("Request_images_all_cams")) {
+			// history aller cams, view
+
+			System.out.println("key: " + key);
+			
+			// TODO parse form, SELECT required Imagepaths, load Images, create Thumbs and send to Client
+			
+			dispatcher = getServletContext().getRequestDispatcher("/jsp/history_all_cams.jsp"); 
+			dispatcher.forward(request, response);	
+
+		} else if (key.equals("Request_images_one_cam")) {
+			// history einzelner cam, view
+			
+			// TODO parse form, SELECT required Imagepaths, load Images, create Thumbs and send to Client
+
+			System.out.println("key: " + key);
+			dispatcher = getServletContext().getRequestDispatcher("/jsp/history_one_cam.jsp"); 
+			dispatcher.forward(request, response);	
+
+		}
+	
+	
 	}
 
 }
