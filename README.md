@@ -20,21 +20,48 @@ nächstes Treffen: 17.11. 09:45 DSV Labor
 
 
 ### todo (Stand 17.11.2017)
-- Admin-Menü im Mainmenü nur sichtbar, wenn User.PermissionLevel = 1
+
+Eclipse
 - Quarz zum laufen bringen
-- history-Seite verlinken (Andy)
-- Login mit Datenbank verknüpfen (Andy)
+
+Model
 - Kamera-Model erstellen
 - Image-Model erstellen
+
+Administration
 - Administrator-Menü add User
 - Administrator-Menü delete User
 - Administrator-Menü edit User
 - Administrator-Menü add Cam
 - Administrator-Menü delete Cam
 - Administrator-Menü edit Cam
+
+Doku
 - PowerPoint
-- Automatisches Speichern der Bilder in Ordner
+
+Login
+- Login mit Datenbank verknüpfen (Andy)
+
+MainMenü
+- Admin-Menü im Mainmenü nur sichtbar, wenn User.PermissionLevel = 1
+
+HistoryServlet
+- history-Seite verlinken (Andy)
+- Thumbnails generieren
+- Liste von Thumbnails versenden
+
+ImageViewer
 - Bilder in Datenbank erfassen
+- Bild in voller Größe versenden
+
+AppCore
+- Automatisches Speichern der Bilder in Ordner
+- Neue Bilder in Datenbank eintragen
+
+
+
+
+
 
 ### Vorschlag Ordnerstruktur Bilder
 WebContent
