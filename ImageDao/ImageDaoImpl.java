@@ -28,7 +28,7 @@ public class ImageDaoImpl implements ImageDao {
 		Connection connection = null;		
 		try {
 			connection = jndi.getConnection("jdbc/WAI_DB");		
-			PreparedStatement pstmt = connection.prepareStatement("delete from users where id = ?");
+			PreparedStatement pstmt = connection.prepareStatement("delete from images where id = ?");
 			pstmt.setInt(1, id);
 			pstmt.executeUpdate();			
 		} catch (Exception e) {
@@ -47,7 +47,7 @@ public class ImageDaoImpl implements ImageDao {
 		Connection connection = null;		
 		try {
 			connection = jndi.getConnection("jdbc/WAI_DB");			
-			PreparedStatement pstmt = connection.prepareStatement("select id, camId, path, timestamp from books where id = ?");
+			PreparedStatement pstmt = connection.prepareStatement("select id, camId, path, timestamp from images where id = ?");
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();							
 			if (rs.next()) {
@@ -77,13 +77,13 @@ public class ImageDaoImpl implements ImageDao {
 		try {
 			connection = jndi.getConnection("jdbc/WAI_DB");			
 			if (image.getId() == null) {
-				PreparedStatement pstmt = connection.prepareStatement("insert into users (camId, path, timestamp) values (?,?,?)");
+				PreparedStatement pstmt = connection.prepareStatement("insert into images (camId, path, timestamp) values (?,?,?)");
 				pstmt.setInt(1, image.getCamId());
 				pstmt.setString(2, image.getPath());
 				pstmt.setInt(3, image.getTimestamp());
 				pstmt.executeUpdate();
 			} else {
-				PreparedStatement pstmt = connection.prepareStatement("update users set camId = ?, path = ?, timestamp = ? where id = ?");
+				PreparedStatement pstmt = connection.prepareStatement("update images set camId = ?, path = ?, timestamp = ? where id = ?");
 				pstmt.setInt(1, image.getCamId());
 				pstmt.setString(2, image.getPath());
 				pstmt.setInt(3, image.getTimestamp());
@@ -105,7 +105,7 @@ public class ImageDaoImpl implements ImageDao {
 		try {
 			connection = jndi.getConnection("jdbc/WAI_DB");			
 			
-				PreparedStatement pstmt = connection.prepareStatement("select id, camId, path, timestamp from books");				
+				PreparedStatement pstmt = connection.prepareStatement("select id, camId, path, timestamp from images");				
 				ResultSet rs = pstmt.executeQuery();
 								
 				while (rs.next()) {
