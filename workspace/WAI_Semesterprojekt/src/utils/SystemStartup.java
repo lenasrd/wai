@@ -1,6 +1,9 @@
 package utils;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -16,6 +19,7 @@ public final class SystemStartup implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent event) {
 		
 		System.out.println("SystemStartup triggered");
+		
 		JNDIFactory jndiFactory = JNDIFactory.getInstance();
 
 		try {
