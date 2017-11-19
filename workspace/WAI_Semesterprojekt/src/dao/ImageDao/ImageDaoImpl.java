@@ -95,7 +95,7 @@ public class ImageDaoImpl implements ImageDao {
 	}	
 
 	@Override
-	public List<ImageBean> list() {
+	public List<ImageBean> listAllImages() {
 		
 		List<ImageBean> imageList = new ArrayList<ImageBean>();
 		
@@ -113,6 +113,45 @@ public class ImageDaoImpl implements ImageDao {
 					pstmt.setInt(3, image.getTimestamp());
 					imageList.add(image);
 				}			
+			
+			return imageList;
+		} catch (Exception e) {
+			throw new ImageNotFoundException();
+		} finally {	
+			closeConnection(connection);
+		}
+	}
+	
+
+	@Override
+	public List<ImageBean> listIntervalImages(String year, String month, String day, String startTime, String endTime){
+		
+		List<ImageBean> imageList = new ArrayList<ImageBean>();
+		
+		Connection connection = null;		
+		try {
+			connection = jndi.getConnection("jdbc/WAI_DB");
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("d-M-yy hh:mm:ss");
+			
+			String dateInString = day + month + year + " " + startTime + ":00";
+			Date startDate = sdf.parse(dateInString);
+			var startUnix = date.getTime() / 1000;
+			
+			dateInString = day + month + year + " " + endTime + ":00";
+			Date startDate = sdf.parse(dateInString);
+			var endUnix = date.getTime() / 1000;
+			
+			PreparedStatement pstmt = connection.prepareStatement("select id, camId, path, timestamp from images WHERE timestamp >= startUnix AND timestamp < endUnix");				
+			ResultSet rs = pstmt.executeQuery();
+							
+			while (rs.next()) {
+				ImageBean image = new ImageBean();
+				pstmt.setInt(1, image.getCamId());
+				pstmt.setString(2, image.getPath());
+				pstmt.setInt(3, image.getTimestamp());
+				imageList.add(image);
+			}			
 			
 			return imageList;
 		} catch (Exception e) {
