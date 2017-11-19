@@ -1,0 +1,5 @@
+package dao.UserDao;
+
+public class UserNotSavedException {
+
+}

@@ -7,6 +7,6 @@ public interface UserDao {
 	public void save(UserBean user);
 	public void delete(Integer id);
 	public UserBean get(Integer id);
-	public UserBean get(String username, String password);
+	public UserBean get(String username);
 	public List<UserBean> list();
 }

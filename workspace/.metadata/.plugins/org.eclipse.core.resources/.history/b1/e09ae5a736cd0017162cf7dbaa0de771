@@ -1,0 +1,14 @@
+package dao.UserDao;
+
+public class UserNotSavedException extends RuntimeException {
+	
+	private static final long serialVersionUID = 1L;
+
+	public UserNotSavedException(Integer id) {
+		super("Bild mit der Id " + id + " wurde nicht gefunden!");
+	}
+	
+	public UserNotSavedException() {
+		super("Bilder können nicht aufgelistet werden!");
+	}
+}

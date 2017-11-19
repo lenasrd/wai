@@ -1,0 +1,21 @@
+package dao.UserDao;
+
+import dao.ImageDao.ImageDao;
+import dao.ImageDao.ImageDaoFactory;
+import dao.ImageDao.ImageDaoImpl;
+
+public class ImageDaoFactory {
+	
+	private static ImageDaoFactory instance = new ImageDaoFactory();
+	
+	private ImageDaoFactory() {		
+	}
+	
+	public static ImageDaoFactory getInstance() {
+		return instance;
+	}
+	
+	public ImageDao getImageDao() {
+		return new ImageDaoImpl();
+	}
+}

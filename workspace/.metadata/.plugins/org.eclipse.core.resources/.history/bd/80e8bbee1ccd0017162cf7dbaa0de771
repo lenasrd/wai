@@ -1,0 +1,17 @@
+package dao.UserDao;
+
+public class UserDaoFactory {
+	
+	private static ImageDaoFactory instance = new UserDaoFactory();
+	
+	private UserDaoFactory() {		
+	}
+	
+	public static UserDaoFactory getInstance() {
+		return instance;
+	}
+	
+	public UserDao getImageDao() {
+		return new UserDaoImpl();
+	}
+}

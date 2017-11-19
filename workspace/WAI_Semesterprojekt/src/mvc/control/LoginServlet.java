@@ -1,11 +1,14 @@
 package mvc.control;
 
 import java.io.IOException;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ImageDao.ImageDaoFactory;
+import dao.UserDao.UserDaoFactory;
+import dao.UserDao.UserNotFoundException;
 import mvc.model.UserBean;
 import utils.JNDIFactory;
 import utils.SessionList;
@@ -39,27 +45,36 @@ public class LoginServlet extends HttpServlet {
 		System.out.println("login get called");
 		
 		
-		
+		// TODO delete (TOP)
+		/* Syntax insert user in database:
+			INSERT INTO public.users(
+				id, name, password, permission, cams)
+				VALUES (1, 'admin', 'admin', 1, '{1, 2, 7, 9}');
+		 */
 		JNDIFactory jndiFactory = JNDIFactory.getInstance();
 		Connection connection = null;
 		Statement statement = null;
 		ResultSet resultSet = null;
-
 		try {
 			connection = jndiFactory.getConnection("jdbc/WAI_DB");
 
 			statement = connection.createStatement();
-			resultSet = statement.executeQuery("select id, value from test");
-
-			System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));			
+			resultSet = statement.executeQuery("select id, name, password, permission, cams from users");
 			
-			
-			while (resultSet.next())
-				System.out.println(resultSet.getInt("id") + " has value: "
-						+ resultSet.getString("value"));
-
+			System.out.println("TODO: DELETE ME!!!!");
+			System.out.println("Vorhandene Accounts:");
+			while (resultSet.next()) {
+				System.out.println(resultSet.getInt("id") + " | Name: "
+						+ resultSet.getString("name") + ", Passwort: "
+						+ resultSet.getString("password") + ", permission: "
+						+ resultSet.getInt("permission") + ", cams: "
+						+ resultSet.getArray("cams"));
+				Array a = resultSet.getArray("cams");
+			}
 		} 
-		catch(Exception e) {}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 		finally {
 			if (connection != null)
 				try {
@@ -82,7 +97,7 @@ public class LoginServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 		}
-		
+		// TODO DELETE (BOTTOM)
 		
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/login.jsp");
@@ -106,21 +121,39 @@ public class LoginServlet extends HttpServlet {
 		// TODO Suche User in Datenbank, falls vorhanden hole ID
 		// TODO prüfe auf Admin via Datenbak
 		UserBean user = new UserBean();
-		user.setUsername(username);
-		user.setId(0); // TODO set id by id-generator
-
-		
-		
-		// Generiere Session
-		HttpSession session 	= request.getSession();
-		SessionList sessionList = SessionList.getInstance();
-		sessionList.addSession(session.getId(), user);
-			
-		if(username.equals("admin") && password.equals("admin")) {
-			user.setPermissionLevel(UserBean.PERMISSION_LEVEL_ADMIN);
+		try {
+			user = UserDaoFactory.getInstance().getImageDao().get(username);
+		} catch (UserNotFoundException e) {
+			System.out.println(e.getMessage());
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/login.jsp");
+			dispatcher.forward(request, response);
+			return;
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/login.jsp");
+			dispatcher.forward(request, response);
+			return;
 		}
 		
-		session.setAttribute("user", user);	
-		response.sendRedirect("main_menu");
+		if (user.getPassword().equals(password)){
+
+			// Generiere Session
+			HttpSession session 	= request.getSession();
+			SessionList sessionList = SessionList.getInstance();
+			sessionList.addSession(session.getId(), user);
+				
+			if(username.equals("admin") && password.equals("admin")) {
+				user.setPermissionLevel(UserBean.PERMISSION_LEVEL_ADMIN);
+			}
+			
+			session.setAttribute("user", user);	
+			response.sendRedirect("main_menu");
+			return;
+		} else {
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/login.jsp");
+			System.out.println("username oder passwort falsch");
+			dispatcher.forward(request, response);
+			return;
+		}
 	}
 }

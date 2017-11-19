@@ -3,4 +3,12 @@
 <fullyQualifiedTypeName name="javafx.scene.shape.Path"/>
 <fullyQualifiedTypeName name="java.nio.file.Path"/>
 <fullyQualifiedTypeName name="java.nio.file.Paths"/>
+<fullyQualifiedTypeName name="com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array"/>
+<fullyQualifiedTypeName name="java.sql.Array"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="dao.ImageDao.ImageDaoFactory"/>
+<fullyQualifiedTypeName name="dao.UserDao.UserDaoFactory"/>
+<fullyQualifiedTypeName name="dao.UserDao.UserNotFoundException"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
 </qualifiedTypeNameHistroy>
