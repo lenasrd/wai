@@ -30,7 +30,7 @@
 									<td>ID</td>
 									<td>Name</td>
 									<td><img src="http://cdn.onlinewebfonts.com/svg/img_148071.png" height="50"></td>
-									<td><input type="image" src="https://image.flaticon.com/icons/png/512/49/49116.png" width="20"/></td>
+									<td><input type="image" name="key" value="???" src="https://image.flaticon.com/icons/png/512/49/49116.png" width="20"/></td>
 									<td>15:00, 15.11.17</td>
 									<td><input type="submit" name="key" value="browse_history"/></td>
 								</tr>

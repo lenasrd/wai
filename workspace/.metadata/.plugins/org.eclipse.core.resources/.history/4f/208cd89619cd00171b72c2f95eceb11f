@@ -1,0 +1,18 @@
+package dao.ImageDao;
+
+
+public class ImageDaoFactory {
+	
+	private static ImageDaoFactory instance = new ImageDaoFactory();
+	
+	private ImageDaoFactory() {		
+	}
+	
+	public static DaoFactory getInstance() {
+		return instance;
+	}
+	
+	public ImageDao getImageDao() {
+		return new ImageDaoImpl();
+	}
+}

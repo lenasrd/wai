@@ -151,7 +151,7 @@
 
       <Context docBase="C:\Users\A\Documents\Studium\7. Semester\WAI\SemesterProjekt_GitRepo\wai\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\A\Documents\Studium\7. Semester\WAI\SemesterProjekt_GitRepo\wai\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\WAI_Semesterprojekt" path="/WAI_Semesterprojekt" reloadable="true" source="org.eclipse.jst.jee.server:WAI_Semesterprojekt">
     <Environment name="WAI_Semesterprojekt" override="false" type="java.lang.Boolean" value="true"/>
-    <Environment name="projectPath" override="false" type="java.lang.String" value="C:\Users\A\Documents\Studium\7. Semester\WAI\SemesterProjekt_GitRepo\wai\workspace\WAI_Semesterprojekt\WebContent"/>
+    <Environment name="projectPath" override="false" type="java.lang.String" value="${user.dir}\WebContent"/>
     <Environment name="configPath" override="false" type="java.lang.String" value="/config"/>
 
 	

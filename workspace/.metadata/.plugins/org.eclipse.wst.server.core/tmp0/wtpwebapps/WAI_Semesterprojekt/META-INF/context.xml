@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
     <Environment name="WAI_Semesterprojekt" value="true" type="java.lang.Boolean" override="false"></Environment>
-    <Environment name="projectPath" value="C:\Users\A\Documents\Studium\7. Semester\WAI\SemesterProjekt_GitRepo\wai\workspace\WAI_Semesterprojekt\WebContent" type="java.lang.String" override="false"/>
+    <Environment name="projectPath" value="${user.dir}\WebContent" type="java.lang.String" override="false"/>
     <Environment name="configPath" value="/config" type="java.lang.String" override="false"/>
 
 	

@@ -1,0 +1,11 @@
+package dao.UserDao;
+
+import java.util.List;
+import mvc.model.ImageBean;
+
+public interface UserDao {
+	public void save(ImageBean image);
+	public void delete(Integer id);
+	public ImageBean get(Integer id);
+	public List<ImageBean> list();
+}
