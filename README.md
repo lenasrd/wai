@@ -21,6 +21,15 @@ nächstes Treffen: 17.11. 09:45 DSV Labor
 
 ### todo (Stand 17.11.2017)
 
+Priorität:
+- HistoryServlet mit Datenbank erknüpfen: 
+      - Formular auslesen und entsprechende Bilder anfordern
+      - Für Übersicht Funktion zur generierung von Thumbnails implementieren
+      
+- Administration.jsp
+      - jsp's zum editieren, adden und deleten für user und kameras hinzufügen
+      - und einbauen
+
 
 Allgemein
 - SQL-Statements definieren
@@ -41,7 +50,7 @@ Doku
 - Administrator-Menü edit Cam
 
 ## Model
-- UserDao erstellen
+- UserDao erstellen (Andy, in progress)
 - KameraBean erstellen
 - KameraDao erstellen
 - ImageBean erstellen
@@ -52,7 +61,7 @@ Doku
 
 ## Controller
 Login
-- Login mit Datenbank verknüpfen (Andy)
+- Login mit Datenbank verknüpfen (Andy, erledigt)
 
 HistoryServlet
 - history-Seite verlinken (Andy, erledigt)
