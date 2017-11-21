@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import utils.JNDIFactory;
@@ -136,11 +138,11 @@ public class ImageDaoImpl implements ImageDao {
 			
 			String dateInString = day + month + year + " " + startTime + ":00";
 			Date startDate = sdf.parse(dateInString);
-			var startUnix = date.getTime() / 1000;
+			long startUnix = startDate.getTime() / 1000;
 			
 			dateInString = day + month + year + " " + endTime + ":00";
-			Date startDate = sdf.parse(dateInString);
-			var endUnix = date.getTime() / 1000;
+			Date endDate = sdf.parse(dateInString);
+			long endUnix = endDate.getTime() / 1000;
 			
 			PreparedStatement pstmt = connection.prepareStatement("select id, camId, path, timestamp from images WHERE timestamp >= startUnix AND timestamp < endUnix");				
 			ResultSet rs = pstmt.executeQuery();

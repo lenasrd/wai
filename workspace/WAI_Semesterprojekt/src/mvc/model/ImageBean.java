@@ -6,7 +6,8 @@ public class ImageBean {
 	private Integer camId;
 	private String path;
 	private Integer timestamp;
-    
+
+
     public Integer getId() {
         return id;
     }
@@ -27,8 +28,12 @@ public class ImageBean {
         return path;
     }
 
+    /** TODO / Empfehlung
+     * 	setPath dahingehend abändern das darüber automatisch thumbs erzeugt werden
+     */
     public void setPath(String path) {
         this.path = path;
+        // this.thumb = ImageBean::createThumb(path);
     }
 
     public Integer getTimestamp() {
@@ -38,4 +43,25 @@ public class ImageBean {
     public void setTimestamp(Integer timestamp) {
         this.timestamp = timestamp;
     }
+    
+    
+    /* Bilder und Thumbs müssen irgendwie ausgeldesen oder erzeugt werden
+     * Bilder:
+     * - muss das programm das bild laden und als stream verschicken oder kann auf den pfad verwiesen werden?
+     * 
+     * Thumbs:
+     * - erzeugen nach Bedarf, haltung in Klasse oder Thumbs im voraus erzeugen (über quarz beim speichern eines neues bildes thumb mitbauen)?
+     * - zweites wäre deutlich performanter, würde jedoch evtl ein Parallel-Filesystem voraussetzen
+     * 
+     * Meine empfehlung:
+     * Thumbs erstmal via ImageBean erzeugen und halten... sollte deutlich einfacher sein und scheis auf performance
+     */
+//    private Image thumb;
+//    
+//    static Image createThumb(String path) {
+//    	// https://www.java-forum.org/thema/thumbnails-schneller-erstellen.21437/ übernehmen?
+//    }
+    
+    
+    
 }
