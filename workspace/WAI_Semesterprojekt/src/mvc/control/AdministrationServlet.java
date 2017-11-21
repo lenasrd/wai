@@ -58,26 +58,67 @@ public class AdministrationServlet extends HttpServlet {
 			return;
 		}	
 		
-
+		RequestDispatcher dispatcher = null;
 		
 		// parse action
-		String key = request.getParameter("key");
-		request.getSession().setAttribute("key", key);
-		RequestDispatcher dispatcher = null;
+		String key = request.getParameter("key");		
 			
 		switch(key) {
 		case "Add_new_user":
+			// rufe jsp zum anlegen eines neuen users auf
+			System.out.println("key: " + key);
 			dispatcher = getServletContext().getRequestDispatcher("/jsp/add_user.jsp"); 
-			System.out.println("key: " + key);
 			dispatcher.forward(request, response);
-			break;
+			return;
+			
 		case "Add_new_camera":
-			dispatcher = getServletContext().getRequestDispatcher("/jsp/add_camera.jsp"); 
+			// rufe jps zum anlegen einer neuen kamera auf
 			System.out.println("key: " + key);
+			dispatcher = getServletContext().getRequestDispatcher("/jsp/add_camera.jsp"); 
 			dispatcher.forward(request, response);
-			break;
+			return;
+			
+		case "Add_user":
+			// parse formulardaten und lege neuen user an
+			System.out.println("key: " + key);
+			System.out.println("username " + request.getParameter("username"));
+			System.out.println("password " + request.getParameter("password"));
+			if(request.getParameter("permission") != null) {
+				System.out.println("permission: admin");
+			}
+			else {
+				System.out.println("permission: user");
+			}
+			response.sendRedirect("admin");
+			/** TODO
+			 *  Neuen User in Datenbank anlegen
+			 *  weiterleitung wohin?
+			 */
+			return;
+			
+		case "Add_camera":
+			// parse formulardaten und lege neue kamera an
+			System.out.println("key: " + key);
+			System.out.println("username " + request.getParameter("name"));
+			System.out.println("password " + request.getParameter("url"));
+			System.out.println("zutat " + request.getParameter("zutat"));
+			if(request.getParameter("access") != null) {
+				System.out.println("access:  all users");
+			}
+			else {
+				System.out.println("access: nobody");
+			}
+			
+			/** TODO
+			 *  Neue Kamera in Datenbank anlegen
+			 *  weiterleitung wohin?
+			 */
+			response.sendRedirect("admin");
+			return;
+			
 		default:
 			System.out.println("unknown key: " + key);
+			return;
 		}
 	}
 

@@ -9,15 +9,15 @@
 	</head>
 	<body>
 		<h1 align="center" >Add user</h1>
-		<form action="Controller" name="appform" method="get">
+		<form action="admin" name="appform" method="post">
 			<table align="center" cellpadding="2" cellspacing="2">
 				<tr>
 					<td>Username</td>
-					<td><input type="text" name="key" size="20" /></td>
+					<td><input type="text" name="username" size="20" /></td>
 				</tr>
 				<tr>
 					<td>Password</td>
-					<td><input type="text" name="key" size="20" /></td>
+					<td><input type="text" name="password" size="20" /></td>
 				</tr>
 				<tr>
 					<td>Camera rights</td>
@@ -33,11 +33,11 @@
 					</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="zutat" value="Admin rights"></td>
+					<td><input type="checkbox" name="permission" value="Admin rights"></td>
 					<td>Admin rights</td>
 				</tr>
 				<tr>
-					<td colspan=2><input type="submit" value="Add user"/></td>
+					<td colspan=2><input type="submit" name="key" value="Add_user"/></td>
 				</tr>
 			</table>
 		</form>
