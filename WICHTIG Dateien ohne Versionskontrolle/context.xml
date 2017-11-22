@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Environment name="WAI_Semesterprojekt" value="true" type="java.lang.Boolean" override="false"></Environment>
+    <Environment name="projectPath" value="${user.dir}\WebContent" type="java.lang.String" override="false"/>
+    <Environment name="configPath" value="/config" type="java.lang.String" override="false"/>
+
+	
+	<Resource name="jdbc/WAI_DB" auth="Container" type="javax.sql.DataSource"
+			driverClassName="org.postgresql.Driver"
+	        url="jdbc:postgresql://localhost/WAI_DB"
+   		    username="admin" password="admin"
+   		    maxActive="10" maxIdle="2" maxWait="-1" ></Resource>
+    		      
+</Context>
