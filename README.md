@@ -19,7 +19,7 @@ nächstes Treffen: 17.11. 09:45 DSV Labor
 
 
 
-### todo (Stand 17.11.2017)
+### todo (Stand 22.11.2017)
 
 Priorität:
 - Schauen wie das mit den Debug-Levels funktioniert und System.out.println's ersetzen
@@ -29,8 +29,8 @@ Priorität:
       - Für Übersicht Funktion zur generierung von Thumbnails implementieren
       
 - Administration.jsp
-      - jsp's zum editieren, adden und deleten für user und kameras hinzufügen
-      - und einbauen
+      - Auflisten der User (Die Session bekommt beim Aufruf eine List<UserBean>, aufrufbar über den Key "UserList")
+      - Beim Drücken des Delete/Edit button soll die ID des Users irgendwie mitgesendet werden
 
 
 Allgemein
