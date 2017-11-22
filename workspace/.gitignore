@@ -1,4 +1,13 @@
 .metadata
+WAI_Semesterprojekt/build
+
+WAI_Semesterprojekt/.classpath
+
+WAI_Semesterprojekt/WebContent/META-INF
+
+WAI_Semesterprojekt/WebContent/config
+
+
 bin/
 tmp/
 *.tmp
@@ -49,17 +58,7 @@ local.properties
 .worksheet
 
 
-metadata
-Servers
-RemoteSystemsTempFiles
 
-WAI_Semesterprojekt/build
-
-WAI_Semesterprojekt/.classpath
-
-WAI_Semesterprojekt/WebContent/META-INF
-
-WAI_Semesterprojekt/WebContent/config
 
 
 # Eclipse
