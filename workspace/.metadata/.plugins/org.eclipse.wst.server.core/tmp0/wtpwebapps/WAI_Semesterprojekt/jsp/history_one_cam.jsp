@@ -24,7 +24,7 @@
 								</tr>
 								<tr>
 									<td><img src="http://cdn.onlinewebfonts.com/svg/img_148071.png" height="50"></td>
-									<td><input type="image" src="https://image.flaticon.com/icons/png/512/49/49116.png" width="20"/></td>
+									<td><button name="key" value="zoom" style="background: url(https://image.flaticon.com/icons/png/512/49/49116.png); height: 30px; width: 30px; background-size: 24px 24px"></button></td>
 									<td>15:00</td>
 								</tr>
 							</table>

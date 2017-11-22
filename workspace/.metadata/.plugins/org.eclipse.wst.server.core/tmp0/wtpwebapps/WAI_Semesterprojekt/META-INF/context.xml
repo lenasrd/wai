@@ -7,7 +7,7 @@
 	
 	<Resource name="jdbc/WAI_DB" auth="Container" type="javax.sql.DataSource"
 			driverClassName="org.postgresql.Driver"
-	        url="jdbc:postgresql://localhost:5433/WAI_DB"
+	        url="jdbc:postgresql://localhost/WAI_DB"
    		    username="admin" password="admin"
    		    maxActive="10" maxIdle="2" maxWait="-1" ></Resource>
     		      

@@ -1,7 +1,6 @@
-INDEX VERSION 1.4+C:\Users\A\Documents\Studium\7. Semester\WAI\SemesterProjekt_GitRepo\wai\workspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-504227482.index
-1094625581.index
+INDEX VERSION 1.4+C:\Users\Lena\Desktop\Uni\WAI\git\wai\workspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+4210235342.index
+822411389.index
+3069959538.index
+1120117644.index
 1180987763.index
-1792030492.index
-818490629.index
-3064407094.index

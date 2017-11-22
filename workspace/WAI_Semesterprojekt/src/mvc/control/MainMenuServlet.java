@@ -36,7 +36,19 @@ public class MainMenuServlet extends HttpServlet {
 		if(user == null) {
 			response.sendRedirect("login");
 			return;
-		}	
+		}
+		
+
+		String visibility = "";
+		if (user.getPermissionLevel() == 1) {
+			visibility = "submit";
+		}
+		else {
+			visibility = "hidden";
+		}
+		request.setAttribute("adminVisibility", visibility);
+			
+		
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/main_menu.jsp");
 		dispatcher.forward(request, response);
@@ -58,7 +70,6 @@ public class MainMenuServlet extends HttpServlet {
 		
 		
 		
-		
 		// parse action
 		String key = request.getParameter("key");
 		request.getSession().setAttribute("key", key);
@@ -66,6 +77,9 @@ public class MainMenuServlet extends HttpServlet {
 					
 		switch(key) {
 		case "Browse_history_of_all_cameras":
+		case "zoom":
+			response.sendRedirect("image");
+			break;
 		case "browse_history":
 			response.sendRedirect("history");
 			break;
