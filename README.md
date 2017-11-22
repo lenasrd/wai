@@ -40,8 +40,8 @@ Doku
 - PowerPoint
 
 ## View
-- Action/Button zum anschauen von Bilder in Vollbild einbauen
-- Admin-Menü im Mainmenü nur sichtbar, wenn User.PermissionLevel = 1 
+- Action/Button zum anschauen von Bilder in Vollbild einbauen (Lena, erledigt)
+- Admin-Menü im Mainmenü nur sichtbar, wenn User.PermissionLevel = 1 (Lena, erledigt)
 - Administrator-Menü add User
 - Administrator-Menü delete User
 - Administrator-Menü edit User
