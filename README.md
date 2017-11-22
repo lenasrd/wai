@@ -29,7 +29,7 @@ Priorität:
       - Für Übersicht Funktion zur generierung von Thumbnails implementieren
       
 - Administration.jsp
-      - Auflisten der User (Die Session bekommt beim Aufruf eine List<UserBean>, aufrufbar über den Key "UserList")
+      - Auflisten der User (Der Request bekommt beim Aufruf eine List<UserBean>, aufrufbar über den Key "UserList")
       - Beim Drücken des Delete/Edit button soll die ID des Users irgendwie mitgesendet werden
 
 
