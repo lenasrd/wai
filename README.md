@@ -22,6 +22,8 @@ nächstes Treffen: 17.11. 09:45 DSV Labor
 ### todo (Stand 17.11.2017)
 
 Priorität:
+- Schauen wie das mit den Debug-Levels funktioniert und System.out.println's ersetzen
+
 - HistoryServlet mit Datenbank erknüpfen: 
       - Formular auslesen und entsprechende Bilder anfordern
       - Für Übersicht Funktion zur generierung von Thumbnails implementieren
@@ -32,7 +34,6 @@ Priorität:
 
 
 Allgemein
-- SQL-Statements definieren
 - DebugLevel konfogurierbar machen
 - Quarz zum laufen bringen
 
@@ -40,31 +41,17 @@ Doku
 - PowerPoint
 
 ## View
-- Action/Button zum anschauen von Bilder in Vollbild einbauen (Lena, erledigt)
-- Admin-Menü im Mainmenü nur sichtbar, wenn User.PermissionLevel = 1 (Lena, erledigt)
-- Administrator-Menü add User
-- Administrator-Menü delete User
-- Administrator-Menü edit User
-- Administrator-Menü add Cam
-- Administrator-Menü delete Cam
-- Administrator-Menü edit Cam
+- Administrator edit,delete integrieren
 
 ## Model
-- UserDao erstellen (Andy, in progress)
 - KameraBean erstellen
 - KameraDao erstellen
-- ImageBean erstellen
-- ImageDAO erstellen
 - ImageBean funktion Thumbnails generieren
 
 
 
 ## Controller
-Login
-- Login mit Datenbank verknüpfen (Andy, erledigt)
-
 HistoryServlet
-- history-Seite verlinken (Andy, erledigt)
 - Liste von Thumbnails versenden
 
 ImageViewer
