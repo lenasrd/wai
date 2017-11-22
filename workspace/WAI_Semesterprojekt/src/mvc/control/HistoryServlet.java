@@ -177,6 +177,12 @@ public class HistoryServlet extends HttpServlet {
 			nextPage = "/jsp/history_all_cams.jsp";
 		}
 		
+		else if (key.equals("zoom")) {
+			response.sendRedirect("image");
+			System.out.println("try key: " + key);
+			return;
+		}
+		
 		/** TODO
 		 * 	generiere Liste von Thumbnails
 		 * 	evtl taugt der code von https://www.java-forum.org/thema/thumbnails-schneller-erstellen.21437/ etwas

@@ -30,7 +30,7 @@
 									<td>ID</td>
 									<td>Name</td>
 									<td><img src="http://cdn.onlinewebfonts.com/svg/img_148071.png" height="50"></td>
-									<td><input type="image" name="key" value="???" src="https://image.flaticon.com/icons/png/512/49/49116.png" width="20"/></td>
+									<td><button name="key" value="zoom" style="background: url(https://image.flaticon.com/icons/png/512/49/49116.png); height: 30px; width: 30px; background-size: 24px 24px"></button></td>
 									<td>15:00, 15.11.17</td>
 									<td><input type="submit" name="key" value="browse_history"/></td>
 								</tr>
@@ -42,7 +42,7 @@
 					<td align="center"><input type="submit" name="key" value="Browse_history_of_all_cameras"/></td>
 				</tr>
 				<tr>
-					<td align="center"><input type="submit" name="key" value="Administration"/></td>
+					<td align="center"><input type="${adminVisibility}" name="key" value="Administration"/></td>
 				</tr>
 				<tr>
 					<td align="center"><input type="submit" name="key" value="Logout"/></td>

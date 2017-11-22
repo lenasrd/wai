@@ -64,7 +64,9 @@
   
   
   
-  <servlet-mapping>
+  <servlet>
+  	<servlet-name>ImageServlet</servlet-name>
+  	<servlet-class>mvc.control.ImageServlet</servlet-class></servlet><servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
@@ -88,7 +90,10 @@
   
  
   
-  <listener>
+  <servlet-mapping>
+  	<servlet-name>ImageServlet</servlet-name>
+  	<url-pattern>/image</url-pattern></servlet-mapping><listener>
     <listener-class>application.AppCore</listener-class>
   </listener>
+  
 </web-app>
