@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.UserDao.UserDao;
 import dao.UserDao.UserDaoFactory;
+import mvc.model.CamBean;
 import mvc.model.UserBean;
 import utils.SessionList;
 
@@ -43,8 +44,12 @@ public class AdministrationServlet extends HttpServlet {
 		
 		UserDao  userDao = UserDaoFactory.getInstance().getUserDao();
 		List<UserBean> userList = userDao.list();
-
-		request.getSession().setAttribute("UserList", userList);
+		
+		// CamDao camDao = CamDaoFactory.getInstance().getCamDao();
+		List<CamBean> camList = null; // = camDao.list();
+		
+		request.setAttribute("UserList", userList);
+		request.setAttribute("CamLList", camList);
 		
 		// show Page
 		RequestDispatcher dispatcher = null;
