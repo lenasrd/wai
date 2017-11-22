@@ -11,7 +11,7 @@ public class UserDaoFactory {
 		return instance;
 	}
 	
-	public UserDao getImageDao() {
+	public UserDao getUserDao() {
 		return new UserDaoImpl();
 	}
 }

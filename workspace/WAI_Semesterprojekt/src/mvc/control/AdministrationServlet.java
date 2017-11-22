@@ -1,6 +1,7 @@
 package mvc.control;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.UserDao.UserDao;
+import dao.UserDao.UserDaoFactory;
 import mvc.model.UserBean;
 import utils.SessionList;
 
@@ -37,12 +40,17 @@ public class AdministrationServlet extends HttpServlet {
 			response.sendRedirect("login");
 			return;
 		}		
+		
+		UserDao  userDao = UserDaoFactory.getInstance().getUserDao();
+		List<UserBean> userList = userDao.list();
 
+		request.getSession().setAttribute("UserList", userList);
 		
 		// show Page
 		RequestDispatcher dispatcher = null;
 		dispatcher = getServletContext().getRequestDispatcher("/jsp/administration.jsp"); 
 		dispatcher.forward(request, response);
+		return;
 	}
 
 	/**
@@ -79,21 +87,45 @@ public class AdministrationServlet extends HttpServlet {
 			return;
 			
 		case "Add_user":
+		case "Edit_user":
 			// parse formulardaten und lege neuen user an
 			System.out.println("key: " + key);
-			System.out.println("username " + request.getParameter("username"));
-			System.out.println("password " + request.getParameter("password"));
-			if(request.getParameter("permission") != null) {
-				System.out.println("permission: admin");
+
+			
+			
+			String newUser_username = request.getParameter("username");
+			String newUser_password = request.getParameter("password");
+			int newUser_permission = (request.getParameter("permission") != null) ?
+							UserBean.PERMISSION_LEVEL_ADMIN :
+							UserBean.PERMISSION_LEVEL_USER;
+			
+			UserBean newUser 	= null;
+			UserDao  userDao 	= UserDaoFactory.getInstance().getUserDao();
+
+			if(key.equals("Add_user")) {
+				newUser = new UserBean();
+				
+			} else {
+				try {
+					newUser = userDao.get(newUser_username);
+					if(newUser == null) {
+						System.out.println("User not found: " + newUser_username);
+					}
+				} catch(Exception e) {
+					System.out.println(e.getMessage());
+				}
 			}
-			else {
-				System.out.println("permission: user");
-			}
+			
+			newUser.setUsername(newUser_username);
+			newUser.setPassword(newUser_password);
+			newUser.setPermissionLevel(newUser_permission);
+
+			userDao.save(newUser);
+
+			
+			System.out.println("Neuer User angelegt!\n" + newUser);
+			
 			response.sendRedirect("admin");
-			/** TODO
-			 *  Neuen User in Datenbank anlegen
-			 *  weiterleitung wohin?
-			 */
 			return;
 			
 		case "Add_camera":
@@ -113,6 +145,9 @@ public class AdministrationServlet extends HttpServlet {
 			 *  Neue Kamera in Datenbank anlegen
 			 *  weiterleitung wohin?
 			 */
+			
+			
+			
 			response.sendRedirect("admin");
 			return;
 			

@@ -79,23 +79,29 @@ public class MainMenuServlet extends HttpServlet {
 		case "Browse_history_of_all_cameras":
 		case "zoom":
 			response.sendRedirect("image");
-			break;
+			return;
 		case "browse_history":
 			response.sendRedirect("history");
-			break;
+			return;
 		case "Administration":
 			if(user.getPermissionLevel() == UserBean.PERMISSION_LEVEL_ADMIN) {
 				response.sendRedirect("admin");
 			}	
-			break;
+			else {
+				// TODO errorpage
+				System.out.println("no permission");
+				response.sendRedirect("main_menu");
+			}
+			return;
 		case "Logout":
 			SessionList.getInstance().removeSession(request.getSession().getId());
 			response.sendRedirect("login");
-			break;
+			return;
 		default:
 			System.out.println("unknown key: " + key);
+			// TODO errorpage?
+			return;
 		}
-		return;
 	}
 
 }
