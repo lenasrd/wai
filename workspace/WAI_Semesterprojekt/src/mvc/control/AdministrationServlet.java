@@ -150,7 +150,8 @@ public class AdministrationServlet extends HttpServlet {
 			 *  Neue Kamera in Datenbank anlegen
 			 *  weiterleitung wohin?
 			 */
-			
+			String newCam_url = request.getParameter("url");
+			String newCam_name = request.getParameter("name");
 			
 			
 			response.sendRedirect("admin");
