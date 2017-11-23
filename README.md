@@ -4,7 +4,7 @@
 
 ### Aufgabenverteilung
 - Lars: Kameraanbindung
-- Andreas: Servlets & Aktivitätsdiagramme
+- Andreas: Ausbau AdministrationServlet (edit/delete Vorbereiten)
 - Lena: jsps erstellen, Wireframes aktualisieren
 
 ### To do
@@ -30,14 +30,14 @@ Priorität:
       - Formular auslesen und entsprechende Bilder anfordern
       - Für Übersicht Funktion zur generierung von Thumbnails implementieren
       
-- Administration.jsp
+- Administration.JSP
       - Auflisten der User (Der Request bekommt beim Aufruf eine List<UserBean>, aufrufbar über den Key "UserList")
       - Beim Drücken des Delete/Edit button soll die ID des Users irgendwie mitgesendet werden
 
 
 Allgemein
 - DebugLevel konfogurierbar machen
-- Quarz zum laufen bringen
+- Quarz zum laufen bringen (finish :D)
 
 Doku
 - PowerPoint
@@ -46,7 +46,6 @@ Doku
 - Administrator edit,delete integrieren
 
 ## Model
-- KameraBean erstellen
 - KameraDao erstellen
 - ImageBean funktion Thumbnails generieren
 
