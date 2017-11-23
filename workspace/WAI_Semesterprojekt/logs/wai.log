@@ -545,3 +545,212 @@
 (2017-11-22 16:50:19)  INFO SystemStartup:48 - ContextDestroyed
 (2017-11-22 16:50:39)  INFO SystemStartup:40 - ContextInitialized
 (2017-11-22 16:50:39)  INFO QuartzInitializerServlet:50 - Quartz Initializer Servlet loaded, initializing Scheduler...
+(2017-11-23 10:02:42)  INFO SystemStartup:40 - ContextInitialized
+(2017-11-23 10:02:42)  INFO QuartzInitializerServlet:50 - Quartz Initializer Servlet loaded, initializing Scheduler...
+(2017-11-23 10:15:05)  INFO SystemStartup:48 - ContextDestroyed
+(2017-11-23 10:19:00)  INFO SystemStartup:40 - ContextInitialized
+(2017-11-23 10:19:00)  INFO QuartzInitializerServlet:50 - Quartz Initializer Servlet loaded, initializing Scheduler...
+(2017-11-23 10:19:46)  INFO SystemStartup:48 - ContextDestroyed
+(2017-11-23 10:20:42)  INFO SystemStartup:40 - ContextInitialized
+(2017-11-23 10:20:42)  INFO QuartzInitializerServlet:50 - Quartz Initializer Servlet loaded, initializing Scheduler...
+(2017-11-23 10:20:43)  INFO SchedulerSignalerImpl:60 - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+(2017-11-23 10:20:43)  INFO QuartzScheduler:222 - Quartz Scheduler v.1.8.5 created.
+(2017-11-23 10:20:43)  INFO XMLSchedulingDataProcessorPlugin:199 - Registering Quartz Job Initialization Plug-in.
+(2017-11-23 10:20:43)  INFO QuartzScheduler:616 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511428843800 shutting down.
+(2017-11-23 10:20:43)  INFO QuartzScheduler:537 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511428843800 paused.
+(2017-11-23 10:20:43)  INFO QuartzScheduler:688 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511428843800 shutdown complete.
+(2017-11-23 10:22:44)  INFO SystemStartup:40 - ContextInitialized
+(2017-11-23 10:22:44)  INFO QuartzInitializerServlet:50 - Quartz Initializer Servlet loaded, initializing Scheduler...
+(2017-11-23 10:22:45)  INFO SchedulerSignalerImpl:60 - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+(2017-11-23 10:22:45)  INFO QuartzScheduler:222 - Quartz Scheduler v.1.8.5 created.
+(2017-11-23 10:22:45)  INFO XMLSchedulingDataProcessorPlugin:199 - Registering Quartz Job Initialization Plug-in.
+(2017-11-23 10:22:45)  INFO QuartzScheduler:616 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511428965094 shutting down.
+(2017-11-23 10:22:45)  INFO QuartzScheduler:537 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511428965094 paused.
+(2017-11-23 10:22:45)  INFO QuartzScheduler:688 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511428965094 shutdown complete.
+(2017-11-23 10:23:48)  INFO SystemStartup:48 - ContextDestroyed
+(2017-11-23 10:24:10)  INFO SystemStartup:40 - ContextInitialized
+(2017-11-23 10:24:10)  INFO QuartzInitializerServlet:50 - Quartz Initializer Servlet loaded, initializing Scheduler...
+(2017-11-23 10:24:10)  INFO SchedulerSignalerImpl:60 - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+(2017-11-23 10:24:10)  INFO QuartzScheduler:222 - Quartz Scheduler v.1.8.5 created.
+(2017-11-23 10:24:10)  INFO XMLSchedulingDataProcessorPlugin:199 - Registering Quartz Job Initialization Plug-in.
+(2017-11-23 10:24:10)  INFO QuartzScheduler:616 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429050346 shutting down.
+(2017-11-23 10:24:10)  INFO QuartzScheduler:537 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429050346 paused.
+(2017-11-23 10:24:10)  INFO QuartzScheduler:688 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429050346 shutdown complete.
+(2017-11-23 10:24:56)  INFO SystemStartup:48 - ContextDestroyed
+(2017-11-23 10:25:20)  INFO SystemStartup:40 - ContextInitialized
+(2017-11-23 10:25:20)  INFO QuartzInitializerServlet:50 - Quartz Initializer Servlet loaded, initializing Scheduler...
+(2017-11-23 10:25:20)  INFO SchedulerSignalerImpl:60 - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+(2017-11-23 10:25:20)  INFO QuartzScheduler:222 - Quartz Scheduler v.1.8.5 created.
+(2017-11-23 10:25:20)  INFO XMLSchedulingDataProcessorPlugin:199 - Registering Quartz Job Initialization Plug-in.
+(2017-11-23 10:25:20)  INFO RAMJobStore:139 - RAMJobStore initialized.
+(2017-11-23 10:25:20)  INFO QuartzScheduler:244 - Scheduler meta-data: Quartz Scheduler (v1.8.5) 'waiQuartzScheduler' with instanceId 'Shadow-mobile1511429120537'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 2 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+(2017-11-23 10:25:20)  INFO StdSchedulerFactory:1280 - Quartz scheduler 'waiQuartzScheduler' initialized from the specified file : 'C:\Users\A\Documents\Studium\7. Semester\WAI\SemesterProjekt_GitRepo\wai\workspace\WAI_Semesterprojekt\WebContent/config/quartz.properties'
+(2017-11-23 10:25:20)  INFO StdSchedulerFactory:1284 - Quartz scheduler version: 1.8.5
+(2017-11-23 10:25:20)  INFO XMLSchedulingDataProcessor:496 - Parsing XML file: C:/Users/A/Documents/Studium/7. Semester/WAI/SemesterProjekt_GitRepo/wai/workspace/WAI_Semesterprojekt/WebContent/config/quartz-jobs.xml with systemId: C:/Users/A/Documents/Studium/7. Semester/WAI/SemesterProjekt_GitRepo/wai/workspace/WAI_Semesterprojekt/WebContent/config/quartz-jobs.xml
+(2017-11-23 10:25:21)  INFO XMLSchedulingDataProcessor:970 - Adding 1 jobs, 1 triggers.
+(2017-11-23 10:25:21)  INFO XMLSchedulingDataProcessor:995 - Adding job: GROUP-1.WAI-Job
+(2017-11-23 10:25:21)  INFO QuartzScheduler:500 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429120537 started.
+(2017-11-23 10:25:21)  INFO QuartzInitializerServlet:73 - Scheduler has been started...
+(2017-11-23 10:25:21)  INFO QuartzInitializerServlet:87 - Group: GROUP-1 contains the following jobs
+(2017-11-23 10:25:21)  INFO QuartzInitializerServlet:91 - - WAI-Job
+(2017-11-23 10:25:21)  INFO QuartzInitializerServlet:95 - next Execution at: 23.11.2017 10:30:00
+(2017-11-23 10:28:37)  INFO QuartzScheduler:616 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429120537 shutting down.
+(2017-11-23 10:28:37)  INFO QuartzScheduler:537 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429120537 paused.
+(2017-11-23 10:28:37)  INFO QuartzScheduler:688 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429120537 shutdown complete.
+(2017-11-23 10:28:37)  INFO QuartzInitializerServlet:128 - Quartz Scheduler successful shutdown.
+(2017-11-23 10:28:37)  INFO SystemStartup:48 - ContextDestroyed
+(2017-11-23 10:31:02)  INFO SystemStartup:40 - ContextInitialized
+(2017-11-23 10:31:02)  INFO QuartzInitializerServlet:50 - Quartz Initializer Servlet loaded, initializing Scheduler...
+(2017-11-23 10:31:02)  INFO SchedulerSignalerImpl:60 - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+(2017-11-23 10:31:02)  INFO QuartzScheduler:222 - Quartz Scheduler v.1.8.5 created.
+(2017-11-23 10:31:02)  INFO XMLSchedulingDataProcessorPlugin:199 - Registering Quartz Job Initialization Plug-in.
+(2017-11-23 10:31:02)  INFO RAMJobStore:139 - RAMJobStore initialized.
+(2017-11-23 10:31:02)  INFO QuartzScheduler:244 - Scheduler meta-data: Quartz Scheduler (v1.8.5) 'waiQuartzScheduler' with instanceId 'Shadow-mobile1511429462866'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 2 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+(2017-11-23 10:31:02)  INFO StdSchedulerFactory:1280 - Quartz scheduler 'waiQuartzScheduler' initialized from the specified file : 'C:\Users\A\Documents\Studium\7. Semester\WAI\SemesterProjekt_GitRepo\wai\workspace\WAI_Semesterprojekt\WebContent/config/quartz.properties'
+(2017-11-23 10:31:02)  INFO StdSchedulerFactory:1284 - Quartz scheduler version: 1.8.5
+(2017-11-23 10:31:02)  INFO XMLSchedulingDataProcessor:496 - Parsing XML file: C:/Users/A/Documents/Studium/7. Semester/WAI/SemesterProjekt_GitRepo/wai/workspace/WAI_Semesterprojekt/WebContent/config/quartz-jobs.xml with systemId: C:/Users/A/Documents/Studium/7. Semester/WAI/SemesterProjekt_GitRepo/wai/workspace/WAI_Semesterprojekt/WebContent/config/quartz-jobs.xml
+(2017-11-23 10:31:03)  INFO XMLSchedulingDataProcessor:970 - Adding 1 jobs, 1 triggers.
+(2017-11-23 10:31:03)  INFO XMLSchedulingDataProcessor:995 - Adding job: GROUP-1.WAI-Job
+(2017-11-23 10:31:03)  INFO QuartzScheduler:500 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429462866 started.
+(2017-11-23 10:31:03)  INFO QuartzInitializerServlet:73 - Scheduler has been started...
+(2017-11-23 10:31:03)  INFO QuartzInitializerServlet:87 - Group: GROUP-1 contains the following jobs
+(2017-11-23 10:31:03)  INFO QuartzInitializerServlet:91 - - WAI-Job
+(2017-11-23 10:31:03)  INFO QuartzInitializerServlet:95 - next Execution at: 23.11.2017 10:31:10
+(2017-11-23 10:31:10)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  10:31:10 11/23/2017
+(2017-11-23 10:31:12)  INFO AppCore:44 - 2017-11-23 10:31:12
+(2017-11-23 10:31:12)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 10:31:12)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 10:31:12)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  10:31:12 11/23/2017 and reports: null
+(2017-11-23 10:31:20)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  10:31:20 11/23/2017
+(2017-11-23 10:31:20)  INFO AppCore:44 - 2017-11-23 10:31:20
+(2017-11-23 10:31:20)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 10:31:20)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 10:31:20)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  10:31:20 11/23/2017 and reports: null
+(2017-11-23 10:31:30)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  10:31:30 11/23/2017
+(2017-11-23 10:31:30)  INFO AppCore:44 - 2017-11-23 10:31:30
+(2017-11-23 10:31:30)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 10:31:30)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 10:31:30)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  10:31:30 11/23/2017 and reports: null
+(2017-11-23 10:31:40)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  10:31:40 11/23/2017
+(2017-11-23 10:31:40)  INFO AppCore:44 - 2017-11-23 10:31:40
+(2017-11-23 10:31:40)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 10:31:40)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 10:31:40)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  10:31:40 11/23/2017 and reports: null
+(2017-11-23 10:31:50)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  10:31:50 11/23/2017
+(2017-11-23 10:31:50)  INFO AppCore:44 - 2017-11-23 10:31:50
+(2017-11-23 10:31:50)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 10:31:50)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 10:31:50)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  10:31:50 11/23/2017 and reports: null
+(2017-11-23 10:32:00)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  10:32:00 11/23/2017
+(2017-11-23 10:32:00)  INFO AppCore:44 - 2017-11-23 10:32:00
+(2017-11-23 10:32:00)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 10:32:00)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 10:32:00)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  10:32:00 11/23/2017 and reports: null
+(2017-11-23 10:33:08)  INFO SystemStartup:40 - ContextInitialized
+(2017-11-23 10:33:08)  INFO QuartzInitializerServlet:50 - Quartz Initializer Servlet loaded, initializing Scheduler...
+(2017-11-23 10:33:08)  INFO SchedulerSignalerImpl:60 - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+(2017-11-23 10:33:08)  INFO QuartzScheduler:222 - Quartz Scheduler v.1.8.5 created.
+(2017-11-23 10:33:08)  INFO XMLSchedulingDataProcessorPlugin:199 - Registering Quartz Job Initialization Plug-in.
+(2017-11-23 10:33:08)  INFO QuartzScheduler:616 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429588911 shutting down.
+(2017-11-23 10:33:08)  INFO QuartzScheduler:537 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429588911 paused.
+(2017-11-23 10:33:08)  INFO QuartzScheduler:688 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429588911 shutdown complete.
+(2017-11-23 10:34:36)  INFO SystemStartup:48 - ContextDestroyed
+(2017-11-23 10:35:19)  INFO SystemStartup:40 - ContextInitialized
+(2017-11-23 10:35:19)  INFO QuartzInitializerServlet:50 - Quartz Initializer Servlet loaded, initializing Scheduler...
+(2017-11-23 10:35:19)  INFO SchedulerSignalerImpl:60 - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+(2017-11-23 10:35:19)  INFO QuartzScheduler:222 - Quartz Scheduler v.1.8.5 created.
+(2017-11-23 10:35:19)  INFO XMLSchedulingDataProcessorPlugin:199 - Registering Quartz Job Initialization Plug-in.
+(2017-11-23 10:35:19)  INFO QuartzScheduler:616 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429719751 shutting down.
+(2017-11-23 10:35:19)  INFO QuartzScheduler:537 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429719751 paused.
+(2017-11-23 10:35:19)  INFO QuartzScheduler:688 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429719751 shutdown complete.
+(2017-11-23 10:38:10)  INFO SystemStartup:40 - ContextInitialized
+(2017-11-23 10:38:10)  INFO QuartzInitializerServlet:50 - Quartz Initializer Servlet loaded, initializing Scheduler...
+(2017-11-23 10:38:10)  INFO SchedulerSignalerImpl:60 - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+(2017-11-23 10:38:10)  INFO QuartzScheduler:222 - Quartz Scheduler v.1.8.5 created.
+(2017-11-23 10:38:10)  INFO XMLSchedulingDataProcessorPlugin:199 - Registering Quartz Job Initialization Plug-in.
+(2017-11-23 10:38:10)  INFO QuartzScheduler:616 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429890584 shutting down.
+(2017-11-23 10:38:10)  INFO QuartzScheduler:537 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429890584 paused.
+(2017-11-23 10:38:10)  INFO QuartzScheduler:688 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429890584 shutdown complete.
+(2017-11-23 10:39:09)  INFO SystemStartup:48 - ContextDestroyed
+(2017-11-23 10:39:26)  INFO SystemStartup:40 - ContextInitialized
+(2017-11-23 10:39:26)  INFO QuartzInitializerServlet:50 - Quartz Initializer Servlet loaded, initializing Scheduler...
+(2017-11-23 10:39:27)  INFO SchedulerSignalerImpl:60 - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+(2017-11-23 10:39:27)  INFO QuartzScheduler:222 - Quartz Scheduler v.1.8.5 created.
+(2017-11-23 10:39:27)  INFO XMLSchedulingDataProcessorPlugin:199 - Registering Quartz Job Initialization Plug-in.
+(2017-11-23 10:39:27)  INFO QuartzScheduler:616 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429967123 shutting down.
+(2017-11-23 10:39:27)  INFO QuartzScheduler:537 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429967123 paused.
+(2017-11-23 10:39:27)  INFO QuartzScheduler:688 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511429967123 shutdown complete.
+(2017-11-23 10:53:18)  INFO SystemStartup:48 - ContextDestroyed
+(2017-11-23 10:53:35)  INFO SystemStartup:40 - ContextInitialized
+(2017-11-23 10:53:35)  INFO QuartzInitializerServlet:50 - Quartz Initializer Servlet loaded, initializing Scheduler...
+(2017-11-23 10:53:35)  INFO SchedulerSignalerImpl:60 - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+(2017-11-23 10:53:35)  INFO QuartzScheduler:222 - Quartz Scheduler v.1.8.5 created.
+(2017-11-23 10:53:35)  INFO XMLSchedulingDataProcessorPlugin:199 - Registering Quartz Job Initialization Plug-in.
+(2017-11-23 10:53:35)  INFO RAMJobStore:139 - RAMJobStore initialized.
+(2017-11-23 10:53:35)  INFO QuartzScheduler:244 - Scheduler meta-data: Quartz Scheduler (v1.8.5) 'waiQuartzScheduler' with instanceId 'Shadow-mobile1511430815609'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 2 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+(2017-11-23 10:53:35)  INFO StdSchedulerFactory:1280 - Quartz scheduler 'waiQuartzScheduler' initialized from the specified file : 'C:\Users\A\Documents\Studium\7. Semester\WAI\SemesterProjekt_GitRepo\wai\workspace\WAI_Semesterprojekt\WebContent/config/quartz.properties'
+(2017-11-23 10:53:35)  INFO StdSchedulerFactory:1284 - Quartz scheduler version: 1.8.5
+(2017-11-23 10:53:35)  INFO XMLSchedulingDataProcessor:496 - Parsing XML file: C:/Users/A/Documents/Studium/7. Semester/WAI/SemesterProjekt_GitRepo/wai/workspace/WAI_Semesterprojekt/WebContent/config/quartz-jobs.xml with systemId: C:/Users/A/Documents/Studium/7. Semester/WAI/SemesterProjekt_GitRepo/wai/workspace/WAI_Semesterprojekt/WebContent/config/quartz-jobs.xml
+(2017-11-23 10:53:35)  INFO XMLSchedulingDataProcessor:970 - Adding 1 jobs, 1 triggers.
+(2017-11-23 10:53:35)  INFO XMLSchedulingDataProcessor:995 - Adding job: GROUP-1.WAI-Job
+(2017-11-23 10:53:35)  INFO QuartzScheduler:500 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511430815609 started.
+(2017-11-23 10:53:35)  INFO QuartzInitializerServlet:73 - Scheduler has been started...
+(2017-11-23 10:53:35)  INFO QuartzInitializerServlet:87 - Group: GROUP-1 contains the following jobs
+(2017-11-23 10:53:35)  INFO QuartzInitializerServlet:91 - - WAI-Job
+(2017-11-23 10:53:35)  INFO QuartzInitializerServlet:95 - next Execution at: 23.11.2017 10:53:40
+(2017-11-23 10:53:40)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  10:53:40 11/23/2017
+(2017-11-23 10:53:40)  INFO AppCore:44 - 2017-11-23 10:53:40
+(2017-11-23 10:53:40)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 10:53:40)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 10:53:40)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  10:53:40 11/23/2017 and reports: null
+(2017-11-23 10:53:50)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  10:53:50 11/23/2017
+(2017-11-23 10:53:50)  INFO AppCore:44 - 2017-11-23 10:53:50
+(2017-11-23 10:53:50)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 10:53:50)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 10:53:50)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  10:53:50 11/23/2017 and reports: null
+(2017-11-23 10:54:00)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  10:54:00 11/23/2017
+(2017-11-23 10:54:00)  INFO AppCore:44 - 2017-11-23 10:54:00
+(2017-11-23 10:54:00)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 10:54:00)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 10:54:00)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  10:54:00 11/23/2017 and reports: null
+(2017-11-23 10:54:10)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  10:54:10 11/23/2017
+(2017-11-23 10:54:10)  INFO AppCore:44 - 2017-11-23 10:54:10
+(2017-11-23 10:54:10)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 10:54:10)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 10:54:10)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  10:54:10 11/23/2017 and reports: null
+(2017-11-23 10:54:20)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  10:54:20 11/23/2017
+(2017-11-23 10:54:20)  INFO AppCore:44 - 2017-11-23 10:54:20
+(2017-11-23 10:54:20)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 10:54:20)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 10:54:20)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  10:54:20 11/23/2017 and reports: null
+(2017-11-23 10:54:30)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  10:54:30 11/23/2017
+(2017-11-23 10:54:30)  INFO AppCore:44 - 2017-11-23 10:54:30
+(2017-11-23 10:54:30)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 10:54:30)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 10:54:30)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  10:54:30 11/23/2017 and reports: null
+(2017-11-23 10:54:30)  INFO QuartzScheduler:616 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511430815609 shutting down.
+(2017-11-23 10:54:30)  INFO QuartzScheduler:537 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511430815609 paused.
+(2017-11-23 10:54:30)  INFO QuartzScheduler:688 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511430815609 shutdown complete.
+(2017-11-23 10:54:30)  INFO QuartzInitializerServlet:128 - Quartz Scheduler successful shutdown.
+(2017-11-23 10:54:30)  INFO SystemStartup:48 - ContextDestroyed

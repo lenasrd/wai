@@ -9,3 +9,9 @@ Folgende Daten müssen händig wieder zum Projekt hinzugefügt werden:
 
 nach workspace\WAI_Semesterprojekt\WebContent\META-INF:
 context.xml
+
+nach workspace\WAI_Semesterprojekt\WebContent\config
+quartz.properties
+
+Achtung beim anpassen des pfades innerhalb der quartz.properties.
+'/' statt '\' muss verwendet werden! sonst geht nix!
