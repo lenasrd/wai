@@ -44,6 +44,8 @@ Doku
 
 ## View
 - Administrator edit,delete integrieren
+- Administrator.jsp, return button einbauen
+- history, explore usw return button einbauen
 
 ## Model
 - KameraDao erstellen
