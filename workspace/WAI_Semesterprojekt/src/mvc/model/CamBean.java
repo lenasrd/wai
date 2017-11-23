@@ -7,7 +7,7 @@ public class CamBean {
 	private String 	url;
 	private String 	name;
 	
-	CamBean() { 
+	public CamBean() { 
 		setId(-1);
 		setUrl(null);
 		setName(null);
