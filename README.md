@@ -24,6 +24,8 @@ nächstes Treffen: 17.11. 09:45 DSV Labor
 Priorität:
 - Schauen wie das mit den Debug-Levels funktioniert und System.out.println's ersetzen
 
+- CamDaoImpl funktionen ausdefinieren (für Struktur Tabelle siehe Table_cam.png) 
+
 - HistoryServlet mit Datenbank erknüpfen: 
       - Formular auslesen und entsprechende Bilder anfordern
       - Für Übersicht Funktion zur generierung von Thumbnails implementieren
