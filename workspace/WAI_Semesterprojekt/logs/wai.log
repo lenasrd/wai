@@ -754,3 +754,67 @@
 (2017-11-23 10:54:30)  INFO QuartzScheduler:688 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511430815609 shutdown complete.
 (2017-11-23 10:54:30)  INFO QuartzInitializerServlet:128 - Quartz Scheduler successful shutdown.
 (2017-11-23 10:54:30)  INFO SystemStartup:48 - ContextDestroyed
+(2017-11-23 11:05:37)  INFO SystemStartup:40 - ContextInitialized
+(2017-11-23 11:05:37)  INFO QuartzInitializerServlet:50 - Quartz Initializer Servlet loaded, initializing Scheduler...
+(2017-11-23 11:05:37)  INFO SchedulerSignalerImpl:60 - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+(2017-11-23 11:05:37)  INFO QuartzScheduler:222 - Quartz Scheduler v.1.8.5 created.
+(2017-11-23 11:05:37)  INFO XMLSchedulingDataProcessorPlugin:199 - Registering Quartz Job Initialization Plug-in.
+(2017-11-23 11:05:37)  INFO RAMJobStore:139 - RAMJobStore initialized.
+(2017-11-23 11:05:37)  INFO QuartzScheduler:244 - Scheduler meta-data: Quartz Scheduler (v1.8.5) 'waiQuartzScheduler' with instanceId 'Shadow-mobile1511431537374'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 2 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+(2017-11-23 11:05:37)  INFO StdSchedulerFactory:1280 - Quartz scheduler 'waiQuartzScheduler' initialized from the specified file : 'C:\Users\A\Documents\Studium\7. Semester\WAI\SemesterProjekt_GitRepo\wai\workspace\WAI_Semesterprojekt\WebContent/config/quartz.properties'
+(2017-11-23 11:05:37)  INFO StdSchedulerFactory:1284 - Quartz scheduler version: 1.8.5
+(2017-11-23 11:05:37)  INFO XMLSchedulingDataProcessor:496 - Parsing XML file: C:/Users/A/Documents/Studium/7. Semester/WAI/SemesterProjekt_GitRepo/wai/workspace/WAI_Semesterprojekt/WebContent/config/quartz-jobs.xml with systemId: C:/Users/A/Documents/Studium/7. Semester/WAI/SemesterProjekt_GitRepo/wai/workspace/WAI_Semesterprojekt/WebContent/config/quartz-jobs.xml
+(2017-11-23 11:05:37)  INFO XMLSchedulingDataProcessor:970 - Adding 1 jobs, 1 triggers.
+(2017-11-23 11:05:37)  INFO XMLSchedulingDataProcessor:995 - Adding job: GROUP-1.WAI-Job
+(2017-11-23 11:05:37)  INFO QuartzScheduler:500 - Scheduler waiQuartzScheduler_$_Shadow-mobile1511431537374 started.
+(2017-11-23 11:05:37)  INFO QuartzInitializerServlet:73 - Scheduler has been started...
+(2017-11-23 11:05:37)  INFO QuartzInitializerServlet:87 - Group: GROUP-1 contains the following jobs
+(2017-11-23 11:05:37)  INFO QuartzInitializerServlet:91 - - WAI-Job
+(2017-11-23 11:05:37)  INFO QuartzInitializerServlet:95 - next Execution at: 23.11.2017 11:05:40
+(2017-11-23 11:05:40)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  11:05:40 11/23/2017
+(2017-11-23 11:05:40)  INFO AppCore:44 - 2017-11-23 11:05:40
+(2017-11-23 11:05:40)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 11:05:40)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 11:05:40)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  11:05:40 11/23/2017 and reports: null
+(2017-11-23 11:05:50)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  11:05:50 11/23/2017
+(2017-11-23 11:05:50)  INFO AppCore:44 - 2017-11-23 11:05:50
+(2017-11-23 11:05:50)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 11:05:50)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 11:05:50)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  11:05:50 11/23/2017 and reports: null
+(2017-11-23 11:06:00)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  11:06:00 11/23/2017
+(2017-11-23 11:06:00)  INFO AppCore:44 - 2017-11-23 11:06:00
+(2017-11-23 11:06:00)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 11:06:00)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 11:06:00)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  11:06:00 11/23/2017 and reports: null
+(2017-11-23 11:06:10)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  11:06:10 11/23/2017
+(2017-11-23 11:06:10)  INFO AppCore:44 - 2017-11-23 11:06:10
+(2017-11-23 11:06:10)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 11:06:10)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 11:06:10)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  11:06:10 11/23/2017 and reports: null
+(2017-11-23 11:06:20)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  11:06:20 11/23/2017
+(2017-11-23 11:06:20)  INFO AppCore:44 - 2017-11-23 11:06:20
+(2017-11-23 11:06:20)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 11:06:20)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 11:06:20)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  11:06:20 11/23/2017 and reports: null
+(2017-11-23 11:06:30)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  11:06:30 11/23/2017
+(2017-11-23 11:06:30)  INFO AppCore:44 - 2017-11-23 11:06:30
+(2017-11-23 11:06:30)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 11:06:30)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 11:06:30)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  11:06:30 11/23/2017 and reports: null
+(2017-11-23 11:06:40)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  11:06:40 11/23/2017
+(2017-11-23 11:06:40)  INFO AppCore:44 - 2017-11-23 11:06:40
+(2017-11-23 11:06:40)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 11:06:40)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 11:06:40)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  11:06:40 11/23/2017 and reports: null
+(2017-11-23 11:06:50)  INFO LoggingJobHistoryPlugin:467 - Job GROUP-1.WAI-Job fired (by trigger MYTRIGGER_GROUP.WAITrigger) at:  11:06:50 11/23/2017
+(2017-11-23 11:06:50)  INFO AppCore:44 - 2017-11-23 11:06:50
+(2017-11-23 11:06:50)  INFO AppCore:48 - 1 has value: test
+(2017-11-23 11:06:50)  INFO AppCore:48 - 2 has value: blubb
+(2017-11-23 11:06:50)  INFO LoggingJobHistoryPlugin:511 - Job GROUP-1.WAI-Job execution complete at  11:06:50 11/23/2017 and reports: null
