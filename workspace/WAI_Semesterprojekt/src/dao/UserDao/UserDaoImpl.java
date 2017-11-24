@@ -192,6 +192,7 @@ public class UserDaoImpl implements UserDao{
 				}
 				user.setCams(camList);
 				userList.add(user);
+				System.out.println("user added");
 
 			}
 		} catch (Exception e) {

@@ -56,7 +56,29 @@ public class AdministrationServlet extends HttpServlet {
 		
 		// show Page
 		RequestDispatcher dispatcher = null;
-		dispatcher = getServletContext().getRequestDispatcher("/jsp/administration.jsp"); 
+		
+
+		//catch edit and remove calls and get id of the calling source
+		String action = request.getParameter("action");
+		Long id = null;
+		
+		if (request.getParameter("id") != null) {
+			id = Long.valueOf(request.getParameter("id"));
+		}
+	
+		if(action!= null && action.equals("edit_user")){
+			System.out.println("Call edit user "+ id);
+			dispatcher = getServletContext().getRequestDispatcher("/jsp/edit_user.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		else if(action!= null && action.equals("remove_user")){
+			System.out.println("Call remove user "+ id);
+			dispatcher = getServletContext().getRequestDispatcher("/jsp/administration.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		dispatcher = getServletContext().getRequestDispatcher("/jsp/administration.jsp");
 		dispatcher.forward(request, response);
 		return;
 	}
@@ -113,7 +135,7 @@ public class AdministrationServlet extends HttpServlet {
 		RequestDispatcher dispatcher 	= null;
 											
 		// parse action
-		String key 						= request.getParameter("key");	
+		String key 						= request.getParameter("key");
 		
 		switch(key) {
 		case "Add_new_user":
@@ -123,7 +145,8 @@ public class AdministrationServlet extends HttpServlet {
 			return;
 			
 		case "Edit_user":
-			dispatcher = getServletContext().getRequestDispatcher("/jsp/edit_user.jsp"); 
+			dispatcher = getServletContext().getRequestDispatcher("/jsp/edit_user.jsp");
+			System.out.println("User " + " editiert!");
 			dispatcher.forward(request, response);
 			return;
 			

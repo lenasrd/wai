@@ -39,14 +39,8 @@ public class AppCore implements Job, HttpSessionListener {
 			connection = jndiFactory.getConnection("jdbc/WAI_DB");
 
 			statement = connection.createStatement();
-			resultSet = statement.executeQuery("select id, value from test");
 
 			jlog.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));			
-			
-			
-			while (resultSet.next())
-				jlog.info(resultSet.getInt("id") + " has value: "
-						+ resultSet.getString("value"));
 
 		} finally {
 			if (connection != null)
