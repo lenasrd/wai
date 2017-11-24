@@ -8,6 +8,10 @@ public class UserNotFoundException extends RuntimeException {
 		super("User mit dem Namen " + name + " wurde nicht gefunden!");
 	}
 	
+	public UserNotFoundException(int id) {
+		super("User mit der ID " + id + " wurde nicht gefunden!");
+	}
+	
 	public UserNotFoundException() {
 		super("User können nicht aufgelistet werden!");
 	}

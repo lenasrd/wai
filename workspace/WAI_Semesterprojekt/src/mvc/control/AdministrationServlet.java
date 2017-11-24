@@ -230,7 +230,7 @@ public class AdministrationServlet extends HttpServlet {
 				try {
 					targetCam = camDao.get(target_id);
 					if(targetCam == null) {
-						System.out.println("User not found: " + target_camname);
+						System.out.println("Kamera not found: " + target_camname);
 					}
 				} catch(Exception e) {
 					System.out.println(e.getMessage());

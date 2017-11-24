@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-
+import dao.CamDao.CamNotFoundException;
 import utils.JNDIFactory;
 
 import mvc.model.UserBean;
@@ -108,14 +108,62 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
+
+		Connection connection = null;	
 		
+		try {
+			connection = jndi.getConnection("jdbc/WAI_DB");
+			PreparedStatement pstmt = connection.prepareStatement("DELETE FROM users "
+							+ "WHERE id = ?");
+			
+			pstmt.setInt(1, id);
+			pstmt.executeQuery();
+
+		} catch (Exception e) {
+			throw new UserNotDeletedException(id);
+		} finally {
+			closeConnection(connection);
+		}
 	}
+	
+	
 
 	@Override
 	public UserBean get(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Connection connection = null;	
+		
+		try {
+			connection = jndi.getConnection("jdbc/WAI_DB");
+			PreparedStatement pstmt = connection.prepareStatement("select "
+							+ "id, name, password, permission, cams "
+							+ "from users where id = ?");
+
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();							
+			if (rs.next()) {
+				UserBean user = new UserBean();
+				
+				user.setId(rs.getInt("id"));
+				user.setUsername(rs.getString("name"));
+				user.setPassword(rs.getString("password"));
+				user.setPermissionLevel(rs.getInt("permission"));
+				
+				List<Integer> camList = new ArrayList<Integer>();
+				
+				if(rs.getArray("cams") != null) {
+					camList = Arrays.asList((Integer[])rs.getArray("cams").getArray());
+				}
+				user.setCams(camList);
+				return user;
+			} else {
+				throw new UserNotFoundException(id);
+			}	
+		} catch (Exception e) {
+			throw new UserNotFoundException(id);
+		} finally {
+			closeConnection(connection);
+		}
 	}
 
 	@Override
