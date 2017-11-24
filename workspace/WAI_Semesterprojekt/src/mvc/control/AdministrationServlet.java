@@ -48,7 +48,7 @@ public class AdministrationServlet extends HttpServlet {
 		UserDao  userDao = UserDaoFactory.getInstance().getUserDao();
 		List<UserBean> userList = userDao.list();
 		
-		// CamDao camDao = CamDaoFactory.getInstance().getCamDao();
+		CamDao camDao = CamDaoFactory.getInstance().getCamDao();
 		List<CamBean> camList = null; // = camDao.list();
 		
 		request.setAttribute("UserList", userList);
