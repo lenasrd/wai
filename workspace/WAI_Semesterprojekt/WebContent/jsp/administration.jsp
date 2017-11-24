@@ -19,11 +19,13 @@
 					<td>
 						<div style="width:200px;height:250px;overflow:auto;padding:5px;border:1px solid black;">
 							<table cellpadding="2" cellspacing="2">
-								<tr>
-									<td>User 1</td>
-									<td><input type="submit" name="key" value="edit"/></td>
-									<td><input type="submit" name="key" value="remove"/></td>
-								</tr>
+								<c:forEach items="${UserList}" var="userinthisrow">
+									<tr>
+								        <td>${userinthisrow.username}</td>
+								        <td><a href="admin?action=edit_user&id=${userinthisrow.id}">edit</a></td>
+								        <td><a href="admin?action=remove_user&id=${userinthisrow.id}">remove</a></td>
+								    </tr>
+								</c:forEach>
 							</table>
 						</div>
 					</td>
