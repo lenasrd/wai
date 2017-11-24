@@ -87,22 +87,25 @@ WebContent
  Datenbankname: WAI_DB
  
  Table User
- ID             Integer
- Name           Text
- Passwort       Text
- PermissionLvL  Integer
- CAMS           Integer[]
+ id             Integer
+ name           Text
+ password       Text
+ permission     Integer
+ cams           Integer[]
  
  Table Cam
- ID     Integer
- URL    Text
- Name   Text
+ id     Integer
+ url    Text
+ name   Text
  
  Table Image
- ID     Integer
- CAM_ID Integer
+ id     Integer
+ cam_id Integer
  Path   Text
- Date   Timestamp
+ year   Integer
+ month  Integer
+ day    Integer
+ hour   Integer
  
  
  
