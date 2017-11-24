@@ -58,10 +58,6 @@ public class AppCore implements Job, HttpSessionListener {
 			//DB Connection
 			connection = jndiFactory.getConnection("jdbc/WAI_DB");
 			statement = connection.createStatement();
-
-			jlog.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));			
-
-		} finally {
 			
 			//Kamerainformationen
 			ResultSet cam = statement.executeQuery("SELECT url, name,id FROM public.cam" );
