@@ -1,10 +1,19 @@
 package mvc.control;
 
 import java.io.IOException;
+import java.sql.Array;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +26,7 @@ import com.sun.prism.Image;
 import dao.ImageDao.ImageDaoFactory;
 import mvc.model.ImageBean;
 import mvc.model.UserBean;
+import utils.JNDIFactory;
 import utils.SessionList;
 
 /**
@@ -32,6 +42,8 @@ public class HistoryServlet extends HttpServlet {
         super();
     }
 
+    private List<ImageBean> images = new ArrayList<ImageBean>();
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -44,7 +56,81 @@ public class HistoryServlet extends HttpServlet {
 		if(user == null) {
 			response.sendRedirect("login");
 			return;
-		}		
+		}
+		
+		JNDIFactory jndiFactory = JNDIFactory.getInstance();
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+			connection = jndiFactory.getConnection("jdbc/WAI_DB");
+			
+			//START LENA
+			//read in images from database and save in list<imagebean>
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery("select year from images where camid = 1 order by year desc");
+			List<String> years = new ArrayList<String>();
+			
+			System.out.println("TODO: DELETE ME!!!!");
+			System.out.println("Vorhandene Images:");
+			while (resultSet.next()) {
+				/*System.out.println("ID: "
+						+ resultSet.getInt("id") + ", CamId: "
+						+ resultSet.getInt("camid") + ", path: "
+						+ resultSet.getString("path") + ", timestamp: "
+						+ resultSet.getInt("timestamp"));*/
+				
+				years.add(String.valueOf(resultSet.getInt("year")));
+				request.setAttribute("years", years);
+				
+				/*ImageBean newImage = new ImageBean();
+				newImage.setId(resultSet.getInt("id"));
+				newImage.setCamId(resultSet.getInt("camid"));
+				newImage.setPath(resultSet.getString("path"));
+				newImage.setTimestamp(resultSet.getInt("year"));
+				newImage.setTimestamp(resultSet.getString("month"));
+				newImage.setTimestamp(resultSet.getInt("year"));
+				newImage.setTimestamp(resultSet.getInt("year"));
+				images.add(newImage);*/
+			}
+		}
+		
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		finally {
+			if (connection != null)
+				try {
+					connection.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			if (statement != null)
+				try {
+					statement.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			if (resultSet != null)
+				try {
+					//START LENA
+					//set years with read data
+					/*List<String> years = new ArrayList<String>();
+					for(int i =0; i<images.size(); i++) {
+						int time = images.get(i).getTimestamp();
+						java.util.Date date=new java.util.Date((long)time*1000);
+						SimpleDateFormat df = new SimpleDateFormat("yyyy");
+						years.add(df.format(date));
+						request.setAttribute("years", years)
+					};*/
+					resultSet.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		}
+		
 
 		// get action key
 		String key = (String) request.getSession().getAttribute("key");
@@ -96,6 +182,10 @@ public class HistoryServlet extends HttpServlet {
 		RequestDispatcher dispatcher 	= null;
 		String nextPage 				= null;
 		List<ImageBean> imageList 		= null;
+		JNDIFactory jndiFactory = JNDIFactory.getInstance();
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
 		
 		// get action key
 		String key = (String) request.getParameter("key");
@@ -156,7 +246,7 @@ public class HistoryServlet extends HttpServlet {
 			 * Zeige Ergebnis der Suche über einer Kameras
 			 * Auflistung der Ergebnisse (Bilder als Thumbs)
 			 **/
-			System.out.println("key: " + key);		
+			System.out.println("key: " + key);
 			
 			/** TODO
 			 *  Einlesen der Formulardaten
@@ -172,9 +262,38 @@ public class HistoryServlet extends HttpServlet {
 			 *  Abfrage über ImageDao
 			 */
 			;
+			
 //			imageList = ImageDaoFactory.getInstance().getImageDao().listIntervalImages(
 //			  			year, month, day, startTime, endTime);
-			nextPage = "/jsp/history_all_cams.jsp";
+			//nextPage = "/jsp/history_one_cam.jsp";
+
+			try {
+				connection = jndiFactory.getConnection("jdbc/WAI_DB");
+			} catch (NamingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			//START LENA
+			//read in images from database and save in list<imagebean>
+			try {
+				statement = connection.createStatement();
+				resultSet = statement.executeQuery("select month from images where camid = 1");
+				List<String> months = new ArrayList<String>();
+				while (resultSet.next()) {
+					months.add(resultSet.getString("month"));
+					request.setAttribute("months", months);
+					System.out.println(months);
+					nextPage = "/jsp/browse_one_cam.jsp";
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return;
 		}
 		
 		else if (key.equals("zoom")) {
