@@ -9,4 +9,5 @@ public interface UserDao {
 	public UserBean get(Integer id);
 	public UserBean get(String username);
 	public List<UserBean> list();
+	public int getNewId();
 }

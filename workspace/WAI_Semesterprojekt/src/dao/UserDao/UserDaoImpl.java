@@ -5,8 +5,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -38,18 +40,25 @@ public class UserDaoImpl implements UserDao{
 					throw new IllegalArgumentException("username and userpassword can not be null");
 				}
 				
+				
+				
 				pstmt = connection.prepareStatement(
 										"insert into users (id, name, password, permission, cams) "
 										+ "values (?,?,?,?,?)");
 				
-				Array array = connection.createArrayOf("Integer[]", user.getCams().toArray());
 				
+				
+				user.setId(getNewId());
 				pstmt.setInt(1, user.getId());
 				pstmt.setString(2, user.getUsername());
 				pstmt.setString(3, user.getPassword());
 				pstmt.setInt(4, user.getPermissionLevel());
-				pstmt.setArray(5, array);
-				pstmt.executeUpdate();
+				
+				if(user.getCams().size() > 0) {
+					pstmt.setArray(5, connection.createArrayOf("Integer[]", user.getCams().toArray()));
+				} else {
+					pstmt.setNull(5, Types.ARRAY);
+				}
 				
 			// bereits bestehender user
 			} else {
@@ -62,13 +71,18 @@ public class UserDaoImpl implements UserDao{
 					pstmt = connection.prepareStatement("update users "
 							+ "set name = ?, password = ?, permission = ?, cams = ? where id = ?");
 				
-					Array array = connection.createArrayOf("Integer[]", user.getCams().toArray());
+
 
 					pstmt.setString(1, user.getUsername());
 					pstmt.setString(2, user.getPassword());
 					pstmt.setInt(3, user.getPermissionLevel());
-					pstmt.setArray(4, array);
 					pstmt.setInt(5, user.getId());
+					
+					if(user.getCams().size() > 0) {
+						pstmt.setArray(5, connection.createArrayOf("Integer[]", user.getCams().toArray()));
+					} else {
+						pstmt.setNull(4, Types.ARRAY);
+					}
 				}
 				// nur Kamera-Vektor updaten
 				else {
@@ -85,6 +99,7 @@ public class UserDaoImpl implements UserDao{
 			pstmt.executeUpdate();		
 			
 		} catch(Exception e) {
+			System.out.println(e.getMessage());
 			throw new UserNotSavedException();
 		} finally {
 			closeConnection(connection);
@@ -144,10 +159,70 @@ public class UserDaoImpl implements UserDao{
 		}
 	}
 
+	
+	
 	@Override
 	public List<UserBean> list() {
-		// TODO Auto-generated method stub
-		return null;
+
+		Connection connection = null;
+		List<UserBean> userList = new LinkedList<UserBean>();
+		
+		try {
+			connection = jndi.getConnection("jdbc/WAI_DB");
+			PreparedStatement pstmt = connection.prepareStatement("select "
+							+ "id, name, password, permission, cams "
+							+ "from users");
+
+			ResultSet rs = pstmt.executeQuery();	
+			
+			
+			while(rs.next()) {
+
+				UserBean user = new UserBean();
+				
+				user.setId(rs.getInt("id"));
+				user.setUsername(rs.getString("name"));
+				user.setPassword(rs.getString("password"));
+				user.setPermissionLevel(rs.getInt("permission"));
+				
+				List<Integer> camList = new ArrayList<Integer>();
+				
+				if(rs.getArray("cams") != null) {
+					camList = Arrays.asList((Integer[])rs.getArray("cams").getArray());
+				}
+				user.setCams(camList);
+				userList.add(user);
+
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());;
+		} finally {
+			closeConnection(connection);
+		}	
+		return userList;
+	}
+	
+	
+	public int getNewId() {
+		int id = 0;
+		Connection connection = null;	
+		try {
+			connection = jndi.getConnection("jdbc/WAI_DB");
+			PreparedStatement pstmt = connection.prepareStatement(
+							"SELECT id FROM users ORDER BY id DESC LIMIT 1");
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				id = rs.getInt("id");
+			}
+			id++;
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+			id = 0;
+		} finally {
+			closeConnection(connection);
+		}
+		return id;
 	}
 	
 	

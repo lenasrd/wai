@@ -4,7 +4,7 @@
 
 ### Aufgabenverteilung
 - Lars: Kameraanbindung
-- Andreas: Servlets & Aktivitätsdiagramme
+- Andreas: Ausbau AdministrationServlet (edit/delete Vorbereiten)
 - Lena: jsps erstellen, Wireframes aktualisieren
 
 ### To do
@@ -19,52 +19,42 @@ nächstes Treffen: 17.11. 09:45 DSV Labor
 
 
 
-### todo (Stand 17.11.2017)
+### todo (Stand 22.11.2017)
 
 Priorität:
+- Schauen wie das mit den Debug-Levels funktioniert und System.out.println's ersetzen
+
+- CamDaoImpl funktionen ausdefinieren (für Struktur Tabelle siehe Table_cam.png) 
+
 - HistoryServlet mit Datenbank erknüpfen: 
       - Formular auslesen und entsprechende Bilder anfordern
       - Für Übersicht Funktion zur generierung von Thumbnails implementieren
       
-- Administration.jsp
-      - jsp's zum editieren, adden und deleten für user und kameras hinzufügen
-      - und einbauen
+- Administration.JSP
+      - Auflisten der User (Der Request bekommt beim Aufruf eine List<UserBean>, aufrufbar über den Key "UserList")
+      - Beim Drücken des Delete/Edit button soll die ID des Users irgendwie mitgesendet werden
 
 
 Allgemein
-- SQL-Statements definieren
 - DebugLevel konfogurierbar machen
-- Quarz zum laufen bringen
+- Quarz zum laufen bringen (finish :D)
 
 Doku
 - PowerPoint
 
 ## View
-- Action/Button zum anschauen von Bilder in Vollbild einbauen
-- Admin-Menü im Mainmenü nur sichtbar, wenn User.PermissionLevel = 1 
-- Administrator-Menü add User
-- Administrator-Menü delete User
-- Administrator-Menü edit User
-- Administrator-Menü add Cam
-- Administrator-Menü delete Cam
-- Administrator-Menü edit Cam
+- Administrator edit,delete integrieren
+- Administrator.jsp, return button einbauen
+- history, explore usw return button einbauen
 
 ## Model
-- UserDao erstellen (Andy, in progress)
-- KameraBean erstellen
 - KameraDao erstellen
-- ImageBean erstellen
-- ImageDAO erstellen
 - ImageBean funktion Thumbnails generieren
 
 
 
 ## Controller
-Login
-- Login mit Datenbank verknüpfen (Andy, erledigt)
-
 HistoryServlet
-- history-Seite verlinken (Andy, erledigt)
 - Liste von Thumbnails versenden
 
 ImageViewer

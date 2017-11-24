@@ -67,5 +67,23 @@ public class UserBean {
 	public void setCams(List<Integer> cams) {
 		this.cams = cams;
 	}
-
+	
+	public String decodePermission(int permissionLevel) {
+		switch(permissionLevel) {
+		case PERMISSION_LEVEL_ADMIN:
+			return "admin";
+		case PERMISSION_LEVEL_USER:
+			return "user";
+		default:
+			return "unknown permission";
+		}
+	}
+	public String toString() {
+		return ("id:         " + id + "\n" +
+				"username:   " + username + "\n" +
+				"password:   " + password + "\n" +
+				"permission: " + decodePermission(permissionLevel) + "\n" +
+				"cams:       " + cams);
+	}
+	
 }

@@ -69,7 +69,6 @@ public class LoginServlet extends HttpServlet {
 						+ resultSet.getString("password") + ", permission: "
 						+ resultSet.getInt("permission") + ", cams: "
 						+ resultSet.getArray("cams"));
-				Array a = resultSet.getArray("cams");
 			}
 		} 
 		catch(Exception e) {
@@ -115,11 +114,6 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		
-		System.out.println("login post called\n\tusername: " + username + "\npassword: " + password +"\n");
-		
-		// TODO Suche User in Datenbank, falls vorhanden hole ID
-		// TODO prüfe auf Admin via Datenbak
 		UserBean user = new UserBean();
 		try {
 			user = UserDaoFactory.getInstance().getUserDao().get(username);
@@ -145,13 +139,13 @@ public class LoginServlet extends HttpServlet {
 			if(username.equals("admin") && password.equals("admin")) {
 				user.setPermissionLevel(UserBean.PERMISSION_LEVEL_ADMIN);
 			}
-			
+			System.out.println("-- Login as --\n" + user);
 			session.setAttribute("user", user);	
 			response.sendRedirect("main_menu");
 			return;
 		} else {
+			System.out.println("-- Login as --\n" + user);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/login.jsp");
-			System.out.println("username oder passwort falsch");
 			dispatcher.forward(request, response);
 			return;
 		}

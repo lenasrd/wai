@@ -1,7 +1,0 @@
-INDEX VERSION 1.4+C:\Users\Lena\Desktop\Uni\WAI\git\wai\workspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-1180987763.index
-3557918669.index
-1749439788.index
-195899898.index
-3393874694.index
-1411937327.index
