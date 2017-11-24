@@ -9,26 +9,22 @@
 	</head>
 	<body>
 		<h1 align="center" >Add camera</h1>
-		<form action="Controller" name="appform" method="get">
+		<form action="admin" name="appform" method="post">
 			<table align="center" cellpadding="2" cellspacing="2">
 				<tr>
-					<td>ID</td>
-					<td><input type="text" name="key" size="20" /></td>
-				</tr>
-				<tr>
 					<td>Name</td>
-					<td><input type="text" name="key" size="20" /></td>
+					<td><input type="text" name="name" size="20" /></td>
 				</tr>
 				<tr>
 					<td>Source</td>
-					<td><input type="text" name="key" size="20" /></td>
+					<td><input type="text" name="url" size="20" /></td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="zutat" value="Admin rights"></td>
-					<td>acess to all users</td>
+					<td><input type="checkbox" name="access" value="all_users"></td>
+					<td>access to all users</td>
 				</tr>
 				<tr>
-					<td colspan=2><input type="submit" value="Add camera"/></td>
+					<td colspan=2><input type="submit" name="key" value="Add_camera"/></td>
 				</tr>
 			</table>
 		</form>

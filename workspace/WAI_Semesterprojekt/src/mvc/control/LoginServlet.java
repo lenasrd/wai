@@ -122,7 +122,7 @@ public class LoginServlet extends HttpServlet {
 		// TODO prüfe auf Admin via Datenbak
 		UserBean user = new UserBean();
 		try {
-			user = UserDaoFactory.getInstance().getImageDao().get(username);
+			user = UserDaoFactory.getInstance().getUserDao().get(username);
 		} catch (UserNotFoundException e) {
 			System.out.println(e.getMessage());
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/login.jsp");

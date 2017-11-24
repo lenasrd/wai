@@ -14,38 +14,42 @@
 				<tr>
 					<td>Year</td>
 					<td colspan=3>
-						<select>
-							<option>2017</option>
+						<select style="width: 120px;">
+							<c:forEach items="${years}" var="year">
+						        <option value="${year}">${year}</option>
+						    </c:forEach>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td>Month</td>
 					<td colspan=3>
-						<select>
-							<option>November</option>
+						<select style="width: 120px;">
+							<c:forEach items="${months}" var="month">
+						        <option value="${month}">${month}</option>
+						    </c:forEach>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td>Day</td>
 					<td colspan=3>
-						<select>
-							<option>15</option>
+						<select style="width: 120px;">
+							<option></option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td>Timespan</td>
 					<td>
-						<select>
-							<option>15:00</option>
+						<select style="width: 40px;">
+							<option></option>
 						</select>
 					</td>
 					<td>to</td>
 					<td>
-						<select>
-							<option>17:00</option>
+						<select style="width: 40px;">
+							<option></option>
 						</select>
 					</td>
 				</tr>
