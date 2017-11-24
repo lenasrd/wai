@@ -40,7 +40,7 @@ public class AppCore implements Job, HttpSessionListener {
 		ResultSet resultSet = null;
 
 		try {
-			// Datum für Dateinamen
+			// Datum fÃ¼r Dateinamen
 			Date date = new Date() ;
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
 			
@@ -58,12 +58,10 @@ public class AppCore implements Job, HttpSessionListener {
 			//DB Connection
 			connection = jndiFactory.getConnection("jdbc/WAI_DB");
 			statement = connection.createStatement();
-<<<<<<< HEAD
 
 			jlog.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));			
 
 		} finally {
-=======
 			
 			//Kamerainformationen
 			ResultSet cam = statement.executeQuery("SELECT url, name,id FROM public.cam" );
@@ -109,10 +107,10 @@ public class AppCore implements Job, HttpSessionListener {
 					int int_day = Integer.parseInt(day);
 					int int_hour = Integer.parseInt(hour);
 					
-					//Datenbankeintrag von geladenem Bild hinzufügen
+					//Datenbankeintrag von geladenem Bild hinzufÃ¼gen
 					String query = "INSERT INTO public.image(id, cam_id, path, year, month, day, hour) VALUES ("+id+","+cam_id+",'"+filename+"',"+int_year+","+int_month+","+int_day+","+int_hour+")";
 					statement.executeUpdate(query);
-					jlog.info("Datenbankeintrag hinzugefügt");
+					jlog.info("Datenbankeintrag hinzugefÃ¼gt");
 					
 					//DB Logeintrag des letzten geschriebenen Bildes
 					resultSet = statement.executeQuery("select id, cam_id, path from public.image");
@@ -123,12 +121,11 @@ public class AppCore implements Job, HttpSessionListener {
 							jlog.info(resultSet.getInt("id") +" von " + resultSet.getString("cam_id")+" liegt unter "+resultSet.getString("path"));
 						}
 				
-		        }//Ende "große" while
+		        }//Ende "groÃŸe" while
 
 			}//Ende try
 			
 		finally {
->>>>>>> 00534c88aa00500d7a89e91dff6663ce6cfc9585
 			if (connection != null)
 				try {
 					connection.close();
