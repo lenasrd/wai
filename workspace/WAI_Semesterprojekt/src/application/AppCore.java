@@ -74,7 +74,8 @@ public class AppCore implements Job, HttpSessionListener {
 		            cam_id = Integer.parseInt(cam_id_string);
 		      	            
 		            // Erstellen der Ordnerstruktur (ABSOLUTE PATH?!?!)
-		            File files = new File("C:/Users/A/Documents/Studium/7. Semester/WAI/SemesterProjekt_GitRepo/wai/workspace/WAI_Semesterprojekt/pic/"+cam_id+"/" + year + "/" + month + "/" + day + "/");
+		            File files = new File(System.getProperty("user.dir") + "/WebContent/images/" 
+		            						+ cam_id+ "/" + year + "/" + month + "/" + day + "/");
 		            	if (!files.exists()) 
 		            	{
 		            			if (files.mkdirs()) {jlog.info("Ordnerstruktur wurder erfolgreich erstellt!");} 
