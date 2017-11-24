@@ -1,16 +1,17 @@
 package mvc.model;
 
 public class CamBean {
-	
 
+	public static final int UNDEFINED = -1;
+	
 	private int 	id;
 	private String 	url;
 	private String 	name;
 	
 	public CamBean() { 
-		setId(-1);
-		setUrl(null);
-		setName(null);
+		id = UNDEFINED;
+		url = null;
+		name = null;
 	}
 
 	public int getId() {

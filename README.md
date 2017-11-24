@@ -22,9 +22,6 @@ nächstes Treffen: 17.11. 09:45 DSV Labor
 ### todo (Stand 22.11.2017)
 
 Priorität:
-- Schauen wie das mit den Debug-Levels funktioniert und System.out.println's ersetzen
-
-- CamDaoImpl funktionen ausdefinieren (für Struktur Tabelle siehe Table_cam.png) 
 
 - HistoryServlet mit Datenbank erknüpfen: 
       - Formular auslesen und entsprechende Bilder anfordern
@@ -35,9 +32,6 @@ Priorität:
       - Beim Drücken des Delete/Edit button soll die ID des Users irgendwie mitgesendet werden
 
 
-Allgemein
-- DebugLevel konfogurierbar machen
-- Quarz zum laufen bringen (finish :D)
 
 Doku
 - PowerPoint
@@ -48,7 +42,6 @@ Doku
 - history, explore usw return button einbauen
 
 ## Model
-- KameraDao erstellen
 - ImageBean funktion Thumbnails generieren
 
 
@@ -87,22 +80,25 @@ WebContent
  Datenbankname: WAI_DB
  
  Table User
- ID             Integer
- Name           Text
- Passwort       Text
- PermissionLvL  Integer
- CAMS           Integer[]
+ id             Integer
+ name           Text
+ password       Text
+ permission     Integer
+ cams           Integer[]
  
  Table Cam
- ID     Integer
- URL    Text
- Name   Text
+ id     Integer
+ url    Text
+ name   Text
  
  Table Image
- ID     Integer
- CAM_ID Integer
+ id     Integer
+ cam_id Integer
  Path   Text
- Date   Timestamp
+ year   Integer
+ month  Integer
+ day    Integer
+ hour   Integer
  
  
  

@@ -21,6 +21,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 import com.sun.prism.Image;
 
 import dao.ImageDao.ImageDaoFactory;
@@ -34,12 +37,16 @@ import utils.SessionList;
  */
 public class HistoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static final Level lOGLEVEL = Level.DEBUG; 
+	
+	private static Logger jlog = Logger.getLogger(HistoryServlet.class);
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public HistoryServlet() {
         super();
+        jlog.setLevel(lOGLEVEL);
     }
 
     private List<ImageBean> images = new ArrayList<ImageBean>();
@@ -48,8 +55,7 @@ public class HistoryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("HistoryServlet get called");
+		jlog.debug("HistoryServlet get called");
 		
 		// proof session
 		UserBean user = SessionList.getInstance().getUser(request);
@@ -169,8 +175,7 @@ public class HistoryServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("HistoryServlet post called");
+		jlog.debug("HistoryServlet post called");
 
 		// proof session
 		UserBean user = SessionList.getInstance().getUser(request);

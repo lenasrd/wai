@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
+import application.AppCore;
 import mvc.model.UserBean;
 import utils.SessionList;
 
@@ -16,20 +20,23 @@ import utils.SessionList;
  */
 public class MainMenuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Level lOGLEVEL = Level.DEBUG; 
        
+	private static Logger jlog = Logger.getLogger(MainMenuServlet.class);
+
     /**
      * @see HttpServlet#HttpServlet()
      */
     public MainMenuServlet() {
         super();
+        jlog.setLevel(lOGLEVEL);
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("MainMenuServlet get called");
+		jlog.debug("MainMenuServlet get called");
 		
 		// proof session
 		UserBean user = SessionList.getInstance().getUser(request);
@@ -58,8 +65,7 @@ public class MainMenuServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("MainMenuServlet post called");
+		jlog.debug("MainMenuServlet post called");
 		
 		// proof session
 		UserBean user = SessionList.getInstance().getUser(request);
