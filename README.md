@@ -2,23 +2,6 @@
 
 ## Protokoll
 
-### Aufgabenverteilung
-- Lars: Kameraanbindung
-- Andreas: Ausbau AdministrationServlet (edit/delete Vorbereiten)
-- Lena: jsps erstellen, Wireframes aktualisieren
-
-### To do
-- Datenbankanbindung
-- naming conventions
-
-### Sonstiges
-nächstes Treffen: 17.11. 09:45 DSV Labor
--> merge jsps und Java-Code
-
---Testinput
-
-
-
 ### todo (Stand 22.11.2017)
 
 Priorität:
