@@ -13,16 +13,16 @@
 			<table align="center" cellpadding="2" cellspacing="2">
 				<tr>
 					<td>
-						<select id="whichYear" name="whichYear" style="width: 80px;">
-							<c:forEach items="${years}" var="year">
-						        <option value="${year}">${year}</option>
-						    </c:forEach>
+						<select id="whichHourEnd" name="whichHourEnd" style="width: 80px;">
+								<c:forEach items="${hoursEnd}" var="hourEnd">
+							        <option value="${hourEnd}">${hourEnd}</option>
+							    </c:forEach>
 						</select>
 					</td>
-					<td><input type="submit" name="key" value="Submit_year"/></td>
+					<td><input type="submit" name="key" value="Submit_hour_end"/></td>
 				</tr>
 				<tr>
-					<td align="center" colspan=2 style="font-size: 35px;">&#8226 &#9702 &#9702 &#9702 &#9702</td>
+					<td align="center" colspan=2 style="font-size: 35px;">&#8226 &#8226 &#8226 &#8226 &#8226</td>
 				</tr>
 			</table>
 		</form>

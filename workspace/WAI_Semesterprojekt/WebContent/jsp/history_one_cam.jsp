@@ -9,13 +9,13 @@
 	</head>
 	<body>
 		<h1 align="center">Cam "camName" (ID xxx) history</h1>
-		<h2 align="center">15.11.17, 15:00 - 17:00</h1>
+		<h2 align="center">15.11.17, ${hourStart} - ${hourEnd}</h1>
 		<form action="history" name="appform" method="post">
 			<table align="center" cellpadding="2" cellspacing="2">
 				<tr>
 					<td>
 						<div style="width:250px;height:400px;overflow:auto;padding:5px;border:1px solid black;">
-							<table cellpadding="2" celpacing="5">
+							<table cellpadding="2" cellspacing="5">
 								<tr>
 									<th>Record</th>
 									<td>&nbsp;</td>
