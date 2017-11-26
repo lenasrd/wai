@@ -62,27 +62,27 @@ WebContent
  ### Vorschlag Datenbank
  Datenbankname: WAI_DB
  
- Table User
+ Table user
  id             Integer
  name           Text
  password       Text
  permission     Integer
  cams           Integer[]
  
- Table Cam
+ Table cam
  id     Integer
  url    Text
  name   Text
  
- Table Image
- id     Integer
- cam_id Integer
- Path   Text
- year   Integer
- month  Integer
- day    Integer
- hour   Integer
- 
+ Table image
+ id         Integer
+ cam_id     Integer
+ path       Text
+ year       Integer
+ month      Integer
+ day        Integer
+ hour       Integer
+ thumbpath  Text
  
  
  
