@@ -30,7 +30,7 @@
 									<tr>
 								        <td>${caminthisrow.id}</td>
 								        <td>${caminthisrow.name}</td>
-								        <td><img src="${pageContext.request.contextPath}${ImageList[status.index].path}" height="80" width="80"></td>
+								        <td><img src="${pageContext.request.contextPath}${ImageList[status.index].thumbPath}" height="80" width="80"></td>
 								       	<td><button name="key" value="zoom" style="background: url(https://image.flaticon.com/icons/png/512/49/49116.png); height: 30px; width: 30px; background-size: 24px 24px"></button></td>
 								        <td>15:00, 15.11.17</td>
 										<td><input type="submit" name="key" value="browse_history"/></td>

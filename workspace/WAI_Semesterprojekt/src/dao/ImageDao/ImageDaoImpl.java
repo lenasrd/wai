@@ -163,6 +163,7 @@ public class ImageDaoImpl implements ImageDao {
 		}
 	}
 	
+
 	public ImageBean getLatestRecordFromCam(int cam_id) {
 		
 		ImageBean image = null;
@@ -172,7 +173,7 @@ public class ImageDaoImpl implements ImageDao {
 			connection = jndi.getConnection("jdbc/WAI_DB");
 			
 			PreparedStatement pstmt = connection.prepareStatement(
-								"SELECT id, cam_id, path, year, month, day, hour " + 
+								"SELECT id, cam_id, path, thumbpath, year, month, day, hour " + 
 								"FROM image WHERE cam_id = ? " +
 								"ORDER BY year, month, day, hour DESC LIMIT 1");
 			pstmt.setInt(1, cam_id);
@@ -182,6 +183,7 @@ public class ImageDaoImpl implements ImageDao {
 				image = new ImageBean();
 				image.setId(rs.getInt("id"));
 				image.setPath(rs.getString("path"));
+				image.setThumbPath(rs.getString("thumbpath"));
 				image.setCamId(rs.getInt("cam_id"));
 			}	
 			return image;

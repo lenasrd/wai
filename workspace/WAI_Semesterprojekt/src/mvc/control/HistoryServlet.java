@@ -72,7 +72,7 @@ public class HistoryServlet extends HttpServlet {
 		try {
 			connection = jndiFactory.getConnection("jdbc/WAI_DB");
 			statement = connection.createStatement();
-			resultSet = statement.executeQuery("select year from images where camid = 1 order by year desc");
+			resultSet = statement.executeQuery("select year from image where cam_id = 1 order by year desc");
 			List<String> years = new ArrayList<String>();
 			
 			//set years in selector
@@ -220,7 +220,7 @@ public class HistoryServlet extends HttpServlet {
 				
 				//look up months for this year
 				statement = connection.createStatement();
-				resultSet = statement.executeQuery("select month from images where year = " + year + " order by month");
+				resultSet = statement.executeQuery("select month from image where year = " + year + " order by month");
 				List<String> months = new ArrayList<String>();
 				while (resultSet.next()) {
 					if (!months.contains(String.valueOf(resultSet.getInt("month")))){
@@ -257,7 +257,7 @@ public class HistoryServlet extends HttpServlet {
 				
 				//look up days for this month & year
 				statement = connection.createStatement();
-				resultSet = statement.executeQuery("select day from images where year = " + year + " and month = " + month + " order by day");
+				resultSet = statement.executeQuery("select day from image where year = " + year + " and month = " + month + " order by day");
 				List<String> days = new ArrayList<String>();
 				while (resultSet.next()) {
 					days.add(resultSet.getString("day"));
@@ -293,7 +293,7 @@ public class HistoryServlet extends HttpServlet {
 				
 				//look up startHours for this year & day & month
 				statement = connection.createStatement();
-				resultSet = statement.executeQuery("select hour from images where year = " + year + " and month = " + month + " and day = " + day);
+				resultSet = statement.executeQuery("select hour from image where year = " + year + " and month = " + month + " and day = " + day);
 				List<String> hoursStart = new ArrayList<String>();
 				while (resultSet.next()) {
 					hoursStart.add(resultSet.getString("hour"));
@@ -335,7 +335,7 @@ public class HistoryServlet extends HttpServlet {
 				
 				//look up endHours for this year & day & month
 				statement = connection.createStatement();
-				resultSet = statement.executeQuery("select hour from images where year = " + year + " and month = " + month + " and day = " + day + " and hour > " + hourStart);
+				resultSet = statement.executeQuery("select hour from image where year = " + year + " and month = " + month + " and day = " + day + " and hour > " + hourStart);
 				List<String> hoursEnd = new ArrayList<String>();
 				while (resultSet.next()) {
 					hoursEnd.add(resultSet.getString("hour"));

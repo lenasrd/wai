@@ -5,6 +5,7 @@ public class ImageBean {
 	private Integer id;
 	private Integer camId;
 	private String path;
+	private String thumbPath;
 	private Integer timestamp;
 
 
@@ -43,6 +44,14 @@ public class ImageBean {
     public void setTimestamp(Integer timestamp) {
         this.timestamp = timestamp;
     }
+
+	public String getThumbPath() {
+		return thumbPath;
+	}
+
+	public void setThumbPath(String thumbPath) {
+		this.thumbPath = thumbPath;
+	}
     
     
     /* Bilder und Thumbs müssen irgendwie ausgeldesen oder erzeugt werden

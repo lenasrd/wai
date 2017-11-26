@@ -15,4 +15,5 @@ public interface ImageDao {
 	 */
 	public List<ImageBean> listIntervalImages(String year, String month, String day, String startTime, String endTime);
 	public ImageBean getLatestRecordFromCam(int cam_id);
+	
 }
