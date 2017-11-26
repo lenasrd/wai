@@ -16,7 +16,7 @@
 				</tr>
 				<tr>
 					<td>
-						<div style="width:500px;height:300px;overflow:auto;padding:5px;border:1px solid black;">
+						<div style="width:500px;height:465px;overflow:auto;padding:5px;border:1px solid black;">
 							<table cellpadding="2" cellspacing="5">
 								<tr>
 									<th>ID</th>
@@ -26,14 +26,16 @@
 									<th>Timestamp</th>
 									<td>&nbsp;</td>
 								</tr>
-								<tr>
-									<td>ID</td>
-									<td>Name</td>
-									<td><img src="http://cdn.onlinewebfonts.com/svg/img_148071.png" height="50"></td>
-									<td><button name="key" value="zoom" style="background: url(https://image.flaticon.com/icons/png/512/49/49116.png); height: 30px; width: 30px; background-size: 24px 24px"></button></td>
-									<td>15:00, 15.11.17</td>
-									<td><input type="submit" name="key" value="browse_history"/></td>
-								</tr>
+								<c:forEach items="${CamList}" var="caminthisrow" varStatus="status">
+									<tr>
+								        <td>${caminthisrow.id}</td>
+								        <td>${caminthisrow.name}</td>
+								        <td><img src="${pageContext.request.contextPath}${ImageList[status.index].path}" height="80" width="80"></td>
+								       	<td><button name="key" value="zoom" style="background: url(https://image.flaticon.com/icons/png/512/49/49116.png); height: 30px; width: 30px; background-size: 24px 24px"></button></td>
+								        <td>15:00, 15.11.17</td>
+										<td><input type="submit" name="key" value="browse_history"/></td>
+								    </tr>
+								</c:forEach>
 							</table>
 						</div>
 					</td>

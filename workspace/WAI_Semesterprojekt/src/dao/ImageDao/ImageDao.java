@@ -14,4 +14,5 @@ public interface ImageDao {
 	 * - Lösungsvorschlag B: weiterer Parameter Integer[] cam_ids 	- alle benötigten Bilder auf einen schlag
 	 */
 	public List<ImageBean> listIntervalImages(String year, String month, String day, String startTime, String endTime);
+	public ImageBean getLatestRecordFromCam(int cam_id);
 }

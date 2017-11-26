@@ -1,6 +1,8 @@
 package mvc.control;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,15 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import application.AppCore;
+import dao.CamDao.CamDao;
+import dao.CamDao.CamDaoFactory;
+import dao.CamDao.CamNotFoundException;
+import dao.ImageDao.ImageDao;
+import dao.ImageDao.ImageDaoFactory;
+import dao.UserDao.UserDao;
+import dao.UserDao.UserDaoFactory;
+import mvc.model.CamBean;
+import mvc.model.ImageBean;
 import mvc.model.UserBean;
 import utils.SessionList;
 
@@ -45,22 +56,56 @@ public class MainMenuServlet extends HttpServlet {
 			return;
 		}
 		
+		String visibility;
+		
 
-		String visibility = "";
-		if (user.getPermissionLevel() == 1) {
+		CamDao camDao 			= CamDaoFactory.getInstance().getCamDao();
+		ImageDao imgDao 		= ImageDaoFactory.getInstance().getImageDao();
+		
+		List<CamBean> camList 		= new LinkedList<CamBean>();
+		List<ImageBean> imgList 	= new LinkedList<ImageBean>();
+		
+		
+		if(user.getPermissionLevel() == UserBean.PERMISSION_LEVEL_ADMIN) {
 			visibility = "submit";
-		}
+			camList = camDao.list();
+		} 
 		else {
-			visibility = "hidden";
-		}
-		request.setAttribute("adminVisibility", visibility);
 			
+			visibility = "hidden";
+			List<Integer> userCamArray	= user.getCams();
+
+			for (int i = 0; i < user.getCams().size(); i++) {
+				try {
+					camList.add(camDao.get(userCamArray.get(i)));
+				} catch(CamNotFoundException E) {
+					jlog.info(E.getMessage());
+					continue;
+				} catch(Exception E) {
+					jlog.error(E.getMessage());
+					break;
+				}
+			}
+		}
+		for(int i = 0; i < camList.size(); i++) {
+			imgList.add(imgDao.getLatestRecordFromCam(camList.get(i).getId()));
+		}
+
+		jlog.debug(camList.size() + " cams listed");
 		
-		
+		request.setAttribute("CamList", camList);
+		request.setAttribute("ImageList", imgList);
+		request.setAttribute("adminVisibility", visibility);
+				
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/main_menu.jsp");
 		dispatcher.forward(request, response);
 	}
 
+	
+	
+	
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

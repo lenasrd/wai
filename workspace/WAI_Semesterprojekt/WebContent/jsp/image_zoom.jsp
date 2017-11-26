@@ -13,7 +13,7 @@
 		<form action="Controller" name="appform" method="post">
 			<table align="center" cellpadding="2" cellspacing="2">
 				<tr>
-					<td><img src="${pageContext.request.contextPath}/Table_users.png" height="400"></td>
+					<td><img src="${pageContext.request.contextPath}/images/Table users.png" height="400"></td>
 				</tr>
 			</table>
 		</form>

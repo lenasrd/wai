@@ -16,7 +16,7 @@ public class CamDaoImpl implements CamDao{
 	final JNDIFactory jndi = JNDIFactory.getInstance();
 
 	@Override
-	public void save(CamBean cam) {
+	public void save(CamBean cam) throws CamNotSavedException {
 		
 		// TODO Auto-generated method stub
 		
@@ -77,7 +77,7 @@ public class CamDaoImpl implements CamDao{
 	
 
 	@Override
-	public void delete(Integer id) {
+	public void delete(Integer id) throws CamNotDeletedException {
 
 		Connection connection = null;	
 		
@@ -101,7 +101,7 @@ public class CamDaoImpl implements CamDao{
 	
 	
 	@Override
-	public CamBean get(Integer id) {
+	public CamBean get(Integer id) throws CamNotFoundException {
 
 		Connection connection = null;	
 		
@@ -118,7 +118,7 @@ public class CamDaoImpl implements CamDao{
 				
 				cam.setId(rs.getInt("id"));
 				cam.setName(rs.getString("name"));
-				cam.setUrl(rs.getString("password"));
+				cam.setUrl(rs.getString("url"));
 				
 				return cam;
 			} else {
@@ -142,7 +142,7 @@ public class CamDaoImpl implements CamDao{
 		try {
 			connection = jndi.getConnection("jdbc/WAI_DB");
 			PreparedStatement pstmt = connection.prepareStatement("select "
-							+ "id, url, name"
+							+ "id, url, name "
 							+ "from cam");
 
 			ResultSet rs = pstmt.executeQuery();	
@@ -160,6 +160,7 @@ public class CamDaoImpl implements CamDao{
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());;
+			camList = null;
 		} finally {
 			closeConnection(connection);
 		}	
@@ -168,7 +169,7 @@ public class CamDaoImpl implements CamDao{
 
 	@Override
 	public int getNewId() {
-		int id = 0;
+		int id = CamBean.UNDEFINED;
 		Connection connection = null;	
 		try {
 			connection = jndi.getConnection("jdbc/WAI_DB");
@@ -182,7 +183,7 @@ public class CamDaoImpl implements CamDao{
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
-			id = 0;
+			id = CamBean.UNDEFINED;
 		} finally {
 			closeConnection(connection);
 		}

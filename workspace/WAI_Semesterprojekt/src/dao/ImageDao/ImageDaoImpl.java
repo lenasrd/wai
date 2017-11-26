@@ -163,6 +163,36 @@ public class ImageDaoImpl implements ImageDao {
 		}
 	}
 	
+	public ImageBean getLatestRecordFromCam(int cam_id) {
+		
+		ImageBean image = null;
+		
+		Connection connection = null;		
+		try {
+			connection = jndi.getConnection("jdbc/WAI_DB");
+			
+			PreparedStatement pstmt = connection.prepareStatement(
+								"SELECT id, cam_id, path, year, month, day, hour " + 
+								"FROM image WHERE cam_id = ? " +
+								"ORDER BY year, month, day, hour DESC LIMIT 1");
+			pstmt.setInt(1, cam_id);
+			ResultSet rs = pstmt.executeQuery();
+							
+			if (rs.next()) {
+				image = new ImageBean();
+				image.setId(rs.getInt("id"));
+				image.setPath(rs.getString("path"));
+				image.setCamId(rs.getInt("cam_id"));
+			}	
+			return image;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			throw new ImageNotFoundException();
+		} finally {	
+			closeConnection(connection);
+		}
+	}
+	
 	private void closeConnection(Connection connection) {
 		if (connection != null) {
 			try {
