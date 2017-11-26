@@ -10,10 +10,10 @@
 	
 	
 	<body>
-		<h1>Login</h1><br><br>
+		<h1 align="center">Login</h1><br><br>
 		<form name="login" action="login" method="post">
 		
-			<table border=1>
+			<table align="center">
 				<tr>
 					<c:if test="${valid==false}">Feld muss ausgefüllt sein</c:if>
 					<td>username:</td>
@@ -24,7 +24,7 @@
 					<td><input type="text" name="password" value="${user.password}"/></td>
 				</tr>
 				<tr>
-					<td><input type="submit" name= "btnLogin" value="Login"></td></td>				
+					<td align="center" colspan=2><input type="submit" name= "btnLogin" value="Login"></td></td>				
 				</tr>
 			</table>
 			
