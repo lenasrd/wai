@@ -17,6 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
+import application.AppCore;
 import dao.ImageDao.ImageDaoFactory;
 import dao.UserDao.UserDaoFactory;
 import dao.UserDao.UserNotFoundException;
@@ -30,20 +34,24 @@ import utils.SessionList;
 // http://localhost:8080/WAI_Semesterprojekt/login
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static final Level lOGLEVEL = Level.DEBUG; 
+	
+	private static Logger jlog = Logger.getLogger(LoginServlet.class);
+
     /**
      * @see HttpServlet#HttpServlet()
      */
     public LoginServlet() {
         super();
+        jlog.setLevel(lOGLEVEL);
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("login get called");
 		
+		jlog.debug("login get called");
 		
 		// TODO delete (TOP)
 		/* Syntax insert user in database:
@@ -110,6 +118,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		jlog.debug("login post called");
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -139,11 +148,13 @@ public class LoginServlet extends HttpServlet {
 			if(username.equals("admin") && password.equals("admin")) {
 				user.setPermissionLevel(UserBean.PERMISSION_LEVEL_ADMIN);
 			}
+			jlog.info("Login as " + user);
 			System.out.println("-- Login as --\n" + user);
 			session.setAttribute("user", user);	
 			response.sendRedirect("main_menu");
 			return;
 		} else {
+			jlog.info("Login as " + user);
 			System.out.println("-- Login as --\n" + user);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/login.jsp");
 			dispatcher.forward(request, response);

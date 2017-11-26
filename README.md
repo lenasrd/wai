@@ -2,29 +2,9 @@
 
 ## Protokoll
 
-### Aufgabenverteilung
-- Lars: Kameraanbindung
-- Andreas: Ausbau AdministrationServlet (edit/delete Vorbereiten)
-- Lena: jsps erstellen, Wireframes aktualisieren
-
-### To do
-- Datenbankanbindung
-- naming conventions
-
-### Sonstiges
-nächstes Treffen: 17.11. 09:45 DSV Labor
--> merge jsps und Java-Code
-
---Testinput
-
-
-
 ### todo (Stand 22.11.2017)
 
 Priorität:
-- Schauen wie das mit den Debug-Levels funktioniert und System.out.println's ersetzen
-
-- CamDaoImpl funktionen ausdefinieren (für Struktur Tabelle siehe Table_cam.png) 
 
 - HistoryServlet mit Datenbank erknüpfen: 
       - Formular auslesen und entsprechende Bilder anfordern
@@ -35,9 +15,6 @@ Priorität:
       - Beim Drücken des Delete/Edit button soll die ID des Users irgendwie mitgesendet werden
 
 
-Allgemein
-- DebugLevel konfogurierbar machen
-- Quarz zum laufen bringen (finish :D)
 
 Doku
 - PowerPoint
@@ -48,7 +25,6 @@ Doku
 - history, explore usw return button einbauen
 
 ## Model
-- KameraDao erstellen
 - ImageBean funktion Thumbnails generieren
 
 

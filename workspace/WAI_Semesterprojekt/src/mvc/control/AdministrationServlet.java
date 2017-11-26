@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 import dao.CamDao.CamDao;
 import dao.CamDao.CamDaoFactory;
 import dao.UserDao.UserDao;
@@ -23,20 +26,23 @@ import utils.SessionList;
  */
 public class AdministrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Level lOGLEVEL = Level.DEBUG; 
        
+	private static Logger jlog = Logger.getLogger(AdministrationServlet.class);
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public AdministrationServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        jlog.setLevel(lOGLEVEL);
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("AdministrationServlet get called");	
+		jlog.debug("AdministrationServlet get called");
 		
 		// proof session
 		UserBean user = SessionList.getInstance().getUser(request);
@@ -49,14 +55,37 @@ public class AdministrationServlet extends HttpServlet {
 		List<UserBean> userList = userDao.list();
 		
 		CamDao camDao = CamDaoFactory.getInstance().getCamDao();
-		List<CamBean> camList = null; // = camDao.list();
+		List<CamBean> camList = camDao.list();
 		
 		request.setAttribute("UserList", userList);
 		request.setAttribute("CamLList", camList);
 		
+		
 		// show Page
 		RequestDispatcher dispatcher = null;
-		dispatcher = getServletContext().getRequestDispatcher("/jsp/administration.jsp"); 
+		
+
+		//catch edit and remove calls and get id of the calling source
+		String action = request.getParameter("action");
+		Long id = null;
+		
+		if (request.getParameter("id") != null) {
+			id = Long.valueOf(request.getParameter("id"));
+		}
+	
+		if(action!= null && action.equals("edit_user")){
+			System.out.println("Call edit user "+ id);
+			dispatcher = getServletContext().getRequestDispatcher("/jsp/edit_user.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		else if(action!= null && action.equals("remove_user")){
+			System.out.println("Call remove user "+ id);
+			dispatcher = getServletContext().getRequestDispatcher("/jsp/administration.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		dispatcher = getServletContext().getRequestDispatcher("/jsp/administration.jsp");
 		dispatcher.forward(request, response);
 		return;
 	}
@@ -65,7 +94,7 @@ public class AdministrationServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("AdministrationServlet post called");
+		jlog.debug("AdministrationServlet post called");
 		
 		// proof session
 		UserBean user = SessionList.getInstance().getUser(request);
@@ -73,8 +102,8 @@ public class AdministrationServlet extends HttpServlet {
 			response.sendRedirect("login");
 			return;
 		}	
-	
-				
+
+		
 		// parse action
 		String key 						= request.getParameter("key");	
 		System.out.println("key: " + key);
@@ -113,7 +142,7 @@ public class AdministrationServlet extends HttpServlet {
 		RequestDispatcher dispatcher 	= null;
 											
 		// parse action
-		String key 						= request.getParameter("key");	
+		String key 						= request.getParameter("key");
 		
 		switch(key) {
 		case "Add_new_user":
@@ -123,7 +152,8 @@ public class AdministrationServlet extends HttpServlet {
 			return;
 			
 		case "Edit_user":
-			dispatcher = getServletContext().getRequestDispatcher("/jsp/edit_user.jsp"); 
+			dispatcher = getServletContext().getRequestDispatcher("/jsp/edit_user.jsp");
+			System.out.println("User " + " editiert!");
 			dispatcher.forward(request, response);
 			return;
 			

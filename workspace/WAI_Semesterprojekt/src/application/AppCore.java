@@ -1,6 +1,8 @@
 package application;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
@@ -28,6 +30,15 @@ public class AppCore implements Job, HttpSessionListener {
 	private static Logger jlog = Logger.getLogger(AppCore.class);
 
 	JNDIFactory jndiFactory = JNDIFactory.getInstance();
+	
+	private BufferedImage genThumbnail(BufferedImage original , int type ,Integer img_width ,Integer img_height) {
+		BufferedImage resizedImage = new BufferedImage(img_width, img_height, type);
+	    Graphics2D g = resizedImage.createGraphics();
+	    g.drawImage(original, 0, 0, img_width, img_height, null);
+	    g.dispose();
+
+	    return resizedImage;
+	}
 
 	public AppCore() {
 	}
@@ -73,13 +84,21 @@ public class AppCore implements Job, HttpSessionListener {
 		            cam_name = cam.getString("name");
 		            cam_id = Integer.parseInt(cam_id_string);
 		      	            
-		            // Erstellen der Ordnerstruktur (ABSOLUTE PATH?!?!)
+		            // Erstellen der Ordnerstruktur
 
-		            File files = new File("C:/Users/LW16/wai/workspace/WAI_Semesterprojekt/pic/"+cam_id+"/" + year + "/" + month + "/" + day + "/");
+		            File files = new File(System.getProperty("user.dir")+"/WebContent/images/"+cam_id+"/" + year + "/" + month + "/" + day + "/");
 
 		            	if (!files.exists()) 
 		            	{
 		            			if (files.mkdirs()) {jlog.info("Ordnerstruktur wurder erfolgreich erstellt!");} 
+		            			else {jlog.info("Fehler bei der Erstellung der Ordnerstruktur!");}
+		            	}	
+		            	
+		            File thumbfiles = new File(System.getProperty("user.dir")+"/WebContent/thumbs/"+cam_id+"/" + year + "/" + month + "/" + day + "/");
+
+		            	if (!thumbfiles.exists()) 
+		            	{
+		            			if (thumbfiles.mkdirs()) {jlog.info("Ordnerstruktur wurder erfolgreich erstellt!");} 
 		            			else {jlog.info("Fehler bei der Erstellung der Ordnerstruktur!");}
 		            	}	
 					        
@@ -89,6 +108,11 @@ public class AppCore implements Job, HttpSessionListener {
 			     	BufferedImage pic = ImageIO.read( new URL(cam_url) );
 			     	ImageIO.write(pic, "jpg", savedpic);
 			     	jlog.info("Download von " + dateFormat.format(date) + ".jpg beendet");
+			     	
+			     	File savedthumb = new File(thumbfiles + "/"+cam_name+"_" + dateFormat.format(date) + "_thumb.jpg");	
+			     	String thumbfilename = savedthumb.getAbsolutePath();
+			       	BufferedImage thumbnail = genThumbnail(pic, pic.getType(), 100, 100);
+			     	ImageIO.write(thumbnail, "jpg", savedthumb);
 				
 	       
 					//Letzte geschriebene id aus der Datenbank holen
@@ -105,7 +129,7 @@ public class AppCore implements Job, HttpSessionListener {
 					int int_hour = Integer.parseInt(hour);
 					
 					//Datenbankeintrag von geladenem Bild hinzufügen
-					String query = "INSERT INTO public.image(id, cam_id, path, year, month, day, hour) VALUES ("+id+","+cam_id+",'"+filename+"',"+int_year+","+int_month+","+int_day+","+int_hour+")";
+					String query = "INSERT INTO public.image(id, cam_id, path, year, month, day, hour, thumbpath) VALUES ("+id+","+cam_id+",'"+filename+"',"+int_year+","+int_month+","+int_day+","+int_hour+",'"+thumbfilename+"')";
 					statement.executeUpdate(query);
 					jlog.info("Datenbankeintrag hinzugefügt");
 					
