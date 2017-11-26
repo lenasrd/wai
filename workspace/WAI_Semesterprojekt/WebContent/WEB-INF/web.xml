@@ -7,9 +7,12 @@
 	id="WebApp_ID" 
 	version="2.5">
 	
+	
+	
   <listener>
     <listener-class>utils.SystemStartup</listener-class>
   </listener> 
+  
   
   <servlet>
     <servlet-name>QuartzInitializer</servlet-name>
@@ -42,6 +45,8 @@
   </session-config>
   
   
+  
+  
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>mvc.control.LoginServlet</servlet-class>
@@ -62,12 +67,16 @@
     <servlet-class>mvc.control.HistoryServlet</servlet-class>
  </servlet>
   
-  
-  
-  <servlet>
+ <servlet>
   	<servlet-name>ImageServlet</servlet-name>
-  	<servlet-class>mvc.control.ImageServlet</servlet-class></servlet><servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
+  	<servlet-class>mvc.control.ImageServlet</servlet-class>
+ </servlet> 	
+  	
+  	
+  	
+  	
+  <servlet-mapping> 	
+  	<servlet-name>LoginServlet</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
   
@@ -86,13 +95,16 @@
     <url-pattern>/history</url-pattern>
   </servlet-mapping>
   
-  
-  
- 
-  
   <servlet-mapping>
   	<servlet-name>ImageServlet</servlet-name>
-  	<url-pattern>/image</url-pattern></servlet-mapping><listener>
+  	<url-pattern>/image</url-pattern>
+  </servlet-mapping>
+
+  
+  
+  
+  
+  <listener>
     <listener-class>application.AppCore</listener-class>
   </listener>
   

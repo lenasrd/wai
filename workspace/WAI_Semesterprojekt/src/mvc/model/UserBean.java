@@ -79,11 +79,9 @@ public class UserBean {
 		}
 	}
 	public String toString() {
-		return ("id:         " + id + "\n" +
-				"username:   " + username + "\n" +
-				"password:   " + password + "\n" +
-				"permission: " + decodePermission(permissionLevel) + "\n" +
-				"cams:       " + cams);
+		return ("id: " + id + ", username: " + username + 
+				" permission: " + decodePermission(permissionLevel) + 
+				", cams: " + cams + "\n");
 	}
 	
 }

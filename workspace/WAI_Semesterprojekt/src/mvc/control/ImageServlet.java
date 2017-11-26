@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import dao.ImageDao.ImageDaoFactory;
+import mvc.model.ImageBean;
 import mvc.model.UserBean;
 import utils.SessionList;
 
@@ -44,10 +46,30 @@ public class ImageServlet extends HttpServlet {
 			return;
 		}	
 		
+		String image_id = (String) request.getSession().getAttribute("imageID");
+		System.out.println(image_id);
+		if(image_id == null) {
+			response.sendRedirect("main_menu");
+			return;
+		}
+		ImageBean image = ImageDaoFactory.getInstance().getImageDao().get(Integer.parseInt(image_id));
+		
+		if(image == null) {
+			response.sendRedirect("main_menu");
+			return;
+		}
+		
+		request.setAttribute("image", image);
+				
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/image_zoom.jsp");
 		dispatcher.forward(request, response);
 	}
 
+	
+	
+	
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

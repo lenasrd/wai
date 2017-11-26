@@ -70,6 +70,13 @@ public class ImageBean {
 //    static Image createThumb(String path) {
 //    	// https://www.java-forum.org/thema/thumbnails-schneller-erstellen.21437/ übernehmen?
 //    }
+	
+	public String toString() {
+		return ("Image\n" +
+				"id: " + id + "\n" +
+				"cam_id: " + camId + "\n" +
+				"timestamp: " + timestamp + "\n");
+	}
     
     
     

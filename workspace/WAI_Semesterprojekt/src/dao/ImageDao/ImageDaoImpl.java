@@ -28,7 +28,7 @@ public class ImageDaoImpl implements ImageDao {
 		Connection connection = null;		
 		try {
 			connection = jndi.getConnection("jdbc/WAI_DB");		
-			PreparedStatement pstmt = connection.prepareStatement("delete from images where id = ?");
+			PreparedStatement pstmt = connection.prepareStatement("delete from image where id = ?");
 			pstmt.setInt(1, id);
 			pstmt.executeUpdate();			
 		} catch (Exception e) {
@@ -47,15 +47,15 @@ public class ImageDaoImpl implements ImageDao {
 		Connection connection = null;		
 		try {
 			connection = jndi.getConnection("jdbc/WAI_DB");			
-			PreparedStatement pstmt = connection.prepareStatement("select id, camId, path, timestamp from images where id = ?");
+			PreparedStatement pstmt = connection.prepareStatement("select id, cam_id, path, thumbpath from image where id = ?");
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();							
 			if (rs.next()) {
 				ImageBean image = new ImageBean();
 				image.setId(rs.getInt("id"));
-				image.setCamId(rs.getInt("camId"));
+				image.setCamId(rs.getInt("cam_id"));
 				image.setPath(rs.getString("path"));
-				image.setTimestamp(rs.getInt("timestamp"));
+				image.setThumbPath(rs.getString("thumbpath"));
 				return image;
 			} else {
 				throw new ImageNotFoundException(id);
@@ -77,13 +77,13 @@ public class ImageDaoImpl implements ImageDao {
 		try {
 			connection = jndi.getConnection("jdbc/WAI_DB");			
 			if (image.getId() == null) {
-				PreparedStatement pstmt = connection.prepareStatement("insert into images (camId, path, timestamp) values (?,?,?)");
+				PreparedStatement pstmt = connection.prepareStatement("insert into image (cam_id, path, timestamp) values (?,?,?)");
 				pstmt.setInt(1, image.getCamId());
 				pstmt.setString(2, image.getPath());
 				pstmt.setInt(3, image.getTimestamp());
 				pstmt.executeUpdate();
 			} else {
-				PreparedStatement pstmt = connection.prepareStatement("update images set camId = ?, path = ?, timestamp = ? where id = ?");
+				PreparedStatement pstmt = connection.prepareStatement("update image set cam_id = ?, path = ?, timestamp = ? where id = ?");
 				pstmt.setInt(1, image.getCamId());
 				pstmt.setString(2, image.getPath());
 				pstmt.setInt(3, image.getTimestamp());
@@ -105,7 +105,7 @@ public class ImageDaoImpl implements ImageDao {
 		try {
 			connection = jndi.getConnection("jdbc/WAI_DB");			
 			
-				PreparedStatement pstmt = connection.prepareStatement("select id, camId, path, timestamp from images");				
+				PreparedStatement pstmt = connection.prepareStatement("select id, cam_id, path, timestamp from image");				
 				ResultSet rs = pstmt.executeQuery();
 								
 				while (rs.next()) {
@@ -144,7 +144,7 @@ public class ImageDaoImpl implements ImageDao {
 			Date endDate = sdf.parse(dateInString);
 			long endUnix = endDate.getTime() / 1000;
 			
-			PreparedStatement pstmt = connection.prepareStatement("select id, camId, path, timestamp from images WHERE timestamp >= startUnix AND timestamp < endUnix");				
+			PreparedStatement pstmt = connection.prepareStatement("select id, cam_id, path, timestamp from image WHERE timestamp >= startUnix AND timestamp < endUnix");				
 			ResultSet rs = pstmt.executeQuery();
 							
 			while (rs.next()) {

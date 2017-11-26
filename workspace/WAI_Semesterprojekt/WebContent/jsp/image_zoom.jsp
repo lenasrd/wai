@@ -9,11 +9,11 @@
 	</head>
 	<body>
 		<h1 align="center">Cam "camName" (ID xxx)</h1>
-		<h2 align="center">15.11.17, 15:00</h1>
-		<form action="Controller" name="appform" method="post">
+		<h2 align="center">15.11.17, 15:00</h2>
+		<form action="image" name="appform" method="post">
 			<table align="center" cellpadding="2" cellspacing="2">
 				<tr>
-					<td><img src="${pageContext.request.contextPath}/images/Table users.png" height="400"></td>
+					<td><img src="${pageContext.request.contextPath}${image.path}" height="400"></td>
 				</tr>
 			</table>
 		</form>

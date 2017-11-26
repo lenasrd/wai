@@ -6,10 +6,18 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 		<title>Main menu</title>
+		<script>
+	        function sendAction(key, target)
+	        {
+	        	document.getElementById('key').value	=key;
+	        	document.getElementById('target').value	=target;
+	        	document.getElementById('mainMenuTable').submit();
+	        } 
+        </script>
 	</head>
 	<body>
 		<h1 align="center" >Main menu</h1>
-		<form action="main_menu" name="appform" method="post">
+		<form action="main_menu" name="appform" method="post" id="mainMenuTable">
 			<table align="center" cellpadding="2" cellspacing="2">
 				<tr>
 					<td align="center">Available cameras</td>
@@ -31,9 +39,9 @@
 								        <td>${caminthisrow.id}</td>
 								        <td>${caminthisrow.name}</td>
 								        <td><img src="${pageContext.request.contextPath}${ImageList[status.index].thumbPath}" height="80" width="80"></td>
-								       	<td><button name="key" value="zoom" style="background: url(https://image.flaticon.com/icons/png/512/49/49116.png); height: 30px; width: 30px; background-size: 24px 24px"></button></td>
+								       	<td><button onclick="sendAction('zoom', '${ImageList[status.index].id}')" style="background: url(https://image.flaticon.com/icons/png/512/49/49116.png); height: 30px; width: 30px; background-size: 24px 24px"></button></td>
 								        <td>15:00, 15.11.17</td>
-										<td><input type="submit" name="key" value="browse_history"/></td>
+										<td><input type="submit" onclick="sendAction('browse_history', '${caminthisrow.id}')"/></td>
 								    </tr>
 								</c:forEach>
 							</table>
@@ -49,7 +57,10 @@
 				<tr>
 					<td align="center"><input type="submit" name="key" value="Logout"/></td>
 				</tr>
+				
 			</table>
+			<input id="key" 	type=hidden name="key">
+			<input id="target" 	type=hidden name="target">
 		</form>
 	</body>
 </html>

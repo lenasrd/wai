@@ -124,16 +124,25 @@ public class MainMenuServlet extends HttpServlet {
 		// parse action
 		String key = request.getParameter("key");
 		request.getSession().setAttribute("key", key);
-		System.out.println("key: " + key);
+		System.out.println(request.getParameter("key"));
+		System.out.println(request.getParameter("target"));
 					
 		switch(key) {
 		case "Browse_history_of_all_cameras":
+			// TODO anpassen
+			response.sendRedirect("history");
+			return;
+			
 		case "zoom":
+			String ImageID = request.getParameter("target");
+			request.getSession().setAttribute("imageID", ImageID);
 			response.sendRedirect("image");
 			return;
+			
 		case "browse_history":
 			response.sendRedirect("history");
 			return;
+			
 		case "Administration":
 			if(user.getPermissionLevel() == UserBean.PERMISSION_LEVEL_ADMIN) {
 				response.sendRedirect("admin");
@@ -144,15 +153,19 @@ public class MainMenuServlet extends HttpServlet {
 				response.sendRedirect("main_menu");
 			}
 			return;
+			
 		case "Logout":
 			SessionList.getInstance().removeSession(request.getSession().getId());
 			response.sendRedirect("login");
 			return;
+			
 		default:
 			System.out.println("unknown key: " + key);
 			// TODO errorpage?
 			return;
 		}
 	}
+	
+
 
 }

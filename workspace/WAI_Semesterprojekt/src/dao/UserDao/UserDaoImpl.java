@@ -252,6 +252,8 @@ public class UserDaoImpl implements UserDao{
 	}
 	
 	
+	
+	
 	public int getNewId() {
 		int id = 0;
 		Connection connection = null;	
