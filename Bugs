@@ -3,3 +3,8 @@
 ## administration.jsp
 Ist der User als normaler User eingelogt, ist der Adminbutton zwar nicht sichtbar, scheinbar liegt er aber dennoch über
 den logout button. Will der User sich ausloggen wird der Adminbutton getriggert.
+
+
+## mainmenü
+Wird das MainMenü kurz nach aktuallisierung der Datembank aufgerufen können die Bilder nicht geladen werden
+- evtl kleiner puffer? (NEIN!)
