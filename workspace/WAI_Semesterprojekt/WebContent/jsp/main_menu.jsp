@@ -41,7 +41,7 @@
 								        <td><img src="${pageContext.request.contextPath}${ImageList[status.index].thumbPath}" height="80" width="80"></td>
 								       	<td><button onclick="sendAction('zoom', '${ImageList[status.index].id}')" style="background: url(https://image.flaticon.com/icons/png/512/49/49116.png); height: 30px; width: 30px; background-size: 24px 24px"></button></td>
 								        <td>15:00, 15.11.17</td>
-										<td><input type="submit" onclick="sendAction('browse_history', '${caminthisrow.id}')"/></td>
+										<td><input type="submit" onclick="sendAction('browse_history', '${caminthisrow.id}')" value="browse history"/></td>
 								    </tr>
 								</c:forEach>
 							</table>
@@ -49,13 +49,13 @@
 					</td>
 				<tr>
 				<tr>
-					<td align="center"><input type="submit" name="key" value="Browse_history_of_all_cameras"/></td>
+					<td align="center"><input type="submit" onclick="sendAction('Browse_history_of_all_cameras')" value="Browse history of all cameras"/></td>
 				</tr>
 				<tr>
-					<td align="center"><input type="${adminVisibility}" name="key" value="Administration"/></td>
+					<td align="center"><input type="${adminVisibility}" onclick="sendAction('Administration')" value="Administration"/></td>
 				</tr>
 				<tr>
-					<td align="center"><input type="submit" name="key" value="Logout"/></td>
+					<td align="center"><input type="submit" onclick="sendAction('Logout')" value="Logout"/></td>
 				</tr>
 				
 			</table>

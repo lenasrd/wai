@@ -46,7 +46,7 @@ public class ImageServlet extends HttpServlet {
 			return;
 		}	
 		
-		String image_id = (String) request.getSession().getAttribute("imageID");
+		String image_id = (String) request.getSession().getAttribute("target");
 		System.out.println(image_id);
 		if(image_id == null) {
 			response.sendRedirect("main_menu");

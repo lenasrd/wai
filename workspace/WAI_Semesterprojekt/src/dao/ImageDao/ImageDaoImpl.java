@@ -175,7 +175,7 @@ public class ImageDaoImpl implements ImageDao {
 			PreparedStatement pstmt = connection.prepareStatement(
 								"SELECT id, cam_id, path, thumbpath, year, month, day, hour " + 
 								"FROM image WHERE cam_id = ? " +
-								"ORDER BY year, month, day, hour DESC LIMIT 1");
+								"ORDER BY year DESC, month DESC, day DESC, hour DESC LIMIT 1");
 			pstmt.setInt(1, cam_id);
 			ResultSet rs = pstmt.executeQuery();
 							

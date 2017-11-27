@@ -135,11 +135,13 @@ public class MainMenuServlet extends HttpServlet {
 			
 		case "zoom":
 			String ImageID = request.getParameter("target");
-			request.getSession().setAttribute("imageID", ImageID);
+			request.getSession().setAttribute("target", ImageID);
 			response.sendRedirect("image");
 			return;
 			
 		case "browse_history":
+			String CamId = request.getParameter("target");
+			request.getSession().setAttribute("target", CamId);
 			response.sendRedirect("history");
 			return;
 			
