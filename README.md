@@ -25,16 +25,15 @@ Doku
 
 
 ## View
-- Administrator edit,delete integrieren
-- Administrator.jsp, return button einbauen
+- Administrator.jsp, return button einbauen (Andy)
 - history, explore usw return button einbauen
 
 
-## Controller
-HistoryServlet
-- Liste von Thumbnails versenden
-        
-            
+## Controler
+- Administrator edit,delete integrieren (Andy)
+- Administrator.jsp, return button einbauen (Andy)  
+- history, explore usw return button einbauen
+  
 ### Vorschlag Datenbank
 Datenbankname: WAI_DB
 Struktur: Siehe Bilder im root-Verzeichnis
