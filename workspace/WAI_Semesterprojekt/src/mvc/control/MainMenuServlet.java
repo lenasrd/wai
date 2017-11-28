@@ -130,6 +130,7 @@ public class MainMenuServlet extends HttpServlet {
 		switch(key) {
 		case "Browse_history_of_all_cameras":
 			// TODO anpassen
+			request.getSession().setAttribute("target", ""+CamBean.UNDEFINED);
 			response.sendRedirect("history");
 			return;
 			
@@ -147,6 +148,7 @@ public class MainMenuServlet extends HttpServlet {
 			
 		case "Administration":
 			if(user.getPermissionLevel() == UserBean.PERMISSION_LEVEL_ADMIN) {
+				request.getSession().setAttribute("key", key);
 				response.sendRedirect("admin");
 			}	
 			else {

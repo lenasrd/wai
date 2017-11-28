@@ -55,7 +55,7 @@ public class UserDaoImpl implements UserDao{
 				pstmt.setInt(4, user.getPermissionLevel());
 				
 				if(user.getCams().size() > 0) {
-					pstmt.setArray(5, connection.createArrayOf("Integer[]", user.getCams().toArray()));
+					pstmt.setArray(5, connection.createArrayOf("integer[]", user.getCams().toArray()));
 				} else {
 					pstmt.setNull(5, Types.ARRAY);
 				}
@@ -79,7 +79,7 @@ public class UserDaoImpl implements UserDao{
 					pstmt.setInt(5, user.getId());
 					
 					if(user.getCams().size() > 0) {
-						pstmt.setArray(5, connection.createArrayOf("Integer[]", user.getCams().toArray()));
+						pstmt.setArray(4, connection.createArrayOf("Integer", user.getCams().toArray()));
 					} else {
 						pstmt.setNull(4, Types.ARRAY);
 					}
@@ -88,7 +88,7 @@ public class UserDaoImpl implements UserDao{
 				else {
 					pstmt = connection.prepareStatement("update users "
 							+ "set Cams = ? where id = ?");
-					Array array = connection.createArrayOf("Integer[]", user.getCams().toArray());
+					Array array = connection.createArrayOf("integer[]", user.getCams().toArray());
 
 					pstmt.setArray(1, array);
 					pstmt.setInt(2, user.getId());
@@ -219,7 +219,7 @@ public class UserDaoImpl implements UserDao{
 			connection = jndi.getConnection("jdbc/WAI_DB");
 			PreparedStatement pstmt = connection.prepareStatement("select "
 							+ "id, name, password, permission, cams "
-							+ "from users");
+							+ "from users ORDER BY id");
 
 			ResultSet rs = pstmt.executeQuery();	
 			
@@ -240,7 +240,6 @@ public class UserDaoImpl implements UserDao{
 				}
 				user.setCams(camList);
 				userList.add(user);
-				System.out.println("user added");
 
 			}
 		} catch (Exception e) {
