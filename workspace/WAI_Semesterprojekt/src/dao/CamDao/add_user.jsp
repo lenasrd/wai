@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-		<title>Edit user</title>
+		<title>Add user</title>
 		<script>
 	        function sendAction(key, target)
 	        {
@@ -16,19 +16,16 @@
         </script>
 	</head>
 	<body>
-		<h1 align="center" >Edit user</h1>
+		<h1 align="center" >Add user</h1>
 		<form action="admin" name="appform" method="post">
 			<table align="center" cellpadding="2" cellspacing="2">
 				<tr>
 					<td>Username</td>
-					<td><input type="text" name="username" value="${TargetUser.username}" size="20" /></td>
+					<td><input type="text" name="username" placeholder="username" size="20" /></td>
 				</tr>
 				<tr>
 					<td>Password</td>
-					<td><input type="text" name="password" value="${TargetUser.password}" size="20" /></td>
-				</tr>
-				<tr>
-					<td>Camera rights</td>
+					<td><input type="text" name="password" placeholder="password" size="20" /></td>
 				</tr>
 				<tr>
 					<td colspan="2">
@@ -36,7 +33,7 @@
 							<table cellpadding="2" cellspacing="2">
 								<c:forEach items="${CamList}" var="caminthisrow" varStatus="status">
 									<tr>
-								    	<td><input type="checkbox" name="check_list[${status.index}]" <c:if test="${allowedCams[status.index]}">checked</c:if> /></td>								    	
+								    	<td><input type="checkbox" name="check_list[${status.index}]"  /></td>								    	
 								    	<td>${caminthisrow.id}</td>
 								        <td>${caminthisrow.name}</td>
 								    </tr>
@@ -46,23 +43,22 @@
 					</td>
 					
 				</tr>
-				<tr>	
-					<td>Admin rights</td>				
-					<td><input type="checkbox" name="permission" <c:if test="${TargetUser.permissionLevel == TargetUser.PERMISSION_LEVEL_ADMIN}">checked</c:if> /></td>
-				</tr>
 				<tr>
-					<td colspan=2><input type="submit" name="key" value="Edit_user_submit"/></td>
+					<td><input type="checkbox" name="permission" value="Admin rights"></td>
+					<td>Admin rights</td>
 				</tr>
+				
 				<tr>
-					<td>
-						&nbsp;
-					</td>
+					<td colspan=2><input type="submit" name="key" value="Add_user_submit"/></td>
 				</tr>
+				
 				<tr>
-					<td colspan=2><input type="submit" onclick="sendAction('back_to_administration')" value="back"/></td>
+				</tr>
+				
+				<tr>
+					<td align="center"><input type="submit" onclick="sendAction('back_to_administration')" value="back"/></td>
 				</tr>
 			</table>
-			<input id="target" 	type=hidden name="target" value="${TargetUser.id}">
 			<input id="key" 	type=hidden name="key">
 		</form>
 	</body>

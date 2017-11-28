@@ -68,6 +68,14 @@ public class UserBean {
 		this.cams = cams;
 	}
 	
+	public int getPERMISSION_LEVEL_USER() {
+		return PERMISSION_LEVEL_USER;
+	}
+	
+	public int getPERMISSION_LEVEL_ADMIN() {
+		return PERMISSION_LEVEL_ADMIN;
+	}
+	
 	public String decodePermission(int permissionLevel) {
 		switch(permissionLevel) {
 		case PERMISSION_LEVEL_ADMIN:
@@ -78,6 +86,8 @@ public class UserBean {
 			return "unknown permission";
 		}
 	}
+	
+	
 	public String toString() {
 		return ("id: " + id + ", username: " + username + 
 				" permission: " + decodePermission(permissionLevel) + 

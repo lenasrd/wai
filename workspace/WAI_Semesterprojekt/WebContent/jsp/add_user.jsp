@@ -5,7 +5,15 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-		<title>Add user</title>
+		<title>Edit user</title>
+		<script>
+	        function sendAction(key, target)
+	        {
+	        	document.getElementById('key').value	=key;
+	        	document.getElementById('target').value	=target;
+	        	document.getElementById('mainMenuTable').submit();
+	        } 
+        </script>
 	</head>
 	<body>
 		<h1 align="center" >Add user</h1>
@@ -13,33 +21,48 @@
 			<table align="center" cellpadding="2" cellspacing="2">
 				<tr>
 					<td>Username</td>
-					<td><input type="text" name="username" size="20" /></td>
+					<td><input type="text" name="username" placeholder="username" size="20" /></td>
 				</tr>
 				<tr>
 					<td>Password</td>
-					<td><input type="text" name="password" size="20" /></td>
+					<td><input type="text" name="password" placeholder="password" size="20" /></td>
 				</tr>
 				<tr>
 					<td>Camera rights</td>
-					<td>
-						<div style="width:135px;height:100px;overflow:auto;padding:5px;border:1px solid black;">
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div style="width:240px;height:200px;overflow:auto;padding:5px;border:1px solid black;">
 							<table cellpadding="2" cellspacing="2">
-								<tr>
-									<td><input type="checkbox" name="key" value="val"/></td>
-									<td>Cam 1</td>
-								</tr>
+								<c:forEach items="${CamList}" var="caminthisrow" varStatus="status">
+									<tr>
+								    	<td><input type="checkbox" name="check_list[${status.index}]" /></td>								    	
+								    	<td>${caminthisrow.id}</td>
+								        <td>${caminthisrow.name}</td>
+								    </tr>
+								</c:forEach>
 							</table>
 						</div>
 					</td>
+					
+				</tr>
+				<tr>	
+					<td>Admin rights</td>				
+					<td><input type="checkbox" name="permission" /></td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="permission" value="Admin rights"></td>
-					<td>Admin rights</td>
+					<td colspan=2><input type="submit" name="key" value="Add_user_submit"/></td>
 				</tr>
 				<tr>
-					<td colspan=2><input type="submit" name="key" value="Add_user"/></td>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td colspan=2><input type="submit" onclick="sendAction('back_to_administration')" value="back"/></td>
 				</tr>
 			</table>
+			<input id="key" 	type=hidden name="key">
 		</form>
 	</body>
 </html>

@@ -79,72 +79,78 @@ public class AppCore implements Job, HttpSessionListener {
 		
 		        while(cam.next())
 		        {
-		        	cam_id_string = cam.getString("id");
-		            cam_url  = cam.getString("url");
-		            cam_name = cam.getString("name");
-		            cam_id = Integer.parseInt(cam_id_string);
-		      	            
-		            // Erstellen der Ordnerstruktur
-		            String relativeFilePath = cam_id+ "/" + year + "/" + month + "/" + day + "/";
-		            File files = new File(System.getProperty("user.dir") + "/WebContent/images/" +  relativeFilePath);
-		            	if (!files.exists()) 
-		            	{
-		            			if (files.mkdirs()) {jlog.info("Ordnerstruktur wurder erfolgreich erstellt!");} 
-		            			else {jlog.info("Fehler bei der Erstellung der Ordnerstruktur!");}
-		            	}	
-		            	
-		            File thumbfiles = new File(System.getProperty("user.dir")+"/WebContent/thumbs/" + relativeFilePath);
-
-		            	if (!thumbfiles.exists()) 
-		            	{
-		            			if (thumbfiles.mkdirs()) {jlog.info("Ordnerstruktur wurder erfolgreich erstellt!");} 
-		            			else {jlog.info("Fehler bei der Erstellung der Ordnerstruktur!");}
-		            	}	
-					        
-			        // Bildbeschaffung
-			     	File savedpic = new File(files + "/"+cam_name+"_" + dateFormat.format(date) + ".jpg");
-			     	File savedthumb = new File(thumbfiles + "/"+cam_name+"_" + dateFormat.format(date) + "_thumb.jpg");	
-
-			     	String imageFilename = "/images/" + relativeFilePath + savedpic.getName();
-			     	String thumbFilename = "/thumbs/" + relativeFilePath + savedthumb.getName();
-
-			     	BufferedImage pic 		= ImageIO.read( new URL(cam_url) );
-			     	BufferedImage thumbnail = genThumbnail(pic, pic.getType(), 100, 100);
-			     	
-			     	ImageIO.write(pic, 		 "jpg", savedpic);
-			     	ImageIO.write(thumbnail, "jpg", savedthumb);
-			     	
-			     	jlog.info("Download von " + dateFormat.format(date) + ".jpg beendet");
-			     	
-					//Letzte geschriebene id aus der Datenbank holen
-			     	statement = connection.createStatement();
-					ResultSet result = statement.executeQuery("SELECT id FROM public.image ORDER BY id DESC LIMIT 1" );
-					int id = 0;
-					while (result.next()) { id=Integer.parseInt(result.getString(1)); }
-					id++;
-					
-					//Datum String to int
-					int int_year = Integer.parseInt(year);
-					int int_month = Integer.parseInt(month);
-					int int_day = Integer.parseInt(day);
-					int int_hour = Integer.parseInt(hour);
-					
-					//Datenbankeintrag von geladenem Bild hinzufügen
-					String query = 	"INSERT INTO public.image(id, cam_id, path, year, month, day, hour, thumbpath) " 
-									+ "VALUES (" + id + "," + cam_id + ",'" + imageFilename + "'," + int_year + "," 
-									+ int_month + "," + int_day + "," + int_hour + ",'" + thumbFilename + "')";
-					
-					statement.executeUpdate(query);
-					jlog.info("Datenbankeintrag hinzugefügt");
-					
-					//DB Logeintrag des letzten geschriebenen Bildes
-					resultSet = statement.executeQuery("select id, cam_id, path from public.image");
-			
+		        	try {
+			        	cam_id_string = cam.getString("id");
+			            cam_url  = cam.getString("url");
+			            cam_name = cam.getString("name");
+			            cam_id = Integer.parseInt(cam_id_string);
+			      	            
+			            // Erstellen der Ordnerstruktur
+			            String relativeFilePath = cam_id+ "/" + year + "/" + month + "/" + day + "/";
+			            File files = new File(System.getProperty("user.dir") + "/WebContent/images/" +  relativeFilePath);
+			            	if (!files.exists()) 
+			            	{
+			            			if (files.mkdirs()) {jlog.info("Ordnerstruktur wurder erfolgreich erstellt!");} 
+			            			else {jlog.info("Fehler bei der Erstellung der Ordnerstruktur!");}
+			            	}	
+			            	
+			            File thumbfiles = new File(System.getProperty("user.dir")+"/WebContent/thumbs/" + relativeFilePath);
+	
+			            	if (!thumbfiles.exists()) 
+			            	{
+			            			if (thumbfiles.mkdirs()) {jlog.info("Ordnerstruktur wurder erfolgreich erstellt!");} 
+			            			else {jlog.info("Fehler bei der Erstellung der Ordnerstruktur!");}
+			            	}	
+						        
+				        // Bildbeschaffung
+				     	File savedpic = new File(files + "/"+cam_name+"_" + dateFormat.format(date) + ".jpg");
+				     	File savedthumb = new File(thumbfiles + "/"+cam_name+"_" + dateFormat.format(date) + "_thumb.jpg");	
+	
+				     	String imageFilename = "/images/" + relativeFilePath + savedpic.getName();
+				     	String thumbFilename = "/thumbs/" + relativeFilePath + savedthumb.getName();
+	
+				     	BufferedImage pic 		= ImageIO.read( new URL(cam_url) );
+				     	BufferedImage thumbnail = genThumbnail(pic, pic.getType(), 100, 100);
+				     	
+				     	ImageIO.write(pic, 		 "jpg", savedpic);
+				     	ImageIO.write(thumbnail, "jpg", savedthumb);
+				     	
+				     	jlog.info("Download von " + dateFormat.format(date) + ".jpg beendet");
+				     	
+						//Letzte geschriebene id aus der Datenbank holen
+				     	statement = connection.createStatement();
+						ResultSet result = statement.executeQuery("SELECT id FROM public.image ORDER BY id DESC LIMIT 1" );
+						int id = 0;
+						while (result.next()) { id=Integer.parseInt(result.getString(1)); }
+						id++;
+						
+						//Datum String to int
+						int int_year = Integer.parseInt(year);
+						int int_month = Integer.parseInt(month);
+						int int_day = Integer.parseInt(day);
+						int int_hour = Integer.parseInt(hour);
+						
+						//Datenbankeintrag von geladenem Bild hinzufügen
+						String query = 	"INSERT INTO public.image(id, cam_id, path, year, month, day, hour, thumbpath) " 
+										+ "VALUES (" + id + "," + cam_id + ",'" + imageFilename + "'," + int_year + "," 
+										+ int_month + "," + int_day + "," + int_hour + ",'" + thumbFilename + "')";
+						
+						statement.executeUpdate(query);
+						jlog.info("Datenbankeintrag hinzugefügt");
+						
+						//DB Logeintrag des letzten geschriebenen Bildes
+						resultSet = statement.executeQuery("select id, cam_id, path from public.image");
+				
 						while (resultSet.next())
 						{
 							if (resultSet.isLast())
 							jlog.info(resultSet.getInt("id") +" von " + resultSet.getString("cam_id")+" liegt unter "+resultSet.getString("path"));
 						}
+			        }
+
+		        	catch (Exception e) {
+		        		jlog.error(e.getMessage());
+		        	}
 
 		        }//Ende "große" while
 

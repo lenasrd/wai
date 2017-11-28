@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.postgresql.util.PSQLException;
+
 import mvc.model.CamBean;
 import utils.JNDIFactory;
 
@@ -87,8 +89,10 @@ public class CamDaoImpl implements CamDao{
 							+ "WHERE id = ?");
 			
 			pstmt.setInt(1, id);
-			pstmt.executeQuery();
+			ResultSet rs = pstmt.executeQuery();
 
+		} catch (PSQLException e) {
+			
 		} catch (Exception e) {
 			throw new CamNotDeletedException(id);
 		} finally {
@@ -143,7 +147,7 @@ public class CamDaoImpl implements CamDao{
 			connection = jndi.getConnection("jdbc/WAI_DB");
 			PreparedStatement pstmt = connection.prepareStatement("select "
 							+ "id, url, name "
-							+ "from cam");
+							+ "from cam ORDER BY id");
 
 			ResultSet rs = pstmt.executeQuery();	
 

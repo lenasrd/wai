@@ -11,6 +11,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.postgresql.util.PSQLException;
+
 import dao.CamDao.CamNotFoundException;
 import utils.JNDIFactory;
 
@@ -55,7 +57,7 @@ public class UserDaoImpl implements UserDao{
 				pstmt.setInt(4, user.getPermissionLevel());
 				
 				if(user.getCams().size() > 0) {
-					pstmt.setArray(5, connection.createArrayOf("integer[]", user.getCams().toArray()));
+					pstmt.setArray(5, connection.createArrayOf("Integer", user.getCams().toArray()));
 				} else {
 					pstmt.setNull(5, Types.ARRAY);
 				}
@@ -88,7 +90,7 @@ public class UserDaoImpl implements UserDao{
 				else {
 					pstmt = connection.prepareStatement("update users "
 							+ "set Cams = ? where id = ?");
-					Array array = connection.createArrayOf("integer[]", user.getCams().toArray());
+					Array array = connection.createArrayOf("Integer", user.getCams().toArray());
 
 					pstmt.setArray(1, array);
 					pstmt.setInt(2, user.getId());
@@ -117,8 +119,10 @@ public class UserDaoImpl implements UserDao{
 							+ "WHERE id = ?");
 			
 			pstmt.setInt(1, id);
-			pstmt.executeQuery();
+			ResultSet rs = pstmt.executeQuery();
 
+		} catch (PSQLException e) {
+			
 		} catch (Exception e) {
 			throw new UserNotDeletedException(id);
 		} finally {
