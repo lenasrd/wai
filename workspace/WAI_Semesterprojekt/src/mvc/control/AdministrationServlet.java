@@ -28,7 +28,7 @@ import utils.SessionList;
  */
 public class AdministrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Level lOGLEVEL = Level.DEBUG; 
+	private static final Level lOGLEVEL = Level.INFO; 
        
 	private static Logger jlog = Logger.getLogger(AdministrationServlet.class);
 	
@@ -48,6 +48,7 @@ public class AdministrationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		jlog.debug("AdministrationServlet get called");
 		
+		
 		// proof session
 		UserBean user = SessionList.getInstance().getUser(request);
 		if(user == null || user.getPermissionLevel() != UserBean.PERMISSION_LEVEL_ADMIN) {
@@ -65,6 +66,8 @@ public class AdministrationServlet extends HttpServlet {
 		
 		request.setAttribute("UserList", userList);
 		request.setAttribute("CamList", camList);
+		
+		jlog.info("Administration menu called by " + user);
 		
 		dispatcher = getServletContext().getRequestDispatcher("/jsp/administration.jsp");
 		dispatcher.forward(request, response);
@@ -90,7 +93,7 @@ public class AdministrationServlet extends HttpServlet {
 		
 		// parse action
 		String key = request.getParameter("key");
-		System.out.println(key);
+		jlog.debug("key: " + key);
 		
 		switch(key) {
 		case "back_to_main":
@@ -108,7 +111,7 @@ public class AdministrationServlet extends HttpServlet {
 			handlePostCamAction(request, response);
 		}
 		else {
-			System.out.println("unknown key: " + key);
+			jlog.info(("unknown key: " + key));
 			response.sendRedirect("admin");
 			return;
 		}
@@ -125,19 +128,14 @@ public class AdministrationServlet extends HttpServlet {
 		UserDao  userDao 				= UserDaoFactory.getInstance().getUserDao();
 		UserBean targetUser 			= null;
 		
-		int target_id 					= -1;	
+		int target_id 					= UserBean.UNDEFINED;	
 		
 		CamDao camDao 					= CamDaoFactory.getInstance().getCamDao();
 		List<CamBean> camList 			= camDao.list();
-		
-		
+			
 		RequestDispatcher dispatcher 	= null;
 		
-		
-		
-
-		
-											
+									
 		// parse action
 		switch(key) {
 
@@ -150,7 +148,6 @@ public class AdministrationServlet extends HttpServlet {
 			
 		case "edit_user":			
 			try {
-				System.out.println("target: " + target);
 				targetUser = userDao.get(Integer.parseInt(target));
 			} catch(Exception E) {
 				jlog.error(E.getMessage());
@@ -187,9 +184,9 @@ public class AdministrationServlet extends HttpServlet {
 		case "delete_user":
 			try {
 				userDao.delete(Integer.parseInt(target));
-				System.out.println("User " + target_id + " gelöscht!");
+				jlog.info("User " + target_id + " gelöscht!");
 			} catch (Exception e) {
-				System.out.println(e.getMessage());
+				jlog.error(e.getMessage());
 			}
 			response.sendRedirect("admin");
 			return;
@@ -211,7 +208,7 @@ public class AdministrationServlet extends HttpServlet {
 					// prüfe ob user bereits existiert
 					targetUser = userDao.get(target_username);
 					if(targetUser != null) {
-						System.out.println("User mit dem namen " + target_username + " bereits vorhanden!");
+						jlog.info("User mit dem namen " + target_username + " bereits vorhanden!");
 						response.sendRedirect("admin");
 						return;
 					}
@@ -225,7 +222,7 @@ public class AdministrationServlet extends HttpServlet {
 					targetUser = userDao.get(Integer.parseInt(target));
 					
 				} catch(Exception e) {
-					System.out.println(e.getMessage());
+					jlog.error(e.getMessage());
 					response.sendRedirect("admin");
 					return;
 				}
@@ -233,13 +230,12 @@ public class AdministrationServlet extends HttpServlet {
 			
 			
 			if(targetUser == null) {
-				System.out.println("User not found: " + target_username);
+				jlog.info("User not found: " + target_username);
 			}
 			
 			List<Integer> target_cams = new LinkedList<Integer>();
 			
-			System.out.println("target: " + target);
-
+			
 			for(int i = 0; i < camList.size(); i++) {
 				System.out.println( "checkbox " + i + ": " + request.getParameter("check_list[" + i + "]") );
 				if(request.getParameter("check_list[" + i + "]") != null) {
@@ -248,7 +244,7 @@ public class AdministrationServlet extends HttpServlet {
 				
 			}
 			
-			System.out.println("allowed cams: " + target_cams);
+			jlog.debug("user " + targetUser + ", allowed cams: " + target_cams);
 				
 			targetUser.setUsername(target_username);
 			targetUser.setPassword(target_password);
@@ -258,15 +254,15 @@ public class AdministrationServlet extends HttpServlet {
 			
 			
 			if(key.equals("Add_user_submit"))
-				System.out.println("Neuer User angelegt!\n" + targetUser);
+				jlog.info("Neuer User angelegt!\n" + targetUser);
 			else
-				System.out.println("User editiert!\n" + targetUser);
+				jlog.info("User editiert!\n" + targetUser);
 			
 			response.sendRedirect("admin");
 			return;
 		
 		default:
-			System.out.println("Unknown ke: " + key);
+			jlog.info("Unknown ke: " + key);
 			response.sendRedirect("admin");
 			return;
 		}
@@ -308,7 +304,7 @@ public class AdministrationServlet extends HttpServlet {
 				// TODO errorpage
 				response.sendRedirect("admin");
 			}
-			System.out.println("cam: " + targetCam);
+			jlog.debug("cam: " + targetCam);
 			request.setAttribute("TargetCam", targetCam);
 			dispatcher = getServletContext().getRequestDispatcher("/jsp/edit_camera.jsp");
 			dispatcher.forward(request, response);
@@ -318,9 +314,9 @@ public class AdministrationServlet extends HttpServlet {
 		case "delete_cam":
 			try {
 				camDao.delete(Integer.parseInt(target));
-				System.out.println("Cam " + Integer.parseInt(target) + " gelöscht!");
+				jlog.info("Cam " + Integer.parseInt(target) + " gelöscht!");
 			} catch (Exception e) {
-				System.out.println(e.getMessage());
+				jlog.error(e.getMessage());
 			}
 			response.sendRedirect("admin");
 			return;
@@ -338,10 +334,10 @@ public class AdministrationServlet extends HttpServlet {
 				try {
 					targetCam = camDao.get(Integer.parseInt(target));
 					if(targetCam == null) {
-						System.out.println("Kamera not found: " + target_camname);
+						jlog.info("Kamera not found: " + target_camname);
 					}
 				} catch(Exception e) {
-					System.out.println(e.getMessage());
+					jlog.error(e.getMessage());
 					response.sendRedirect("admin");
 				}
 			}
@@ -351,9 +347,9 @@ public class AdministrationServlet extends HttpServlet {
 			camDao.save(targetCam);
 			
 			if(key.equals("Add_camera_submit"))
-				System.out.println("Neue Cam angelegt!\n" + targetCam);
+				jlog.info("Neue Cam angelegt!\n" + targetCam);
 			else
-				System.out.println("Cam editiert!\n" + targetCam);
+				jlog.info("Cam editiert!\n" + targetCam);
 			
 			response.sendRedirect("admin");
 			return;
@@ -361,7 +357,7 @@ public class AdministrationServlet extends HttpServlet {
 		
 			
 		default:
-			System.out.println("unknown key: " + key);
+			jlog.info("unknown key: " + key);
 			response.sendRedirect("admin");
 			return;
 		}

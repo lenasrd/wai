@@ -26,7 +26,10 @@ import org.apache.log4j.Logger;
 
 import com.sun.prism.Image;
 
+import dao.CamDao.CamDaoFactory;
+import dao.ImageDao.ImageDao;
 import dao.ImageDao.ImageDaoFactory;
+import mvc.model.CamBean;
 import mvc.model.ImageBean;
 import mvc.model.UserBean;
 import utils.JNDIFactory;
@@ -38,7 +41,6 @@ import utils.SessionList;
 public class HistoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Level lOGLEVEL = Level.DEBUG; 
-	
 	private static Logger jlog = Logger.getLogger(HistoryServlet.class);
 	
     /**
@@ -64,51 +66,6 @@ public class HistoryServlet extends HttpServlet {
 			return;
 		}
 		
-		//read in available years
-		JNDIFactory jndiFactory = JNDIFactory.getInstance();
-		Connection connection = null;
-		Statement statement = null;
-		ResultSet resultSet = null;
-		try {
-			connection = jndiFactory.getConnection("jdbc/WAI_DB");
-			statement = connection.createStatement();
-			resultSet = statement.executeQuery("select year from image where cam_id = 1 order by year desc");
-			List<String> years = new ArrayList<String>();
-			
-			//set years in selector
-			while (resultSet.next()) {
-				if (!years.contains(String.valueOf(resultSet.getInt("year")))){
-				years.add(String.valueOf(resultSet.getInt("year")));
-				request.setAttribute("years", years);
-				}
-			}
-		}
-		
-		catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
-		finally {
-			if (connection != null)
-				try {
-					connection.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-			if (statement != null)
-				try {
-					statement.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-			if (resultSet != null)
-				try {
-					resultSet.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-		}
 		
 
 		// get action key
@@ -116,14 +73,29 @@ public class HistoryServlet extends HttpServlet {
 		System.out.println("key: " + key);
 		RequestDispatcher dispatcher = null;
 		
+
+		//get target camera
+		Integer oneTarget = Integer.parseInt(request.getSession().getAttribute("target").toString());
+		Integer targetCam = oneTarget != CamBean.UNDEFINED ? oneTarget : null;
+		//hier evtl noch getter in die CamBean für CamName über ID
+		String headline =  oneTarget != CamBean.UNDEFINED ? "Browse history | "+ CamDaoFactory.getInstance().getCamDao().get(oneTarget).getName() : "Browse history | All cameras";
 		
+		
+		//Integer targetCam = null;
+		//String headline = "test";
+		request.getSession().setAttribute("headline", headline);
+		
+		//read in available years and set them
+		List<String> years = new ArrayList<String>();
+		years = ImageDaoFactory.getInstance().getImageDao().getYears(targetCam);
+		request.setAttribute("years", years);
 		
 		switch(key) {
 		// history aller cams, formular
 		case "Browse_history_of_all_cameras":
 			// Zeige Eingabemaske zur Suche für alle Kameras
 			System.out.println("key: " + key);
-			dispatcher = getServletContext().getRequestDispatcher("/jsp/browse_all_cams.jsp"); 
+			dispatcher = getServletContext().getRequestDispatcher("/jsp/browse_one_cam.jsp"); 
 			dispatcher.forward(request, response);
 			break;
 		
@@ -159,7 +131,6 @@ public class HistoryServlet extends HttpServlet {
 		
 		RequestDispatcher dispatcher 	= null;
 		String nextPage 				= null;
-		List<ImageBean> imageList 		= null;
 		JNDIFactory jndiFactory = JNDIFactory.getInstance();
 		Connection connection = null;
 		Statement statement = null;
@@ -169,209 +140,90 @@ public class HistoryServlet extends HttpServlet {
 		String key = (String) request.getParameter("key");
 		System.out.println("key: " + key);
 		
-		if(key.equals("Request_images_all_cams")) {
-			/** history aller cams, view
-			 * Ausgelöst durch: browse_all_cams.jsp
-			 * Input Formulardaten:
-			 * 
-			 * Ziel:
-			 * Zeige Ergebnis der Suche über alle Kameras
-			 * Auflistung der Ergebnisse (Bilder als Thumbs)
-			 **/
 
-			/** TODO
-			 * 	Datenbankabfrage
-			 *
-			 * 	Beispielquery (mein spontaner brainstrom)
-			 *  SELECT path, name, date FROM images WHERE cam_id = user.getCams().get(i) AND Date >= Time_from AND Date <= Time_to
-			 *  
-			 *  Pro verfügbare Kamera eine Listenabfrage
-			 *  Ergebnisse in GesamtListe sammeln
-			 *  
-			 *  Abfrage über ImageDao
-			 **/ 
-//			for (int i = 0; i < user.getCams().size(); i++) {
-//				
-//				List<ImageBean> tempImageList = ImageDaoFactory.getInstance().getImageDao().listIntervalImages(
-//	  			year, month, day, startTime, endTime);
-//				for(int k = 0; k < tempImageList.size(); k++) {
-//					imageList.add(imageList.get(i)));
-//				}
-//			}
-
-			nextPage = "/jsp/history_all_cams.jsp";
-
-
-		} else if (key.equals("Submit_year")) {
-			try {
-				connection = jndiFactory.getConnection("jdbc/WAI_DB");
-			} catch (NamingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		//get target camera
+		Integer oneTarget = Integer.parseInt(request.getSession().getAttribute("target").toString());
+		Integer targetCam = oneTarget != CamBean.UNDEFINED ? oneTarget : null;
+		
+		//Integer targetCam = null;
+		
+		if(key.equals("Submit_year")) {
+			//get chosen year
+			String year = request.getParameter("whichYear");
+			request.getSession().setAttribute("year", year);
 			
-			try {
-				//get chosen year
-				String year = request.getParameter("whichYear");
-				request.getSession().setAttribute("year", year);
-				
-				//look up months for this year
-				statement = connection.createStatement();
-				resultSet = statement.executeQuery("select month from image where year = " + year + " order by month");
-				List<String> months = new ArrayList<String>();
-				while (resultSet.next()) {
-					if (!months.contains(String.valueOf(resultSet.getInt("month")))){
-						months.add(String.valueOf(resultSet.getInt("month")));
-						request.setAttribute("months", months);
-					}
-					nextPage = "/jsp/datechoice_month.jsp";
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			//look up months for this year
+			List<String> months = new ArrayList<String>();
+			months = ImageDaoFactory.getInstance().getImageDao().getMonths(targetCam, year);
+			request.setAttribute("months", months);
+			nextPage = "/jsp/datechoice_month.jsp";
 		}
 		
 		else if (key.equals("Submit_month")) {
-			System.out.println("key: " + key);
-		
-			try {
-				connection = jndiFactory.getConnection("jdbc/WAI_DB");
-			} catch (NamingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			//get chosen month and year
+			String month = request.getParameter("whichMonth");
+			request.getSession().setAttribute("month", month);
+			String year = request.getSession().getAttribute("year").toString();
 			
-			try {
-				//get chosen month and year
-				String month = request.getParameter("whichMonth");
-				System.out.println("selected month = " + month);
-				request.getSession().setAttribute("month", month);
-				String year = request.getSession().getAttribute("year").toString();
+			//look up days for this month & year
+			List<String> days = new ArrayList<String>();
+			days = ImageDaoFactory.getInstance().getImageDao().getDays(targetCam, year, month);
+			request.setAttribute("days", days);
+			nextPage = "/jsp/datechoice_day.jsp";
 				
-				//look up days for this month & year
-				statement = connection.createStatement();
-				resultSet = statement.executeQuery("select day from image where year = " + year + " and month = " + month + " order by day");
-				List<String> days = new ArrayList<String>();
-				while (resultSet.next()) {
-					days.add(resultSet.getString("day"));
-					request.setAttribute("days", days);
-					System.out.println(days);
-					nextPage = "/jsp/datechoice_day.jsp";
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 		
 		else if (key.equals("Submit_day")) {
-			System.out.println("key: " + key);
-		
-			try {
-				connection = jndiFactory.getConnection("jdbc/WAI_DB");
-			} catch (NamingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			//get chosen day, year and month
+			String day = request.getParameter("whichDay");
+			request.getSession().setAttribute("day", day);
+			String year = request.getSession().getAttribute("year").toString();
+			String month = request.getSession().getAttribute("month").toString();
 			
-			try {
-				//get chosen day, year and month
-				String day = request.getParameter("whichDay");
-				request.getSession().setAttribute("day", day);
-				String year = request.getSession().getAttribute("year").toString();
-				String month = request.getSession().getAttribute("month").toString();
-				
-				//look up startHours for this year & day & month
-				statement = connection.createStatement();
-				resultSet = statement.executeQuery("select hour from image where year = " + year + " and month = " + month + " and day = " + day);
-				List<String> hoursStart = new ArrayList<String>();
-				while (resultSet.next()) {
-					hoursStart.add(resultSet.getString("hour"));
-					request.setAttribute("hoursStart", 	hoursStart);
-					System.out.println(hoursStart);
-					nextPage = "/jsp/datechoice_hour_start.jsp";
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			//look up startHours for this year & day & month
+			List<String> hoursStart = new ArrayList<String>();
+			hoursStart = ImageDaoFactory.getInstance().getImageDao().getHoursStart(targetCam, year, month, day);
+			request.setAttribute("hoursStart", hoursStart);
+			nextPage = "/jsp/datechoice_hour_start.jsp";
 		}
 		
 		else if (key.equals("Submit_hour_start")) {
-			System.out.println("key: " + key);
-		
-			try {
-				connection = jndiFactory.getConnection("jdbc/WAI_DB");
-			} catch (NamingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			//get chosen hourStart, day, year and month
+			String hourStart = request.getParameter("whichHourStart");
+			request.getSession().setAttribute("hourStart", hourStart);
+			String day = request.getSession().getAttribute("day").toString();
+			String year = request.getSession().getAttribute("year").toString();
+			String month = request.getSession().getAttribute("month").toString();
 			
-			try {
-				//get chosen hourStart, day, year and month
-				String hourStart = request.getParameter("whichHourStart");
-				request.getSession().setAttribute("hourStart", hourStart);
-				System.out.println("selected hourStart was = " + hourStart);
+			//look up endHours for this year & day & month
+			List<String> hoursEnd = new ArrayList<String>();
 
-				String day = request.getSession().getAttribute("day").toString();
-				System.out.println("selected day was = " + day);
-				String year = request.getSession().getAttribute("year").toString();
-				System.out.println("selected year was = " + year);
-				String month = request.getSession().getAttribute("month").toString();
-				System.out.println("selected month was = " + month);
-				
-				//look up endHours for this year & day & month
-				statement = connection.createStatement();
-				resultSet = statement.executeQuery("select hour from image where year = " + year + " and month = " + month + " and day = " + day + " and hour > " + hourStart);
-				List<String> hoursEnd = new ArrayList<String>();
-				while (resultSet.next()) {
-					hoursEnd.add(resultSet.getString("hour"));
-					request.setAttribute("hoursEnd", hoursEnd);
-					System.out.println(hoursEnd);
-				}
-				if(hoursEnd.isEmpty()) {
-					hoursEnd.add(hourStart);
-					request.setAttribute("hoursEnd", hoursEnd);
-				}
-				nextPage = "/jsp/datechoice_hour_end.jsp";
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			//if there is only one hour in the database
+			hoursEnd = ImageDaoFactory.getInstance().getImageDao().getHoursEnd(targetCam, year, month, day, hourStart);
+			if (hoursEnd.isEmpty()) {
+				hoursEnd.add(hourStart);
 			}
+			request.setAttribute("hoursEnd", hoursEnd);
+			nextPage = "/jsp/datechoice_hour_end.jsp";
 		}
 		
 		else if (key.equals("Submit_hour_end")) {
-			System.out.println("key: " + key);
-		
-			try {
-				connection = jndiFactory.getConnection("jdbc/WAI_DB");
-			} catch (NamingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
 			//get chosen hourEnd, hourStart, day, year and month
 			String hourEnd = request.getParameter("whichHourEnd");
 			request.getSession().setAttribute("hourEnd", hourEnd);
+
+			String day = request.getSession().getAttribute("day").toString();
+			String year = request.getSession().getAttribute("year").toString();
+			String month = request.getSession().getAttribute("month").toString();
+			String hourStart = request.getSession().getAttribute("hourStart").toString();
 			
-			System.out.println("selected hourEnd was = " + hourEnd);
-			nextPage = "/jsp/history_one_cam.jsp";
+			//get images & redirect to display jsp
+			ImageDao dao = ImageDaoFactory.getInstance().getImageDao();
+			images = dao.listIntervalImages (targetCam, year, month, day, hourStart, hourEnd);
+			
+			request.setAttribute("ImageList", images);
+			
+			nextPage = oneTarget != CamBean.UNDEFINED ? "/jsp/history_one_cam.jsp" : "/jsp/history_all_cams.jsp";
 		}
 		
 		else if (key.equals("zoom")) {

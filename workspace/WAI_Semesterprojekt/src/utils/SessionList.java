@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 
+
+import mvc.control.LoginServlet;
 import mvc.model.UserBean;
 
 
@@ -17,8 +19,10 @@ public class SessionList {
 
 	private static Map<String, UserBean> sessionMap = new HashMap<String, UserBean>();
 	
+
+	
 	private SessionList() {
-		
+
 	}
 
 	
@@ -55,7 +59,7 @@ public class SessionList {
 	
 	
 	public void sessionCreated(HttpSessionEvent sessionEvent) {
-		System.out.println("Session " + sessionEvent.getSession().getId() + " created");
+		// jlog.info("Session " + sessionEvent.getSession().getId() + " created");
 	}
 
 	
@@ -63,6 +67,6 @@ public class SessionList {
 	public void sessionDestroyed(HttpSessionEvent sessionEvent) {
 		String sessionID 	= sessionEvent.getSession().getId();
 		removeSession(sessionID);
-		System.out.println("Session " + sessionID + " deleted");
+		// jlog.info("Session " + sessionID + " deleted");
 	}
 }

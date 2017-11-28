@@ -5,10 +5,10 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-		<title>Browse history camera "camName" (ID xxx)</title>
+		<title>${headline}</title>
 	</head>
 	<body>
-		<h1 align="center">Browse history camera "camName" (ID xxx)</h1>
+		<h1 align="center">${headline}</h1>
 		<form action="history" name="appform" method="post">
 			<table align="center" cellpadding="2" cellspacing="2">
 				<tr>

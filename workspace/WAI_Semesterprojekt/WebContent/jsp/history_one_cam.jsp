@@ -5,11 +5,11 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-		<title>Cam "camName" (ID xxx) history</title>
+		<title>${headline}</title>
 	</head>
 	<body>
-		<h1 align="center">Cam "camName" (ID xxx) history</h1>
-		<h2 align="center">15.11.17, ${hourStart} - ${hourEnd}</h1>
+		<h1 align="center">${headline}</h1>
+		<h2 align="center">${day}.${month}.${year}, ${hourStart} - ${hourEnd}</h1>
 		<form action="history" name="appform" method="post">
 			<table align="center" cellpadding="2" cellspacing="2">
 				<tr>
@@ -27,6 +27,15 @@
 									<td><button name="key" value="zoom" style="background: url(https://image.flaticon.com/icons/png/512/49/49116.png); height: 30px; width: 30px; background-size: 24px 24px"></button></td>
 									<td>15:00</td>
 								</tr>
+								<c:forEach items="${ImageList}" var="imageinthisrow" varStatus="status">
+									<tr>
+								        <td>${imageinthisrow.id}</td>
+								        <td>${imageinthisrow.camId}</td>
+								        <td><img src="${pageContext.request.contextPath}${ImageList[status.index].thumbPath}" height="80" width="80"></td>
+								       	<td><button onclick="sendAction('zoom', '${ImageList[status.index].id}')" style="background: url(https://image.flaticon.com/icons/png/512/49/49116.png); height: 30px; width: 30px; background-size: 24px 24px"></button></td>
+								        <td>15:00, 15.11.17</td>
+								    </tr>
+								</c:forEach>
 							</table>
 						</div>
 					</td>

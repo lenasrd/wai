@@ -34,10 +34,11 @@ import utils.SessionList;
 // http://localhost:8080/WAI_Semesterprojekt/login
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Level lOGLEVEL = Level.DEBUG; 
+	private static final Level lOGLEVEL = Level.INFO; 
 	
 	private static Logger jlog = Logger.getLogger(LoginServlet.class);
 
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -46,66 +47,14 @@ public class LoginServlet extends HttpServlet {
         jlog.setLevel(lOGLEVEL);
     }
 
+    
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		jlog.debug("login get called");
-		
-		// TODO delete (TOP)
-		/* Syntax insert user in database:
-			INSERT INTO public.users(
-				id, name, password, permission, cams)
-				VALUES (1, 'admin', 'admin', 1, '{1, 2, 7, 9}');
-		 */
-		JNDIFactory jndiFactory = JNDIFactory.getInstance();
-		Connection connection = null;
-		Statement statement = null;
-		ResultSet resultSet = null;
-		try {
-			connection = jndiFactory.getConnection("jdbc/WAI_DB");
 
-			statement = connection.createStatement();
-			resultSet = statement.executeQuery("select id, name, password, permission, cams from users");
-			
-			System.out.println("TODO: DELETE ME!!!!");
-			System.out.println("Vorhandene Accounts:");
-			while (resultSet.next()) {
-				System.out.println(resultSet.getInt("id") + " | Name: "
-						+ resultSet.getString("name") + ", Passwort: "
-						+ resultSet.getString("password") + ", permission: "
-						+ resultSet.getInt("permission") + ", cams: "
-						+ resultSet.getArray("cams"));
-			}
-		} 
-		catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
-		finally {
-			if (connection != null)
-				try {
-					connection.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-			if (statement != null)
-				try {
-					statement.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-			if (resultSet != null)
-				try {
-					resultSet.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-		}
-		// TODO DELETE (BOTTOM)
-		
-		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/login.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -127,11 +76,12 @@ public class LoginServlet extends HttpServlet {
 			user = UserDaoFactory.getInstance().getUserDao().get(username);
 		} catch (UserNotFoundException e) {
 			System.out.println(e.getMessage());
+			jlog.info(e.getMessage());
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;
 		} catch(Exception e) {
-			System.out.println(e.getMessage());
+			jlog.error(e.getMessage());
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;
@@ -144,17 +94,12 @@ public class LoginServlet extends HttpServlet {
 			SessionList sessionList = SessionList.getInstance();
 			sessionList.addSession(session.getId(), user);
 				
-			if(username.equals("admin") && password.equals("admin")) {
-				user.setPermissionLevel(UserBean.PERMISSION_LEVEL_ADMIN);
-			}
 			jlog.info("Login as " + user);
-			System.out.println("-- Login as --\n" + user);
 			session.setAttribute("user", user);	
 			response.sendRedirect("main_menu");
 			return;
 		} else {
-			jlog.info("Login as " + user);
-			System.out.println("-- Login as --\n" + user);
+			jlog.info("wrong password: " + user);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;

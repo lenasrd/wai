@@ -31,10 +31,12 @@ import utils.SessionList;
  */
 public class MainMenuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Level lOGLEVEL = Level.DEBUG; 
+	private static final Level lOGLEVEL = Level.INFO; 
        
 	private static Logger jlog = Logger.getLogger(MainMenuServlet.class);
 
+	
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -43,6 +45,8 @@ public class MainMenuServlet extends HttpServlet {
         jlog.setLevel(lOGLEVEL);
     }
 
+    
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -70,8 +74,7 @@ public class MainMenuServlet extends HttpServlet {
 			visibility = "submit";
 			camList = camDao.list();
 		} 
-		else {
-			
+		else {	
 			visibility = "hidden";
 			List<Integer> userCamArray	= user.getCams();
 
@@ -91,7 +94,7 @@ public class MainMenuServlet extends HttpServlet {
 			imgList.add(imgDao.getLatestRecordFromCam(camList.get(i).getId()));
 		}
 
-		jlog.debug(camList.size() + " cams listed");
+		jlog.debug(camList.size() + " cams listed for user " + user);
 		
 		request.setAttribute("CamList", camList);
 		request.setAttribute("ImageList", imgList);
@@ -118,15 +121,12 @@ public class MainMenuServlet extends HttpServlet {
 			response.sendRedirect("login");
 			return;
 		}	
-		
-		
-		
+			
 		// parse action
 		String key = request.getParameter("key");
 		request.getSession().setAttribute("key", key);
-		System.out.println(request.getParameter("key"));
-		System.out.println(request.getParameter("target"));
 					
+		
 		switch(key) {
 		case "Browse_history_of_all_cameras":
 			// TODO anpassen
@@ -153,7 +153,7 @@ public class MainMenuServlet extends HttpServlet {
 			}	
 			else {
 				// TODO errorpage
-				System.out.println("no permission");
+				jlog.info("user with no permission tries to call the admin menu. User: " + user);
 				response.sendRedirect("main_menu");
 			}
 			return;
@@ -164,8 +164,9 @@ public class MainMenuServlet extends HttpServlet {
 			return;
 			
 		default:
-			System.out.println("unknown key: " + key);
+			jlog.info("unknown key: " + key);
 			// TODO errorpage?
+			response.sendRedirect("main_menu");
 			return;
 		}
 	}

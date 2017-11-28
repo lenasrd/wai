@@ -21,7 +21,7 @@ import utils.SessionList;
  */
 public class ImageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Level lOGLEVEL = Level.DEBUG; 
+	private static final Level lOGLEVEL = Level.INFO; 
        
 	private static Logger jlog = Logger.getLogger(ImageServlet.class);
 	
@@ -33,6 +33,7 @@ public class ImageServlet extends HttpServlet {
         jlog.setLevel(lOGLEVEL);
     }
 
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -47,7 +48,7 @@ public class ImageServlet extends HttpServlet {
 		}	
 		
 		String image_id = (String) request.getSession().getAttribute("target");
-		System.out.println(image_id);
+		jlog.debug(image_id);
 		if(image_id == null) {
 			response.sendRedirect("main_menu");
 			return;

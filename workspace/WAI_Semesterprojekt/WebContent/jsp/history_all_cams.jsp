@@ -5,11 +5,11 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-		<title>All cameras history</title>
+		<title>${headline}</title>
 	</head>
 	<body>
-		<h1 align="center">All cameras history</h1>
-		<h2 align="center">15.11.17, 15:00 - 17:00</h1>
+		<h1 align="center">${headline}</h1>
+		<h2 align="center">${day}.${month}.${year}, ${hourStart} - ${hourEnd}</h1>
 		<form action="history" name="appform" method="post">
 			<table align="center" cellpadding="2" cellspacing="2">
 				<tr>

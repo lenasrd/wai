@@ -6,7 +6,10 @@ public class ImageBean {
 	private Integer camId;
 	private String path;
 	private String thumbPath;
-	private Integer timestamp;
+	private Integer year;
+	private Integer month;
+	private Integer day;
+	private Integer hour;
 
 
     public Integer getId() {
@@ -37,14 +40,6 @@ public class ImageBean {
         // this.thumb = ImageBean::createThumb(path);
     }
 
-    public Integer getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Integer timestamp) {
-        this.timestamp = timestamp;
-    }
-
 	public String getThumbPath() {
 		return thumbPath;
 	}
@@ -52,32 +47,37 @@ public class ImageBean {
 	public void setThumbPath(String thumbPath) {
 		this.thumbPath = thumbPath;
 	}
-    
-    
-    /* Bilder und Thumbs müssen irgendwie ausgeldesen oder erzeugt werden
-     * Bilder:
-     * - muss das programm das bild laden und als stream verschicken oder kann auf den pfad verwiesen werden?
-     * 
-     * Thumbs:
-     * - erzeugen nach Bedarf, haltung in Klasse oder Thumbs im voraus erzeugen (über quarz beim speichern eines neues bildes thumb mitbauen)?
-     * - zweites wäre deutlich performanter, würde jedoch evtl ein Parallel-Filesystem voraussetzen
-     * 
-     * Meine empfehlung:
-     * Thumbs erstmal via ImageBean erzeugen und halten... sollte deutlich einfacher sein und scheis auf performance
-     */
-//    private Image thumb;
-//    
-//    static Image createThumb(String path) {
-//    	// https://www.java-forum.org/thema/thumbnails-schneller-erstellen.21437/ übernehmen?
-//    }
 	
-	public String toString() {
-		return ("Image\n" +
-				"id: " + id + "\n" +
-				"cam_id: " + camId + "\n" +
-				"timestamp: " + timestamp + "\n");
-	}
-    
-    
-    
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public Integer getMonth() {
+        return month;
+    }
+
+    public void setMonth(Integer month) {
+        this.month = month;
+    }
+
+    public Integer getDay() {
+        return day;
+    }
+
+    public void setDay(Integer day) {
+        this.day = day;
+    }
+
+    public Integer getHour() {
+        return hour;
+    }
+
+    public void setHour(Integer hour) {
+        this.hour = hour;
+    }
+      
 }
