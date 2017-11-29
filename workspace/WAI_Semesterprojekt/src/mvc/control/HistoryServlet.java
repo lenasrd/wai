@@ -95,7 +95,7 @@ public class HistoryServlet extends HttpServlet {
 		// history aller cams, formular
 		case "Browse_history_of_all_cameras":
 			// Zeige Eingabemaske zur Suche für alle Kameras
-			System.out.println("key: " + key);
+			jlog.debug("key: " + key);
 			dispatcher = getServletContext().getRequestDispatcher("/jsp/browse_one_cam.jsp"); 
 			dispatcher.forward(request, response);
 			break;
@@ -103,13 +103,13 @@ public class HistoryServlet extends HttpServlet {
 		// history einzelner cam, formular
 		case "browse_history":
 			// Zeige Eingabemaske zur Suche für einer Kamera
-			System.out.println("key: " + key);
+			jlog.debug("key: " + key);
 			dispatcher = getServletContext().getRequestDispatcher("/jsp/browse_one_cam.jsp"); 
 			dispatcher.forward(request, response);	
 			break;
 
 		default:
-			System.out.println("unknown key: " + key);
+			jlog.debug("unknown key: " + key);
 		}
 		return;
 	}
@@ -139,7 +139,7 @@ public class HistoryServlet extends HttpServlet {
 		
 		// get action key
 		String key = (String) request.getParameter("key");
-		System.out.println("key: " + key);
+		jlog.debug("key: " + key);
 		
 
 		//get target camera
@@ -245,7 +245,7 @@ public class HistoryServlet extends HttpServlet {
 			String ImageID = request.getParameter("target");
 			request.getSession().setAttribute("target", ImageID);
 			response.sendRedirect("image");
-			System.out.println("try key: " + key);
+			jlog.debug("try key: " + key);
 			return;
 		}
 		

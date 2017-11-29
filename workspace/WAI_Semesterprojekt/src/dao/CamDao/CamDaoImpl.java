@@ -8,14 +8,24 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.postgresql.util.PSQLException;
 
 import mvc.model.CamBean;
 import utils.JNDIFactory;
+import utils.SystemStartup;
 
 public class CamDaoImpl implements CamDao{
 	
 	final JNDIFactory jndi = JNDIFactory.getInstance();
+	
+	private static Logger jLog = Logger.getLogger(SystemStartup.class);
+	private static final Level lOGLEVEL = Level.INFO; 
+
+	public CamDaoImpl() {
+		jLog.setLevel(lOGLEVEL);
+	}
 
 	@Override
 	public void save(CamBean cam) throws CamNotSavedException {
@@ -67,7 +77,7 @@ public class CamDaoImpl implements CamDao{
 			pstmt.executeUpdate();		
 			
 		} catch(Exception e) {
-			System.out.println(e.getMessage());
+			jLog.error(e.getMessage());
 			throw new CamNotSavedException();
 		} finally {
 			closeConnection(connection);
@@ -163,7 +173,7 @@ public class CamDaoImpl implements CamDao{
 				camList.add(cam);
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());;
+			jLog.error(e.getMessage());;
 			camList = null;
 		} finally {
 			closeConnection(connection);
@@ -186,7 +196,7 @@ public class CamDaoImpl implements CamDao{
 			id++;
 		}
 		catch (Exception e) {
-			System.out.println(e.getMessage());
+			jLog.error(e.getMessage());
 			id = CamBean.UNDEFINED;
 		} finally {
 			closeConnection(connection);

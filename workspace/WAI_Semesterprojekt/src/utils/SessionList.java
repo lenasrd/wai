@@ -32,7 +32,6 @@ public class SessionList {
 	
 	
 	public UserBean addSession(String sessionID, UserBean user) {
-		System.out.println("Session " + sessionID + " alias " + user.getUsername() +" logged in");
 		return sessionMap.put(sessionID, user);
 	}
 	
@@ -59,7 +58,7 @@ public class SessionList {
 	
 	
 	public void sessionCreated(HttpSessionEvent sessionEvent) {
-		// jlog.info("Session " + sessionEvent.getSession().getId() + " created");
+		
 	}
 
 	
@@ -67,6 +66,5 @@ public class SessionList {
 	public void sessionDestroyed(HttpSessionEvent sessionEvent) {
 		String sessionID 	= sessionEvent.getSession().getId();
 		removeSession(sessionID);
-		// jlog.info("Session " + sessionID + " deleted");
 	}
 }

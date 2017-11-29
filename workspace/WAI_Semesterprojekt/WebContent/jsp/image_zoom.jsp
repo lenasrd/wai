@@ -13,7 +13,7 @@
 		<form action="image" name="appform" method="post">
 			<table align="center" cellpadding="2" cellspacing="2">
 				<tr>
-					<td><img src="${pageContext.request.contextPath}${image.path}" height="400"></td>
+					<td><img src="${pageContext.request.contextPath}${image.path}" height="600"></td>
 				</tr>
 			</table>
 		</form>

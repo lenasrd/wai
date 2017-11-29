@@ -10,8 +10,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import utils.JNDIFactory;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
+import utils.JNDIFactory;
+import utils.SystemStartup;
 import mvc.model.ImageBean;
 
 
@@ -19,6 +22,12 @@ import mvc.model.ImageBean;
 public class ImageDaoImpl implements ImageDao {
 	
 	final JNDIFactory jndi = JNDIFactory.getInstance();
+	private static Logger jLog = Logger.getLogger(SystemStartup.class);
+	private static final Level lOGLEVEL = Level.INFO; 
+
+	public ImageDaoImpl() {
+		jLog.setLevel(lOGLEVEL);
+	}
 
 	@Override
 	public void delete(Integer id) {
@@ -171,7 +180,7 @@ public class ImageDaoImpl implements ImageDao {
 				image.setDay(Integer.valueOf(rs.getString("day")));
 				image.setHour(Integer.valueOf(rs.getString("hour")));
 				imageList.add(image);
-				System.out.println("available image added to list, id: "+image.getId().toString());
+				jLog.debug("available image added to list, id: "+image.getId().toString());
 			} 		
 		} catch (Exception e) {
 			throw new ImageNotFoundException(camId);
@@ -208,7 +217,7 @@ public class ImageDaoImpl implements ImageDao {
 		}
 		
 		catch(Exception e) {
-			System.out.println(e.getMessage());
+			jLog.error(e.getMessage());
 		}
 		finally {
 			if (connection != null)
@@ -262,7 +271,7 @@ public class ImageDaoImpl implements ImageDao {
 		}
 		
 		catch(Exception e) {
-			System.out.println(e.getMessage());
+			jLog.error(e.getMessage());
 		}
 		finally {
 			if (connection != null)
@@ -317,7 +326,7 @@ public class ImageDaoImpl implements ImageDao {
 		}
 		
 		catch(Exception e) {
-			System.out.println(e.getMessage());
+			jLog.error(e.getMessage());
 		}
 		finally {
 			if (connection != null)
@@ -371,7 +380,7 @@ public class ImageDaoImpl implements ImageDao {
 		}
 		
 		catch(Exception e) {
-			System.out.println(e.getMessage());
+			jLog.error(e.getMessage());
 		}
 		finally {
 			if (connection != null)
@@ -414,7 +423,7 @@ public class ImageDaoImpl implements ImageDao {
 				rs = pstmt.executeQuery();
 			}
 			else {
-				System.out.println("here");
+				jLog.debug("here");
 				pstmt = connection.prepareStatement("select month from image where year = "+year+" order by month desc");
 				rs = pstmt.executeQuery();
 			}
@@ -427,7 +436,7 @@ public class ImageDaoImpl implements ImageDao {
 		}
 		
 		catch(Exception e) {
-			System.out.println(e.getMessage());
+			jLog.error(e.getMessage());
 		}
 		finally {
 			if (connection != null)
@@ -483,7 +492,7 @@ public class ImageDaoImpl implements ImageDao {
 			}	
 			return image;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			jLog.error(e.getMessage());
 			throw new ImageNotFoundException();
 		} finally {	
 			closeConnection(connection);

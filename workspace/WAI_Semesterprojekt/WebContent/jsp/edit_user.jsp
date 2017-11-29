@@ -13,6 +13,14 @@
 	        	document.getElementById('target').value	=target;
 	        	document.getElementById('mainMenuTable').submit();
 	        } 
+	        function setPermission()
+	        {
+	        	if(document.getElementById('permission_checkbox').checked) {
+	        		document.getElementById('camTable').disabled = true;
+	        	} else {
+	        		document.getElementById('camTable').disabled = false;
+	        	}
+	        } 
         </script>
 	</head>
 	<body>
@@ -33,7 +41,7 @@
 				<tr>
 					<td colspan="2">
 						<div style="width:240px;height:200px;overflow:auto;padding:5px;border:1px solid black;">
-							<table cellpadding="2" cellspacing="2">
+							<table id="camTable" cellpadding="2" cellspacing="2" <c:if test="${TargetUser.permissionLevel == TargetUser.PERMISSION_LEVEL_ADMIN}">disabled</c:if>>
 								<c:forEach items="${CamList}" var="caminthisrow" varStatus="status">
 									<tr>
 								    	<td><input type="checkbox" name="check_list[${status.index}]" <c:if test="${allowedCams[status.index]}">checked</c:if> /></td>								    	
@@ -48,7 +56,7 @@
 				</tr>
 				<tr>	
 					<td>Admin rights</td>				
-					<td><input type="checkbox" name="permission" <c:if test="${TargetUser.permissionLevel == TargetUser.PERMISSION_LEVEL_ADMIN}">checked</c:if> /></td>
+					<td><input id="permission_checkbox" type="checkbox" name="permission" <c:if test="${TargetUser.permissionLevel == TargetUser.PERMISSION_LEVEL_ADMIN}">checked</c:if> onclick="setPermission()"/></td>
 				</tr>
 				<tr>
 					<td colspan=2><input type="submit" name="key" value="Edit_user_submit"/></td>

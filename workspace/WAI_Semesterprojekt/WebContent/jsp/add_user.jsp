@@ -33,7 +33,7 @@
 				<tr>
 					<td colspan="2">
 						<div style="width:240px;height:200px;overflow:auto;padding:5px;border:1px solid black;">
-							<table cellpadding="2" cellspacing="2">
+							<table cellpadding="2" cellspacing="2" <c:if test="${TargetUser.permissionLevel == TargetUser.PERMISSION_LEVEL_ADMIN}">disabled</c:if>>
 								<c:forEach items="${CamList}" var="caminthisrow" varStatus="status">
 									<tr>
 								    	<td><input type="checkbox" name="check_list[${status.index}]" /></td>								    	

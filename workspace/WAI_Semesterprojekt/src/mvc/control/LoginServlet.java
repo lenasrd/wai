@@ -75,7 +75,6 @@ public class LoginServlet extends HttpServlet {
 		try {
 			user = UserDaoFactory.getInstance().getUserDao().get(username);
 		} catch (UserNotFoundException e) {
-			System.out.println(e.getMessage());
 			jlog.info(e.getMessage());
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/login.jsp");
 			dispatcher.forward(request, response);

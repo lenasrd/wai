@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -15,10 +16,13 @@ import utils.JNDIFactory;
 public final class SystemStartup implements ServletContextListener {
 
 	private static Logger jLog = Logger.getLogger(SystemStartup.class);
+	private static final Level lOGLEVEL = Level.INFO; 
+	
 
 	public void contextInitialized(ServletContextEvent event) {
 		
-		System.out.println("SystemStartup triggered");
+		jLog.setLevel(lOGLEVEL);
+		jLog.debug("SystemStartup triggered");
 		
 		JNDIFactory jndiFactory = JNDIFactory.getInstance();
 

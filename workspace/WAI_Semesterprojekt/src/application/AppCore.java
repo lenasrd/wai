@@ -45,7 +45,7 @@ public class AppCore implements Job, HttpSessionListener {
 
 	private void process() throws Exception {
 		
-		System.out.println("AppCore triggered");
+		jlog.debug("AppCore triggered");
 		Connection connection = null;
 		Statement statement = null;
 		ResultSet resultSet = null;
@@ -194,11 +194,14 @@ public class AppCore implements Job, HttpSessionListener {
 	@Override
 	public void sessionCreated(HttpSessionEvent sessionEvent) {
 		SessionList.getInstance().sessionCreated(sessionEvent);
+		jlog.info("Session " + sessionEvent.getSession().getId() + " created");
 	}
 
 	@Override
 	public void sessionDestroyed(HttpSessionEvent sessionEvent) {
 		SessionList.getInstance().sessionDestroyed(sessionEvent);
+		String sessionID 	= sessionEvent.getSession().getId();
+		jlog.info("Session " + sessionID + " deleted");
 	}
 
 }

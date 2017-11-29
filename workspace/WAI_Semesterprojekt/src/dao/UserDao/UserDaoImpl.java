@@ -11,18 +11,26 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.postgresql.util.PSQLException;
 
 import dao.CamDao.CamNotFoundException;
 import utils.JNDIFactory;
-
+import utils.SystemStartup;
 import mvc.model.UserBean;
 
 public class UserDaoImpl implements UserDao{
 	
 	final JNDIFactory jndi = JNDIFactory.getInstance();
+	private static Logger jLog = Logger.getLogger(SystemStartup.class);
+	private static final Level lOGLEVEL = Level.INFO; 
 
-
+	public UserDaoImpl() {
+		jLog.setLevel(lOGLEVEL);
+	}
+	
+	
 	@Override
 	public void save(UserBean user) {
 		// TODO Auto-generated method stub
@@ -101,7 +109,7 @@ public class UserDaoImpl implements UserDao{
 			pstmt.executeUpdate();		
 			
 		} catch(Exception e) {
-			System.out.println(e.getMessage());
+			jLog.info(e.getMessage());
 			throw new UserNotSavedException();
 		} finally {
 			closeConnection(connection);
@@ -124,6 +132,7 @@ public class UserDaoImpl implements UserDao{
 		} catch (PSQLException e) {
 			
 		} catch (Exception e) {
+			jLog.info(e.getMessage());
 			throw new UserNotDeletedException(id);
 		} finally {
 			closeConnection(connection);
@@ -164,6 +173,7 @@ public class UserDaoImpl implements UserDao{
 				throw new UserNotFoundException(id);
 			}	
 		} catch (Exception e) {
+			jLog.info(e.getMessage());
 			throw new UserNotFoundException(id);
 		} finally {
 			closeConnection(connection);
@@ -205,6 +215,7 @@ public class UserDaoImpl implements UserDao{
 				throw new UserNotFoundException(username);
 			}	
 		} catch (Exception e) {
+			jLog.info(e.getMessage());
 			throw new UserNotFoundException(username);
 		} finally {
 			closeConnection(connection);
@@ -247,7 +258,7 @@ public class UserDaoImpl implements UserDao{
 
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());;
+			jLog.info(e.getMessage());
 		} finally {
 			closeConnection(connection);
 		}	
@@ -271,7 +282,7 @@ public class UserDaoImpl implements UserDao{
 			id++;
 		}
 		catch (Exception e) {
-			System.out.println(e.getMessage());
+			jLog.info(e.getMessage());
 			id = 0;
 		} finally {
 			closeConnection(connection);
