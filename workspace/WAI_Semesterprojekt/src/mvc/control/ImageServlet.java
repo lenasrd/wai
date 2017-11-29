@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import dao.CamDao.CamDaoFactory;
 import dao.ImageDao.ImageDaoFactory;
+import mvc.model.CamBean;
 import mvc.model.ImageBean;
 import mvc.model.UserBean;
 import utils.SessionList;
@@ -54,13 +56,15 @@ public class ImageServlet extends HttpServlet {
 			return;
 		}
 		ImageBean image = ImageDaoFactory.getInstance().getImageDao().get(Integer.parseInt(image_id));
+		CamBean cam 	= CamDaoFactory.getInstance().getCamDao().get(image.getCamId());
 		
-		if(image == null) {
+		if(image == null || cam == null) {
 			response.sendRedirect("main_menu");
 			return;
 		}
 		
 		request.setAttribute("image", image);
+		request.setAttribute("cam", cam);
 				
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/image_zoom.jsp");
 		dispatcher.forward(request, response);

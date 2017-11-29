@@ -8,8 +8,8 @@
 		<title>Image zoom</title>
 	</head>
 	<body>
-		<h1 align="center">Cam "camName" (ID xxx)</h1>
-		<h2 align="center">15.11.17, 15:00</h2>
+		<h1 align="center">Cam ${cam.name}</h1>
+		<h2 align="center">${image.date}, ${image.time}</h2>
 		<form action="image" name="appform" method="post">
 			<table align="center" cellpadding="2" cellspacing="2">
 				<tr>

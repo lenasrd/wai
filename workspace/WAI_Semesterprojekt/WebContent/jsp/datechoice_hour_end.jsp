@@ -14,8 +14,8 @@
 				<tr>
 					<td>
 						<select id="whichHourEnd" name="whichHourEnd" style="width: 80px;">
-								<c:forEach items="${hoursEnd}" var="hourEnd">
-							        <option value="${hourEnd}">${hourEnd}</option>
+								<c:forEach items="${hoursEnd}" var="hourEnd" varStatus="status">
+							        <option value="${hourEnd}">${hoursEndString[status.index]}</option>
 							    </c:forEach>
 						</select>
 					</td>

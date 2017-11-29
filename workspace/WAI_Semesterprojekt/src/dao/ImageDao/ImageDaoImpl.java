@@ -476,6 +476,10 @@ public class ImageDaoImpl implements ImageDao {
 				image.setPath(rs.getString("path"));
 				image.setThumbPath(rs.getString("thumbpath"));
 				image.setCamId(rs.getInt("cam_id"));
+				image.setYear(rs.getInt("year"));
+				image.setMonth(rs.getInt("month"));
+				image.setDay(rs.getInt("day"));
+				image.setHour(rs.getInt("hour"));
 			}	
 			return image;
 		} catch (Exception e) {

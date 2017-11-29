@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -70,7 +71,7 @@ public class HistoryServlet extends HttpServlet {
 
 		// get action key
 		String key = (String) request.getSession().getAttribute("key");
-		System.out.println("key: " + key);
+		jlog.debug("key: " + key);
 		RequestDispatcher dispatcher = null;
 		
 
@@ -182,8 +183,15 @@ public class HistoryServlet extends HttpServlet {
 			
 			//look up startHours for this year & day & month
 			List<String> hoursStart = new ArrayList<String>();
+			List<String> hoursStartString = new LinkedList<String>();
 			hoursStart = ImageDaoFactory.getInstance().getImageDao().getHoursStart(targetCam, year, month, day);
+			
+			for(int i = 0; i < hoursStart.size(); i++) {
+				hoursStartString.add(ImageBean.transformTime(hoursStart.get(i)));
+			}
+			
 			request.setAttribute("hoursStart", hoursStart);
+			request.setAttribute("hoursStartString", hoursStartString);
 			nextPage = "/jsp/datechoice_hour_start.jsp";
 		}
 		
@@ -197,12 +205,19 @@ public class HistoryServlet extends HttpServlet {
 			
 			//look up endHours for this year & day & month
 			List<String> hoursEnd = new ArrayList<String>();
+			List<String> hoursEndString = new LinkedList<String>();
 
 			//if there is only one hour in the database
 			hoursEnd = ImageDaoFactory.getInstance().getImageDao().getHoursEnd(targetCam, year, month, day, hourStart);
 			if (hoursEnd.isEmpty()) {
 				hoursEnd.add(hourStart);
 			}
+			
+			for(int i = 0; i < hoursEnd.size(); i++) {
+				hoursEndString.add(ImageBean.transformTime(hoursEnd.get(i)));
+			}
+			
+			request.setAttribute("hoursEndString", hoursEndString);
 			request.setAttribute("hoursEnd", hoursEnd);
 			nextPage = "/jsp/datechoice_hour_end.jsp";
 		}
@@ -227,8 +242,20 @@ public class HistoryServlet extends HttpServlet {
 		}
 		
 		else if (key.equals("zoom")) {
+			String ImageID = request.getParameter("target");
+			request.getSession().setAttribute("target", ImageID);
 			response.sendRedirect("image");
 			System.out.println("try key: " + key);
+			return;
+		}
+		
+		else if (key.equals("back_to_main")) {
+			response.sendRedirect("main_menu");
+			return;
+		}
+		else {
+			jlog.info(("unknown key: " + key));
+			response.sendRedirect("main_menu");
 			return;
 		}
 		

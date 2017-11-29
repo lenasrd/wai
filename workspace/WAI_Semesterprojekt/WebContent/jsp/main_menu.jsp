@@ -40,7 +40,7 @@
 								        <td>${caminthisrow.name}</td>
 								        <td><img src="${pageContext.request.contextPath}${ImageList[status.index].thumbPath}" height="80" width="80"></td>
 								       	<td><button onclick="sendAction('zoom', '${ImageList[status.index].id}')" style="background: url(https://image.flaticon.com/icons/png/512/49/49116.png); height: 30px; width: 30px; background-size: 24px 24px"></button></td>
-								        <td>15:00, 15.11.17</td>
+								        <td>${ImageList[status.index].timeStamp}</td>
 										<td><input type="submit" onclick="sendAction('browse_history', '${caminthisrow.id}')" value="browse history"/></td>
 								    </tr>
 								</c:forEach>

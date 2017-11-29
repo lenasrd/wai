@@ -1,46 +1,57 @@
 <%@ page language="java" contentType="text/html" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 		<title>${headline}</title>
+		<script>
+	        function sendAction(key, target)
+	        {
+	        	document.getElementById('key').value	=key;
+	        	document.getElementById('target').value	=target;
+	        	document.getElementById('historyTable').submit();
+	        } 
+        </script>
 	</head>
 	<body>
 		<h1 align="center">${headline}</h1>
-		<h2 align="center">${day}.${month}.${year}, ${hourStart} - ${hourEnd}</h1>
-		<form action="history" name="appform" method="post">
+		<h2 align="center">${day}.${month}.${year}, ${ImageList[0].time} - ${ImageList[fn:length(ImageList)-1].time}</h1>
+		<form action="history" name="appform" method="post" id="historyTable">
 			<table align="center" cellpadding="2" cellspacing="2">
 				<tr>
 					<td>
-						<div style="width:250px;height:400px;overflow:auto;padding:5px;border:1px solid black;">
+						<div style="width:400;height:600px;overflow:auto;padding:5px;border:1px solid black;">
 							<table cellpadding="2" cellspacing="5">
 								<tr>
-									<th>Record</th>
-									<td>&nbsp;</td>
-									<th>Timestamp</th>
-									<td>&nbsp;</td>
-								</tr>
-								<tr>
-									<td><img src="http://cdn.onlinewebfonts.com/svg/img_148071.png" height="50"></td>
-									<td><button name="key" value="zoom" style="background: url(https://image.flaticon.com/icons/png/512/49/49116.png); height: 30px; width: 30px; background-size: 24px 24px"></button></td>
-									<td>15:00</td>
+									<th width="25%">Record</th>
+									<th width="25%">Time</th>
+									<th width="25%">Image</th>
+									<th width="25%">Zoom</th>
 								</tr>
 								<c:forEach items="${ImageList}" var="imageinthisrow" varStatus="status">
 									<tr>
-								        <td>${imageinthisrow.id}</td>
-								        <td>${imageinthisrow.camId}</td>
-								        <td><img src="${pageContext.request.contextPath}${ImageList[status.index].thumbPath}" height="80" width="80"></td>
-								       	<td><button onclick="sendAction('zoom', '${ImageList[status.index].id}')" style="background: url(https://image.flaticon.com/icons/png/512/49/49116.png); height: 30px; width: 30px; background-size: 24px 24px"></button></td>
-								        <td>15:00, 15.11.17</td>
+								        <td align="center">${status.index+1}</td>
+								        <td align="center">${ImageList[status.index].time}</td>
+								        <td align="center"><img src="${pageContext.request.contextPath}${ImageList[status.index].thumbPath}" height="80" width="80"></td>
+								       	<td align="center"><button onclick="sendAction('zoom', '${ImageList[status.index].id}')" style="background: url(https://image.flaticon.com/icons/png/512/49/49116.png); height: 30px; width: 30px; background-size: 24px 24px" ></button></td>
 								    </tr>
 								</c:forEach>
 							</table>
 						</div>
 					</td>
 				<tr>
+				<tr>
+					<td> &nbsp;</td>
+				</tr>	
+				<tr>
+					<td  colspan=2><input type="submit" onclick="sendAction('back_to_main')" value="back to mainmenu"/></td>
+				</tr>
 			</table>
+			<input id="key" 	type=hidden name="key">
+			<input id="target" 	type=hidden name="target">
 		</form>
 	</body>
 </html>

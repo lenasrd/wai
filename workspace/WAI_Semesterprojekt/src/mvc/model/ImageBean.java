@@ -79,5 +79,33 @@ public class ImageBean {
     public void setHour(Integer hour) {
         this.hour = hour;
     }
-      
+    
+    public String getDate() {
+    	return day + "." + month + "." + year;
+    }
+    
+    public String getTime() {
+    	String h = "" + hour;
+    	return transformTime(h);
+    }
+    
+    public String getTimeStamp() {
+    	return getDate() + "\n" + getTime();
+    } 
+    
+    static public String transformTime(String time) {
+    	int len = time.length();
+    	String t;
+    	switch(len) {
+    	case 5:
+    		t = time.substring(0, 1) + ":" + time.substring(1, 3) + ":" + time.substring(3, 5);
+    		break;
+    	case 6:
+    		t = time.substring(0, 2) + ":" + time.substring(2, 4) + ":" + time.substring(4, 6);
+    		break;
+    	default:
+    		t = null;	
+    	}
+    	return t;
+    }
 }
