@@ -7,6 +7,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 		<title>${headline}</title>
+		<style>body {background-color: powderblue;}</style>
 		<script>
 	        function sendAction(key, target)
 	        {

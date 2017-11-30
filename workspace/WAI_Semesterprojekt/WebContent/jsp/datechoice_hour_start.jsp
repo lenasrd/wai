@@ -6,6 +6,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 		<title>${headline}</title>
+		<style>body {background-color: powderblue;}</style>
 	</head>
 	<body>
 		<h1 align="center">${headline}</h1>

@@ -14,6 +14,7 @@
 	        	document.getElementById('mainMenuTable').submit();
 	        } 
         </script>
+		<style>body {background-color: powderblue;}</style>
 	</head>
 	<body>
 		<h1 align="center" >Add user</h1>
