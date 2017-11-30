@@ -254,6 +254,7 @@ public class ImageDaoImpl implements ImageDao {
 		try {
 			connection = jndiFactory.getConnection("jdbc/WAI_DB");
 			if (cam_id != null) {
+				// select * from table where ARRAY[id] @> ARRAY[id1,id2,id3]
 				pstmt = connection.prepareStatement("select day from image where cam_id = ? and year = "+year+" and month = "+month+" order by month desc");
 				pstmt.setInt(1, cam_id);
 				rs = pstmt.executeQuery();
